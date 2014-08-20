@@ -5,7 +5,6 @@ MOCHA_BIN = ./node_modules/.bin/mocha
 
 INPUT_DIR = ./lib
 OUTPUT_DIR = ./dist
-
 TEST_DIR = ./test
 
 TRACEUR_COMMON_OPTS = \
