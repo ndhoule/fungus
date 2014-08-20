@@ -1,6 +1,6 @@
 import { truthy } from '../../../dist/utility/truthy';
 
-describe('falsy', function() {
+describe('truthy', function() {
   it('should be a function', function() {
     expect(truthy).to.be.a('function');
   });
