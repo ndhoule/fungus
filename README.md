@@ -9,6 +9,13 @@ A functional programming library implemented in ES6.
 npm install fungus
 ```
 
+<!--
+## Use
+
+```javascript
+var fungus = require('fungus');
+```
+-->
 
 ## Building
 
