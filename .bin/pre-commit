@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#
+# Runs the project's test suite before a commit is permitted. Prevents a commit
+# if any of the tests fail.
+#
+
+PROJECT_DIR=$(git rev-parse --show-toplevel)
+ERROR_MSG="\n\n--------------------\n\nYour commit has been prevented because some of the test suite's jobs have failed.\n"
+
+cd $PROJECT_DIR && npm test || (echo \$ERROR_MSG ; exit 1)
