@@ -1,7 +1,26 @@
 {
   "name": "fungus",
   "version": "0.0.1",
-  "description": "",
+  "description": "Functional programming utilities written in ES6",
   "author": "Nathan Houle <nathan@nathanhoule.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "es6",
+    "fp",
+    "functional",
+    "traceur"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "chai-factories": "^0.1.0",
+    "mocha": "^1.21.4",
+    "mocha-traceur": "git+https://github.com/domenic/mocha-traceur.git#patch-1",
+    "sinon": "^1.10.3",
+    "sinon-chai": "^2.5.0",
+    "traceur": "0.0.58"
+  }
 }
