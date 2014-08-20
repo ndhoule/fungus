@@ -42,4 +42,5 @@ make test
 - Well tested and documented
 - Easy-to-understand codebase / usable as a FP study guide
 - Lightweight, doesn't use features from Traceur that require the Traceur runtime
+- Modular: Take only what you need
 -->
