@@ -82,7 +82,8 @@ describe('map', function() {
 
   // TODO: How to make this test useful? What should this behavior be?
   // TODO: Modify the documentation's `param` types when this is changed
-  xit('should not make any guarantees on object iteration order other than those made by the host engine');
+  xit('should not make any guarantees on object iteration order other than those made by the host engine', function() {
+  });
 
   it('should ignore properties up the prototype chain when mapping over objects', function() {
     var parent = { z: 4 };
