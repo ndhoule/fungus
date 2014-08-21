@@ -26,14 +26,15 @@ var fungus = require('fungus');
 -->
 
 
-## Building
+## Development
+
+### Building
 
 ```bash
 make
 ```
 
-
-## Testing
+### Testing
 
 ```bash
 make test
