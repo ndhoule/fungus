@@ -1,0 +1,14 @@
+<nav class="nav-container affix">
+  <ul class="nav">
+    {{#each categories}}
+    <h5>{{ @key }}</h5>
+
+    {{#each this}}
+    {{! TODO: Doesn't work properly when someone visits hash url }}
+    <li>
+      <a href="#{{ name }}">{{ name }}</a>
+    </li>
+    {{/each}}
+    {{/each}}
+  </ul>
+</nav>

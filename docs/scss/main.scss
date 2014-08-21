@@ -1,0 +1,63 @@
+@import "bootstrap";
+
+$header-height: 8rem;
+$nav-width: 20rem;
+
+.body {
+  height: 100%;
+  position: relative;
+}
+
+.active {
+  border-left: 4px solid rgba(0, 117, 137, 0.25);
+  font-weight: bold;
+}
+
+.header-container {
+  @extend .row;
+  @extend .affix;
+
+  height: $header-height;
+  width: 100%;
+  background-color: white;
+  padding-left: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.main-container {
+  @extend .row;
+
+  margin-top: $header-height;
+  margin-bottom: 2.5rem;
+}
+
+.nav-container {
+  @extend .visible-sm;
+  @extend .visible-md;
+  @extend .visible-lg;
+
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 2.5rem;
+}
+
+.content-container {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+// Make room for navbar on non-mobile screens
+@media screen and (min-width: 768px) {
+  .nav-container {
+    height: 100%;
+    width: $nav-width;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    white-space: nowrap;
+  }
+
+  .content-container {
+    margin-left: $nav-width;
+  }
+}

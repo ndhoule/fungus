@@ -1,0 +1,25 @@
+<script src="//cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js" charset="utf-8"></script>
+<script src="//cdn.jsdelivr.net/fastclick/1.0.3/fastclick.min.js" charset="utf-8"></script>
+<script src="//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js" charset="utf-8"></script>
+<script src="//cdn.jsdelivr.net/bootstrap/3.2.0/js/bootstrap.min.js" charset="utf-8"></script>
+<script src="//cdn.jsdelivr.net/highlight.js/8.0/highlight.min.js" charset="utf-8"></script>
+<script charset="utf-8">
+  $(function() {
+    'use strict';
+
+    var $nav, $activeElement, query;
+
+    // Init syntax highlighting for code samples
+    hljs.initHighlightingOnLoad();
+
+    // Attach scrollspy via JS instead of data attribute so we catch hash URLs
+    // on pageload
+    $('body').scrollspy({ target: '.nav-container', offset: 89 });
+
+    // Ensure that, if we're on the top of the page and not yet past the offset,
+    // we select the first link
+    if (!window.location.hash) {
+      $('nav li').first().addClass('active');
+    }
+  });
+</script>

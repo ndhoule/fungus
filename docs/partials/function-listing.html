@@ -1,0 +1,16 @@
+<div class="content-container">
+  {{#each categories}}
+  <h2>{{ @key }}</h2>
+
+  {{#each this}}
+  <section class="function-entry">
+    {{> function-entry }}
+  </section>
+
+  {{#unless @last}}
+  <hr />
+  {{/unless}}
+
+  {{/each}}
+  {{/each}}
+</div>

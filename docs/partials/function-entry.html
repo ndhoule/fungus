@@ -1,0 +1,54 @@
+<h3><a id="{{ name }}" href="#{{ name }}">{{ name }}</a></h3>
+
+<div class="fn-signature">
+  <code>
+    {{ name }}({{formatSignature params}})
+  </code>
+</div>
+
+{{#if description}}
+<div class="fn-description">
+  {{{ description.full }}}
+</div>
+{{/if}}
+
+{{#if params}}
+<div class="fn-parameters">
+  <h5>Parameters:</h5>
+  <ol>
+    {{#each params}}
+    <li>
+      <code>{{ name }}</code> <em>{{formatTypes types}}</em>: {{{ description }}}
+    </li>
+    {{/each}}
+  </ol>
+</div>
+{{/if}}
+
+{{#if returns}}
+<div class="fn-returns">
+  <h5>Returns:</h5>
+  <ul>
+    <li>
+      <em>{{formatTypes returns.types}}</em>: {{{ returns.description }}}
+    </li>
+  </ul>
+</div>
+{{/if}}
+
+{{#if example}}
+<div class="fn-example">
+  <h5>Example:</h5>
+
+  {{{example}}}
+</div>
+{{/if}}
+
+{{#if code}}
+<div class="fn-source">
+  <a data-toggle="collapse" data-target="#fn-source-{{ name }}">Click to see source</a>
+  <div id="fn-source-{{ name }}" class="collapse">
+    {{{code}}}
+  </div>
+</div>
+{{/if}}

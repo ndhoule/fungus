@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+'use strict';
+
+var exec = require('exec-sync');
+var path = require('path');
+
+var BASE_DIR = exec('git rev-parse --show-toplevel');
+var SRC_DIR = path.join(BASE_DIR, 'lib');
+
+require(path.join(BASE_DIR, 'docs/lib'))({
+  baseDir: BASE_DIR,
+  srcDir: SRC_DIR
+});

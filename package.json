@@ -15,10 +15,21 @@
     "test": "make test"
   },
   "devDependencies": {
+    "bluebird": "^2.3.0",
     "chai": "^1.9.1",
     "chai-factories": "^0.1.0",
+    "dox": "^0.4.6",
+    "exec-sync": "^0.1.6",
+    "glob": "^4.0.5",
+    "handlebars": "^2.0.0-alpha.4",
+    "highlight.js": "^8.2.0",
+    "html-minifier": "^0.6.6",
+    "lodash": "^2.4.1",
+    "marked": "^0.3.2",
     "mocha": "^1.21.4",
     "mocha-traceur": "git+https://github.com/domenic/mocha-traceur.git#patch-1",
+    "node-sass": "^0.9.3",
+    "require-directory": "^2.0.0",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0",
     "traceur": "0.0.58"
