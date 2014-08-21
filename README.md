@@ -1,5 +1,10 @@
 # fungus
 
+Branch | Status
+---    | ---
+Master | ![Master](https://travis-ci.org/ndhoule/fungus.svg?branch=master)
+Dev    | ![Dev](https://travis-ci.org/ndhoule/fungus.svg?branch=dev)
+
 A functional programming library implemented in ES6.
 
 
