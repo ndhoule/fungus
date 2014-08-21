@@ -1,11 +1,14 @@
 # fungus
 
+A functional programming library implemented in ES6.
+
+
+###### Build Status
+
 Branch | Status
 ---    | ---
 Master | ![Master](https://travis-ci.org/ndhoule/fungus.svg?branch=master)
 Dev    | ![Dev](https://travis-ci.org/ndhoule/fungus.svg?branch=dev)
-
-A functional programming library implemented in ES6.
 
 
 ## Installation
@@ -21,6 +24,7 @@ npm install fungus
 var fungus = require('fungus');
 ```
 -->
+
 
 ## Building
 
