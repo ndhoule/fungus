@@ -1,4 +1,4 @@
-//import { foldr } from '../../../dist/collection/foldl';
+import { foldr } from '../../../dist/collection/foldl';
 
 describe('foldr', function() {
   xit('should be a function', function() {
