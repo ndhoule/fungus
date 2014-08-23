@@ -1,5 +1,14 @@
 'use strict';
 
+/**
+ * HERE BE UNDERAGED DRAGONS
+ *
+ * Some gross stuff goes on here to format a dox object into something usable in
+ * our template.
+ *
+ * TODO: Clean this file up a bit
+ */
+
 var _ = require('lodash');
 var marked = require('marked');
 
