@@ -15,6 +15,9 @@ describe('isNumber', function() {
     expect(isNumber(-1)).to.be.true;
     expect(isNumber(new Number())).to.be.true;
     expect(isNumber(new Number(1))).to.be.true;
+    expect(isNumber(NaN)).to.be.true;
+    expect(isNumber(Infinity)).to.be.true;
+    expect(isNumber(-Infinity)).to.be.true;
   });
 
   it('should return `false` when passed a non-number', function() {
