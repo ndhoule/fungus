@@ -14,7 +14,7 @@ dev    | ![Dev](https://travis-ci.org/ndhoule/fungus.svg?branch=dev)
 ## Installation
 
 ```bash
-npm install fungus
+npm install {--save} fungus
 ```
 
 <!--
@@ -30,16 +30,27 @@ var fungus = require('fungus');
 
 ### Building
 
+To build the library:
+
 ```bash
 make
 ```
 
 ### Testing
 
+To run tests:
+
 ```bash
 make test
 ```
 
+### Documentation
+
+To build documentation:
+
+```bash
+make docs
+```
 
 
 <!--
