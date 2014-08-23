@@ -24,35 +24,35 @@ describe('foldl', function() {
     expect(fn).to.be.a('function');
     expect(fn()()()()).to.be.a('function');
     expect(fn([1, 2, 3])).to.be.a('function');
-    expect(fn([1, 2, 3], 4)).to.be.a('number');
+    expect(fn(4, [1, 2, 3])).to.be.a('number');
   });
 
   it('should pass the input function three arguments: value, index, and array', function() {
-    foldl(add, [100, 200, 300], 5);
+    foldl(add, 5, [100, 200, 300]);
 
     expect(add).to.been.calledWith(105, 200, 1, [100, 200, 300]);
     expect(add).to.been.calledWith(305, 300, 2, [100, 200, 300]);
   });
 
   it('should pass the accumulator to the first function call', function() {
-    foldl(add, [100, 200, 300], 5);
+    foldl(add, 5, [100, 200, 300]);
 
     expect(add).to.been.calledWith(5, 100, 0, [100, 200, 300]);
   });
 
   it('should accumulate a single return value', function() {
-    expect(foldl(add, [100, 200, 300], 5)).to.equal(605);
+    expect(foldl(add, 5, [100, 200, 300])).to.equal(605);
   });
 
   it('should call the function with each array element, from right to left', function() {
-    expect(foldl(add, ['a', 'b', 'c'], 'z')).to.equal('zabc');
+    expect(foldl(add, 'z', ['a', 'b', 'c'])).to.equal('zabc');
   });
 
   it('should ignore non-indexed array values', function() {
     var arr = ['a'];
     arr.enchanter = 'Tim';
 
-    foldl(add, arr, 'z');
+    foldl(add, 'z', arr);
 
     expect(add).to.have.been.calledOnce;
     expect(add).to.have.been.calledWith('z', 'a', 0, arr);
@@ -63,7 +63,7 @@ describe('foldl', function() {
 
     var result = foldl(function(acc, val) {
       return acc.concat(val);
-    }, obj, []).sort();
+    }, [], obj).sort();
 
     expect(result).to.eql(['Tim', 'spam']);
   });
@@ -77,7 +77,7 @@ describe('foldl', function() {
 
     var result = foldl(function(acc, val) {
       return acc.concat(val);
-    }, obj, []).sort();
+    }, [], obj).sort();
 
     expect(result).to.eql(['Tim', 'spam']);
   });
@@ -94,7 +94,7 @@ describe('foldl', function() {
 
     var result = foldl(function(acc, val) {
       return acc.concat(val);
-    }, child, []);
+    }, [], child);
 
     expect(result).to.eql(['spam']);
   });
@@ -103,7 +103,7 @@ describe('foldl', function() {
   });
 
   it('should throw an error when passed a non-function as its `fn` argument', function() {
-    expect(() => foldl('fdsa', [], 1)).to.throw(NOT_FUNC_EXCEPTION);
-    expect(() => foldl('fdsa', [1], 1)).to.throw(NOT_FUNC_EXCEPTION);
+    expect(() => foldl('fdsa', 1, [])).to.throw(NOT_FUNC_EXCEPTION);
+    expect(() => foldl('fdsa', 1, [1])).to.throw(NOT_FUNC_EXCEPTION);
   });
 });
