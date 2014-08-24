@@ -17,9 +17,11 @@ dev    | ![Dev](https://travis-ci.org/ndhoule/fungus.svg?branch=dev)
 npm install {--save} fungus
 ```
 
-<!--
 ## Use
 
+Fungus currently can't easily be used in a project. Check back soon!
+
+<!--
 ```javascript
 var fungus = require('fungus');
 ```
@@ -33,7 +35,7 @@ var fungus = require('fungus');
 To build the library:
 
 ```bash
-make
+make build
 ```
 
 ### Testing
@@ -51,6 +53,15 @@ To build documentation:
 ```bash
 make docs
 ```
+
+To view the built documentation:
+
+```
+cd .tmp/docs
+python -m SimpleHTTPServer
+```
+
+
 
 
 <!--
