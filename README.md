@@ -59,6 +59,7 @@ To view the built documentation:
 ```
 cd .tmp/docs
 python -m SimpleHTTPServer
+open http://localhost:8000
 ```
 
 
