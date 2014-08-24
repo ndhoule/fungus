@@ -12,6 +12,7 @@
   ],
   "main": "lib/index.js",
   "scripts": {
+    "docs": "make docs",
     "test": "make test"
   },
   "devDependencies": {

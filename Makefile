@@ -9,6 +9,7 @@ BOWER_DIR = ./docs/vendor
 INPUT_DIR = ./lib
 OUTPUT_DIR = ./dist
 TEST_DIR = ./test
+TMP_DIR = ./.tmp
 
 HTMLMIN_OPTS = --collapse-whitespace \
 	--minify-js \
@@ -44,6 +45,12 @@ MOCHA_OPTS = \
 node_modules:
 	$(NPM) install
 
+$(TMP_DIR):
+	@mkdir -p $(TMP_DIR)
+
+$(TMP_DIR)/docs:
+	@mkdir -p $(TMP_DIR)/docs
+
 $(OUTPUT_DIR):
 	@mkdir -p $(OUTPUT_DIR)
 
@@ -56,11 +63,11 @@ build: | $(OUTPUT_DIR)
 test: | build
 	@$(MOCHA) $(MOCHA_OPTS) $(TEST_DIR)/**/*.test.js
 
-docs: | $(OUTPUT_DIR)
+docs: | $(TMP_DIR)/docs
 	@$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets \
-		docs/scss/main.scss dist/main.css \
+		docs/scss/main.scss $(TMP_DIR)/docs/main.css \
 		> /dev/null 2>&1
-	@$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_OPTS) > dist/docs.html
+	@$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_OPTS) > $(TMP_DIR)/docs/index.html
 
 
 .DEFAULT_GOAL = build
