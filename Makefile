@@ -11,11 +11,11 @@ OUTPUT_DIR = ./dist
 TEST_DIR = ./test
 TMP_DIR = ./.tmp
 
-HTMLMIN_OPTS = --collapse-whitespace \
+HTMLMIN_FLAGS = --collapse-whitespace \
 	--minify-js \
 	--remove-comments
 
-TRACEUR_COMMON_OPTS = \
+TRACEUR_COMMON_FLAGS = \
 	--arrow-functions=true \
 	--block-binding=true \
 	--default-parameters=true \
@@ -24,17 +24,17 @@ TRACEUR_COMMON_OPTS = \
 	--filename \
 	--source-maps
 
-TRACEUR_DEV_OPTS = \
+TRACEUR_DEV_FLAGS = \
 	--modules=commonjs \
 	--filename \
 	--source-maps
 
-TRACEUR_DEV_OPTS = \
+TRACEUR_DEV_FLAGS = \
 	--modules=commonjs \
 	--filename \
 	--source-maps
 
-MOCHA_OPTS = \
+MOCHA_FLAGS = \
 	--require test/config \
 	--compilers js:mocha-traceur \
 	--reporter spec \
@@ -58,16 +58,16 @@ clean: | $(OUTPUT_DIR)
 	rm -r $(OUTPUT_DIR)
 
 build: | $(OUTPUT_DIR)
-	@$(TRACEUR) $(TRACEUR_COMMON_OPTS) $(TRACEUR_DEV_OPTS) --dir $(INPUT_DIR) $(OUTPUT_DIR)
+	@$(TRACEUR) $(TRACEUR_COMMON_FLAGS) $(TRACEUR_DEV_FLAGS) --dir $(INPUT_DIR) $(OUTPUT_DIR)
 
 test: | build
-	@$(MOCHA) $(MOCHA_OPTS) $(TEST_DIR)/**/*.test.js
+	@$(MOCHA) $(MOCHA_FLAGS) $(TEST_DIR)/**/*.test.js
 
 docs: | $(TMP_DIR)/docs
 	$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets \
 		docs/scss/main.scss $(TMP_DIR)/docs/main.css \
 		> /dev/null 2>&1
-	$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_OPTS) > $(TMP_DIR)/docs/index.html
+	$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_FLAGS) > $(TMP_DIR)/docs/index.html
 
 
 .DEFAULT_GOAL = build
