@@ -10,6 +10,7 @@ var glob = Promise.promisify(require('glob'));
 var path = require('path');
 
 module.exports = function(options) {
+
   // Load Handlebars partials
   _.each(require(path.join(options.baseDir, 'docs/partials')), function(partial, name) {
     Handlebars.registerPartial(name, partial);
@@ -50,7 +51,10 @@ module.exports = function(options) {
     .then(function(docs) {
       var template = fs.readFileSync(path.join(options.baseDir, 'docs/index.html'), 'utf-8');
 
-      return Handlebars.compile(template)({ categories: docs });
+      return Handlebars.compile(template)({
+        categories: docs,
+        meta: require(path.join(options.baseDir, 'package.json'))
+      });
     })
     .then(function(results) {
       process.stdout.write(results + '\n');
