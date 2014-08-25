@@ -55,7 +55,7 @@ $(OUTPUT_DIR):
 	@mkdir -p $(OUTPUT_DIR)
 
 clean: | $(OUTPUT_DIR)
-	rm -r $(OUTPUT_DIR)
+	rm -rf $(OUTPUT_DIR) $(TMP_DIR)
 
 build: | $(OUTPUT_DIR)
 	@$(TRACEUR) $(TRACEUR_COMMON_FLAGS) $(TRACEUR_DEV_FLAGS) --dir $(INPUT_DIR) $(OUTPUT_DIR)
@@ -69,6 +69,12 @@ docs: | $(TMP_DIR)/docs
 		> /dev/null 2>&1
 	$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_FLAGS) > $(TMP_DIR)/docs/index.html
 
+watch:
+	@.bin/watch
+
+unwatch:
+	@.bin/unwatch
+
 
 .DEFAULT_GOAL = build
-.PHONY: build docs test
+.PHONY: build docs test watch unwatch

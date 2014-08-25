@@ -1,0 +1,4 @@
+{
+  "ignore_vcs": [".git"],
+  "ignore_dirs": ["dist", ".tmp"]
+}

@@ -30,31 +30,32 @@ var fungus = require('fungus');
 
 ## Development
 
+Requirements:
+- Node.js v0.10.x
+- [Watchman](https://facebook.github.io/watchman/docs/install.html) *(Optional)*
+
+### Build Tasks
+
+Task           | Description
+---            | ---
+`make`         | Runs the default task (`make build`).
+`make test`    | Runs the test suite.
+`make build`   | Builds the library into ES5-compatible modules.
+`make docs`    | Builds the documentation.
+`make watch`   | Watch and rebuild the source and documentation on file changes.
+`make unwatch` | Stop file watching.
+
 ### Building
 
-To build the library:
-
-```bash
-make build
-```
+To build the library, run the command [listed above](#build-tasks).
 
 ### Testing
 
-To run tests:
-
-```bash
-make test
-```
+To run tests, run the command [listed above](#build-tasks).
 
 ### Documentation
 
-To build documentation:
-
-```bash
-make docs
-```
-
-To view the built documentation:
+To build documentation, run the command [listed above](#build-tasks). To view the built documentation:
 
 ```
 cd .tmp/docs
