@@ -16,8 +16,8 @@ describe('add', function() {
     expect(add(1)()()(2)).to.be.a('number');
   });
 
-  it('should do what the native operator would do', function() {
-    expect(add(1, 2)).to.equal(3);
-    expect(add(-1, 2)).to.equal(1);
+  it('should do what the native `+` operator does', function() {
+    expect(add(1, 2)).to.equal(1 + 2);
+    expect(add(-1, 2)).to.equal(-1 + 2);
   });
 });
