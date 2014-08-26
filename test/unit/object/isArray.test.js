@@ -16,7 +16,7 @@ describe('isArray', function() {
     expect(isArray(new Array(10))).to.be.true;
   });
 
-  it('should return `false` when passed a non-function', function() {
+  it('should return `false` when passed a non-array', function() {
     expect(isArray()).to.be.false;
     expect(isArray(undefined)).to.be.false;
     expect(isArray(null)).to.be.false;
