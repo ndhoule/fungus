@@ -106,7 +106,7 @@ var addExampleToDoxObject = function addExampleToDoxObject(doc) {
   });
 
   if (example && example.string) {
-    example = marked(toCodeBlock(example.string));
+    example = marked(toCodeBlock(example.string, 'javascript'));
   }
 
   doc.example = example;
@@ -116,7 +116,7 @@ var addExampleToDoxObject = function addExampleToDoxObject(doc) {
 
 var enhanceCodeBlock = function enhanceCodeBlock(doc) {
   if (doc.code) {
-    doc.code = marked(toCodeBlock(doc.code));
+    doc.code = marked(toCodeBlock(doc.code, 'javascript'));
   }
 
   return doc;
