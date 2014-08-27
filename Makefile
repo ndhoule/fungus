@@ -29,11 +29,6 @@ TRACEUR_DEV_FLAGS = \
 	--filename \
 	--source-maps
 
-TRACEUR_DEV_FLAGS = \
-	--modules=commonjs \
-	--filename \
-	--source-maps
-
 MOCHA_FLAGS = \
 	--require test/config \
 	--compilers js:mocha-traceur \
