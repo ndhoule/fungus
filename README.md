@@ -71,6 +71,9 @@ open http://localhost:8000
 <!--
 ## Goals
 
+- Browser support
+  - IE9+? Whatever jQuery supports?
+
 - Puts the developer first:
   - Usable in browser and Node
   - Forward-thinking
