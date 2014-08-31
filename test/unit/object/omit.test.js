@@ -1,13 +1,6 @@
-import { identity } from '../../../dist/utility/identity';
 import { omit } from '../../../dist/object/omit';
 
 describe('omit', function() {
-  var observe;
-
-  beforeEach(function() {
-    observe = sinon.spy(identity);
-  });
-
   it('should be a function', function() {
     expect(omit).to.be.a('function');
   });
@@ -40,34 +33,34 @@ describe('omit', function() {
     expect(omit('occupation', source)).to.eql(expected);
   });
 
-  it('should return an object, omitting any of the named `omissions` properties', function() {
+  it('should return an object, omitting any of the named `props` properties', function() {
     var source = { name: 'tim', occupation: 'enchanter', scaredOf: 'rabbits' };
     var expected = { occupation: 'enchanter' };
 
     expect(omit(['name', 'scaredOf'], source)).to.eql(expected);
   });
 
-  it('should handle omissions that don\'t exist on the target `object`', function() {
+  it('should handle `props` that don\'t exist on the target `object`', function() {
     var source = { name: 'tim', occupation: 'enchanter', scaredOf: 'rabbits' };
 
     expect(omit('nonexistent', source)).to.eql(source);
     expect(omit(['nonexistent', 'keys'], source)).to.eql(source);
   });
 
-  it('should handle an empty list of `omissions`', function() {
+  it('should handle an empty list of `props`', function() {
     var source = { name: 'tim', occupation: 'enchanter', scaredOf: 'rabbits' };
 
     expect(omit([], source)).to.eql(source);
   });
 
-  it('should ignore non-string omissions', function() {
+  it('should ignore non-string props', function() {
     var source = { name: 'tim', null: 'enchanter', undefined: 'rabbits' };
 
     expect(omit(null, source)).to.eql(source);
     expect(omit([null, undefined], source)).to.eql(source);
   });
 
-  it('should handle non-array/string `omissions` arguments', function() {
+  it('should handle non-array/string `props` arguments', function() {
     var source = { name: 'tim', occupation: 'enchanter', scaredOf: 'rabbits' };
 
     expect(omit(null, source)).to.eql(source);
@@ -95,7 +88,9 @@ describe('omit', function() {
 
   it('should ignore inherited properties', function() {
     var parent = { parent: 'parent' };
-    var child = { child: 'child', color: 'green' };
+    var child = Object.create(parent);
+    child.child = 'child';
+    child.color = 'green';
 
     expect(omit('color', child).parent).to.be.undefined;
   });
