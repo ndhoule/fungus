@@ -115,7 +115,7 @@ describe('omit', function() {
     expect(omit('whatever', undefined)).to.eql({});
   });
 
-  it('should return an empty object when passed non-objects', function() {
+  it('should return an empty object when passed a primitive value', function() {
     expect(omit('whatever', 'test')).to.eql({});
     expect(omit('whatever', 12)).to.eql({});
     expect(omit('whatever', /regex/)).to.eql({});
