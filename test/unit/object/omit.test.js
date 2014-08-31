@@ -60,6 +60,13 @@ describe('omit', function() {
     expect(omit([], source)).to.eql(source);
   });
 
+  it('should ignore non-string omissions', function() {
+    var source = { name: 'tim', null: 'enchanter', undefined: 'rabbits' };
+
+    expect(omit(null, source)).to.eql(source);
+    expect(omit([null, undefined], source)).to.eql(source);
+  });
+
   it('should handle non-array/string `omissions` arguments', function() {
     var source = { name: 'tim', occupation: 'enchanter', scaredOf: 'rabbits' };
 
