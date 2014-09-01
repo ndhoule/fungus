@@ -1,5 +1,73 @@
 .tmp
-TODO.md
 dist
-docs/vendor
 sauce.json
+docs/vendor
+
+#
+# Package management
+#
+
+bower_components
+node_modules
+npm-debug.log
+
+#
+# Editor-specific files
+#
+
+*.orig
+*.swo
+*.swp
+*.vims
+*~
+.tern-port
+\#*\#
+flycheck-*.el
+
+#
+# OS-generated files
+#
+
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+._*
+Icon?
+Thumbs.db
+ehthumbs.db
+
+#
+# Compiled source
+#
+
+.sass-cache
+*.class
+*.com
+*.dll
+*.exe
+*.o
+*.pyc
+*.so
+
+#
+# Packages
+#
+
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+#
+# Logs and databases
+#
+
+*.log
+*.sql
+*.sqlite
+*.db
