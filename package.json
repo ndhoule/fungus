@@ -37,7 +37,6 @@
     "lodash": "^2.4.1",
     "marked": "^0.3.2",
     "mocha": "^1.21.4",
-    "mocha-traceur": "git+https://github.com/domenic/mocha-traceur.git#patch-1",
     "node-sass": "^0.9.3",
     "require-directory": "^2.0.0",
     "requirejs": "^2.1.14",

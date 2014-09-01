@@ -12,8 +12,6 @@ describe('isFinite', function() {
   it('should return `true` when passed a finite number', function() {
     expect(isFinite(-100)).to.be.true;
     expect(isFinite(100)).to.be.true;
-    expect(isFinite(Number.MAX_SAFE_INTEGER)).to.be.true;
-    expect(isFinite(Number.MIN_SAFE_INTEGER)).to.be.true;
     expect(isFinite(9e+200)).to.be.true;
   });
 

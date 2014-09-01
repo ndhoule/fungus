@@ -34,7 +34,6 @@ TRACEUR_BROWSER_FLAGS = --modules=amd
 
 MOCHA_FLAGS = \
 	--require test/config/node \
-	--compilers js:mocha-traceur \
 	--reporter spec \
 	--ui bdd \
 	--check-leaks
