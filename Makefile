@@ -33,7 +33,7 @@ TRACEUR_DEV_FLAGS = \
 TRACEUR_BROWSER_FLAGS = --modules=amd
 
 MOCHA_FLAGS = \
-	--require test/config \
+	--require test/config/node \
 	--compilers js:mocha-traceur \
 	--reporter spec \
 	--ui bdd \
@@ -77,7 +77,7 @@ test: | build
 	@$(MOCHA) $(MOCHA_FLAGS) $(TEST_DIR)/**/*.test.js
 
 test-browser: | dist-browser
-	@$(KARMA) start test/karma.conf.js
+	@$(KARMA) start test/config/karma.conf.js
 
 docs: | $(TMP_DIR)/docs
 	$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets \
