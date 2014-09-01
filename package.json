@@ -16,7 +16,7 @@
     "test": "make test"
   },
   "devDependencies": {
-    "almond": "^0.3.0",
+    "amdclean": "^2.2.4",
     "bluebird": "^2.3.0",
     "chai": "^1.9.1",
     "chai-factories": "^0.1.0",
@@ -26,6 +26,14 @@
     "handlebars": "^2.0.0-alpha.4",
     "highlight.js": "^8.2.0",
     "html-minifier": "^0.6.6",
+    "karma": "^0.12.23",
+    "karma-chai": "^0.1.0",
+    "karma-chai-factories": "git+https://github.com/ndhoule/karma-chai-factories.git",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-cli": "0.0.4",
+    "karma-mocha": "^0.1.9",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-sinon-chai": "^0.2.0",
     "lodash": "^2.4.1",
     "marked": "^0.3.2",
     "mocha": "^1.21.4",
@@ -35,6 +43,7 @@
     "requirejs": "^2.1.14",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0",
-    "traceur": "0.0.58"
+    "traceur": "0.0.58",
+    "uglify-js": "^2.4.15"
   }
 }

@@ -1,13 +1,16 @@
 NODE = $(shell which node)
 NPM = $(shell which npm)
 HTMLMIN = ./node_modules/.bin/html-minifier
+KARMA = ./node_modules/.bin/karma
 MOCHA = ./node_modules/.bin/mocha
 SASS = ./node_modules/.bin/node-sass
 TRACEUR = ./node_modules/.bin/traceur
+UGLIFYJS = ./node_modules/.bin/uglifyjs
 
 BOWER_DIR = ./docs/vendor
+DIST_DIR = ./dist
 INPUT_DIR = ./lib
-OUTPUT_DIR = ./dist
+COMPILE_DIR = ./.tmp/compiled
 TEST_DIR = ./test
 TMP_DIR = ./.tmp
 
@@ -27,6 +30,8 @@ TRACEUR_DEV_FLAGS = \
 	--filename \
 	--source-maps
 
+TRACEUR_BROWSER_FLAGS = --modules=amd
+
 MOCHA_FLAGS = \
 	--require test/config \
 	--compilers js:mocha-traceur \
@@ -38,23 +43,36 @@ MOCHA_FLAGS = \
 node_modules:
 	$(NPM) install
 
+$(DIST_DIR):
+	@mkdir -p $(DIST_DIR)
+
 $(TMP_DIR):
 	@mkdir -p $(TMP_DIR)
 
 $(TMP_DIR)/docs:
 	@mkdir -p $(TMP_DIR)/docs
 
-$(OUTPUT_DIR):
-	@mkdir -p $(OUTPUT_DIR)
+$(COMPILE_DIR): $(TMP_DIR)
+	@mkdir -p $(COMPILE_DIR)
 
-clean: | $(OUTPUT_DIR)
-	rm -rf $(OUTPUT_DIR) $(TMP_DIR)
+clean: | $(COMPILE_DIR)
+	rm -rf $(TMP_DIR) $(DIST_DIR)
 
-build: | $(OUTPUT_DIR)
-	@$(TRACEUR) $(TRACEUR_COMMON_FLAGS) $(TRACEUR_DEV_FLAGS) --dir $(INPUT_DIR) $(OUTPUT_DIR)
+build: | $(COMPILE_DIR)
+	@$(TRACEUR) $(TRACEUR_COMMON_FLAGS) $(TRACEUR_DEV_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/commonjs
+
+build-browser: | $(COMPILE_DIR)
+	@$(TRACEUR) $(TRACEUR_COMMON_FLAGS) $(TRACEUR_BROWSER_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/amd
+
+dist-browser: $(DIST_DIR) build-browser
+	@.bin/build-browser > $(DIST_DIR)/browser.js
+	@$(UGLIFYJS) $(DIST_DIR)/browser.js > $(DIST_DIR)/browser.min.js
 
 test: | build
 	@$(MOCHA) $(MOCHA_FLAGS) $(TEST_DIR)/**/*.test.js
+
+test-browser: | dist-browser
+	@$(KARMA) start test/karma.conf.js
 
 docs: | $(TMP_DIR)/docs
 	$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets \

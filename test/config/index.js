@@ -1,6 +1,6 @@
 'use strict';
 
-import fnjs from '../../dist/index';
+import fnjs from '../../.tmp/compiled/commonjs/index';
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'test';
 

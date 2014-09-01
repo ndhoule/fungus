@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+var amdclean = require('amdclean');
+var path = require('path');
+var requirejs = require('requirejs');
+
+requirejs.optimize({
+  baseUrl: path.join(__dirname, '../.tmp/compiled/amd'),
+
+  optimize: 'none',
+
+  skipModuleInsertion: true,
+
+  name: 'index',
+
+  out: function(data) {
+
+    var cleaned = amdclean.clean({
+      code: data,
+
+      transformAMDChecks: false,
+
+      escodegen: {
+        comment: true,
+        format: {
+          indent: {
+            base: 1,
+            style: '  ',
+            adjustMultilineComment: true
+          }
+        }
+      },
+
+      wrap: {
+        start: [
+          '!(function(root, factory) {',
+          '  if (typeof define === "function" && define.amd) {',
+          '    define([], factory);',
+          '  } else {',
+          '    root.fnjs = factory();',
+          '  }',
+          '}(this, function() {',
+          ''
+        ].join('\n'),
+        end: [
+          '',
+          '  return index.default;',
+          '}));'
+        ].join('\n')
+      }
+    });
+
+    process.stdout.write(cleaned);
+  },
+
+  // TRACE: 0 || INFO: 1 || WARN: 2 || ERROR: 3 || SILENT: 4
+  logLevel: 4
+});
