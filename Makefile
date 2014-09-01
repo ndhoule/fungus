@@ -39,6 +39,11 @@ MOCHA_FLAGS = \
 	--ui bdd \
 	--check-leaks
 
+UGLIFYJS_FLAGS = \
+	--mangle \
+	--reserved fnjs \
+	--compress keep-fargs=true
+
 
 node_modules:
 	$(NPM) install
@@ -66,7 +71,7 @@ build-browser: | $(COMPILE_DIR)
 
 dist-browser: $(DIST_DIR) build-browser
 	@.bin/build-browser > $(DIST_DIR)/browser.js
-	@$(UGLIFYJS) $(DIST_DIR)/browser.js > $(DIST_DIR)/browser.min.js
+	@$(UGLIFYJS) $(DIST_DIR)/browser.js $(UGLIFYJS_FLAGS) > $(DIST_DIR)/browser.min.js
 
 test: | build
 	@$(MOCHA) $(MOCHA_FLAGS) $(TEST_DIR)/**/*.test.js
