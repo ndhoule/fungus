@@ -1,4 +1,4 @@
-import { omit } from '../../../dist/object/omit';
+var omit = fungus.omit;
 
 describe('omit', function() {
   it('should be a function', function() {

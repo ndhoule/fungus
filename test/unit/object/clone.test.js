@@ -1,4 +1,4 @@
-import { clone } from '../../../dist/object/clone';
+var clone = fungus.clone;
 
 describe('clone', function() {
   it('should be a function', function() {

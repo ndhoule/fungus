@@ -1,6 +1,5 @@
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { identity } from '../../../dist/utility/identity';
-import { mapObject } from '../../../dist/object/mapObject';
+var identity = fungus.identity;
+var mapObject = fungus.mapObject;
 
 describe('mapObject', function() {
   var observe;
@@ -28,7 +27,7 @@ describe('mapObject', function() {
     var obj = { key1: 5, key2: 10 };
     var expected = { key1: 10, key2: 20 };
 
-    expect(mapObject(x => x * 2, obj)).to.eql(expected);
+    expect(mapObject(function(x) { return x * 2; }, obj)).to.eql(expected);
   });
 
   it('should return a new object', function() {
@@ -49,7 +48,7 @@ describe('mapObject', function() {
   it('should handle an object with a `.length` property', function() {
     var obj = { key1: 'tim', key2: 'enchanter', length: 100 };
     var expected = { key1: 'tim100', key2: 'enchanter100', length: 200 };
-    var add100 = sinon.spy(val => val + 100);
+    var add100 = sinon.spy(function (val) { return val + 100; });
 
     expect(mapObject(add100, obj)).to.eql(expected);
     expect(add100).to.have.been.calledThrice;
@@ -76,7 +75,7 @@ describe('mapObject', function() {
   });
 
   it('should throw an error when passed a non-function `iterator` argument', function() {
-    expect(() => mapObject('test', { a: 'a' })).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { mapObject('test', { a: 'a' }); }).to.throw();
   });
 
   it('should work on arrays', function() {
@@ -94,7 +93,7 @@ describe('mapObject', function() {
     expected[2] = 'sa';
     expected[3] = 'ta';
 
-    expect(mapObject(val => val + 'a', str)).to.eql(expected);
+    expect(mapObject(function(val) { return val + 'a'; }, str)).to.eql(expected);
   });
 
   it('should handle other complex object types gracefully', function() {

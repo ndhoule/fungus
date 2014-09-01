@@ -1,4 +1,4 @@
-import { has } from '../../../dist/object/has';
+var has = fungus.has;
 
 describe('has', function() {
   it('should be a function', function() {

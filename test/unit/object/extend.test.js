@@ -1,4 +1,4 @@
-import { extend } from '../../../dist/object/extend';
+var extend = fungus.extend;
 
 describe('extend', function() {
   it('should be a function', function() {

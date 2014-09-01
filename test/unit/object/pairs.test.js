@@ -1,4 +1,4 @@
-import { pairs } from '../../../dist/object/pairs';
+var pairs = fungus.pairs;
 
 describe('pairs', function() {
   it('should be a function', function() {

@@ -1,5 +1,4 @@
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { forOwnRight } from '../../../dist/object/forOwnRight';
+var forOwnRight = fungus.forOwnRight;
 
 describe('forOwnRight', function() {
   var animals, observe;
@@ -89,7 +88,7 @@ describe('forOwnRight', function() {
   });
 
   it('should exit iteration early when `iterator` returns `false`', function() {
-    var alwaysFalse = sinon.spy(() => false);
+    var alwaysFalse = sinon.spy(function() { return false; });
 
     forOwnRight(alwaysFalse, animals);
 
@@ -97,6 +96,6 @@ describe('forOwnRight', function() {
   });
 
   it('should throw an error when `iterator` is not a function', function() {
-    expect(() => forOwnRight('lolno', {})).to.throw();
+    expect(function() { forOwnRight('lolno', {}); }).to.throw();
   });
 });

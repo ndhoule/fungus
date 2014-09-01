@@ -1,4 +1,4 @@
-import { pick } from '../../../dist/object/pick';
+var pick = fungus.pick;
 
 describe('pick', function() {
   it('should be a function', function() {

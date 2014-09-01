@@ -1,5 +1,4 @@
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { forInRight } from '../../../dist/object/forInRight';
+var forInRight = fungus.forInRight;
 
 describe('forInRight', function() {
   var animals, observe;
@@ -90,7 +89,7 @@ describe('forInRight', function() {
   });
 
   it('should exit iteration early when `iterator` returns `false`', function() {
-    var alwaysFalse = sinon.spy(() => false);
+    var alwaysFalse = sinon.spy(function() { return false; });
 
     forInRight(alwaysFalse, animals);
 
@@ -98,6 +97,6 @@ describe('forInRight', function() {
   });
 
   it('should throw an error when `iterator` is not a function', function() {
-    expect(() => forInRight('lolno', {})).to.throw();
+    expect(function() { forInRight('lolno', {}) }).to.throw();
   });
 });

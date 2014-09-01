@@ -1,5 +1,4 @@
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { forOwn } from '../../../dist/object/forOwn';
+var forOwn = fungus.forOwn;
 
 describe('forOwn', function() {
   var animals, observe;
@@ -89,7 +88,7 @@ describe('forOwn', function() {
   });
 
   it('should exit iteration early when `iterator` returns `false`', function() {
-    var alwaysFalse = sinon.spy(() => false);
+    var alwaysFalse = sinon.spy(function() { return false; });
 
     forOwn(alwaysFalse, animals);
 
@@ -97,6 +96,6 @@ describe('forOwn', function() {
   });
 
   it('should throw an error when `iterator` is not a function', function() {
-    expect(() => forOwn('lolno', {})).to.throw();
+    expect(function() { forOwn('lolno', {}); }).to.throw();
   });
 });

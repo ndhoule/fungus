@@ -1,4 +1,4 @@
-import { invert } from '../../../dist/object/invert';
+var invert = fungus.invert;
 
 describe('invert', function() {
   it('should be a function', function() {

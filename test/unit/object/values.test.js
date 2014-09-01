@@ -1,4 +1,4 @@
-import { values } from '../../../dist/object/values';
+var values = fungus.values;
 
 describe('values', function() {
   it('should be a function', function() {
