@@ -11,10 +11,6 @@
     "traceur"
   ],
   "main": "lib/index.js",
-  "scripts": {
-    "docs": "make docs",
-    "test": "make test"
-  },
   "devDependencies": {
     "amdclean": "^2.2.4",
     "bluebird": "^2.3.0",
