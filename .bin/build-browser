@@ -1,25 +1,22 @@
 #!/usr/bin/env node
+'use strict';
 
 var amdclean = require('amdclean');
+var exec = require('exec-sync');
 var path = require('path');
 var requirejs = require('requirejs');
 
+var BASE_DIR = exec('git rev-parse --show-toplevel');
+
 requirejs.optimize({
-  baseUrl: path.join(__dirname, '../.tmp/compiled/amd'),
-
+  baseUrl: path.join(BASE_DIR, '.tmp/compiled/amd'),
   optimize: 'none',
-
   skipModuleInsertion: true,
-
   name: 'index',
-
   out: function(data) {
-
     var cleaned = amdclean.clean({
       code: data,
-
       transformAMDChecks: false,
-
       escodegen: {
         comment: true,
         format: {
@@ -30,16 +27,17 @@ requirejs.optimize({
           }
         }
       },
-
       wrap: {
         start: [
-          '!(function(root, factory) {',
-          '  if (typeof define === "function" && define.amd) {',
+          '!(function (root, factory) {',
+          '  if (typeof define === \'function\' && define.amd) {',
           '    define([], factory);',
+          '  } else if (typeof exports === \'object\') {',
+          '    module.exports = factory();',
           '  } else {',
           '    root.fnjs = factory();',
           '  }',
-          '}(this, function() {',
+          '}(this, function () {',
           ''
         ].join('\n'),
         end: [
@@ -52,7 +50,8 @@ requirejs.optimize({
 
     process.stdout.write(cleaned);
   },
-
+  // If not set to `4`, will print log info with source on stdout
   // TRACE: 0 || INFO: 1 || WARN: 2 || ERROR: 3 || SILENT: 4
   logLevel: 4
 });
+
