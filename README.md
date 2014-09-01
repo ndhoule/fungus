@@ -10,6 +10,8 @@ Branch | Status
 master | ![Master](https://travis-ci.org/ndhoule/fungus.svg?branch=master)
 dev    | ![Dev](https://travis-ci.org/ndhoule/fungus.svg?branch=dev)
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/ndhoule.svg)](https://saucelabs.com/u/ndhoule)
+
 
 ## Installation
 
