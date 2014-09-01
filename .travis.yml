@@ -8,6 +8,8 @@ before_script:
 - npm install -g bower
 - bower install
 after_success: npm run docs
+addons:
+  sauce_connect: true
 deploy:
 - provider: npm
   email: nathan@nathanhoule.com

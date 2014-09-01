@@ -10,8 +10,17 @@ module.exports = function(config) {
 
   config.set({
     basePath: '../..',
-
     frameworks: ['mocha', 'sinon-chai', 'chai-factories', 'chai'],
+    reporters: ['dots', 'saucelabs'],
+    colors: true,
+    port: 9876,
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 2,
+    browserNoActivityTimeout: 30000,
+    captureTimeout: 0,
+    logLevel: config.LOG_ERROR,
+    autoWatch: false,
+    singleRun: true,
 
     files: [
       'dist/browser.min.js',
@@ -19,33 +28,31 @@ module.exports = function(config) {
       'test/unit/**/*.test.js'
     ],
 
-    exclude: [],
-
-    preprocessors: {},
-
-    reporters: ['progress', 'saucelabs'],
-
-    port: 9876,
-
-    colors: true,
-
-    // config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_ERROR,
-
-    autoWatch: false,
-
-    captureTimeout: 120000,
-
+    // Local development Sauce options
     sauceLabs: {
       testName: 'Fungus',
-      recordScreenshots: false,
-      tags: ['fungus']
+      tags: ['fungus'],
+      timeout: 600, // 10 mins
+      startConnect: true,
+      recordScreenshots: false
     },
 
     browsers: Object.keys(customLaunchers),
 
-    customLaunchers: customLaunchers,
-
-    singleRun: true
+    customLaunchers: customLaunchers
   });
+
+  if (process.env.CI) {
+    var buildLabel = 'Travis #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')';
+
+    // Use Sauce Labs' timeout
+    config.captureTimeout = 0;
+    config.sauceLabs.build = buildLabel;
+    config.sauceLabs.startConnect = false;
+    config.sauceLabs.tags.push('ci');
+    config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
+
+    // FIXME: Sauce labs does not support Websockets; remove this line when they do
+    config.transports = ['xhr-polling'];
+  }
 };
