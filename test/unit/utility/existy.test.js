@@ -1,4 +1,4 @@
-import { existy } from '../../../dist/utility/existy';
+var existy = fnjs.existy;
 
 describe('existy', function() {
   it('should be a function', function() {

@@ -1,4 +1,4 @@
-import { identity } from '../../../dist/utility/identity';
+var identity = fnjs.identity;
 
 describe('identity', function() {
   it('should be a function', function() {

@@ -1,6 +1,5 @@
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { compose } from '../../../dist/function/compose';
-import { identity } from '../../../dist/utility/identity';
+var compose = fnjs.compose;
+var identity = fnjs.identity;
 
 describe('compose', function() {
   var add;
@@ -66,9 +65,9 @@ describe('compose', function() {
   });
 
   it('should throw an error if any of its arguments are non-functions', function() {
-    expect(() => compose('abc')).to.throw(NOT_FUNC_EXCEPTION);
-    expect(() => compose(true, identity, identity)).to.throw(NOT_FUNC_EXCEPTION);
-    expect(() => compose(identity, 1, identity)).to.throw(NOT_FUNC_EXCEPTION);
-    expect(() => compose(identity, identity, 'fdsa')).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { compose('abc'); }).to.throw();
+    expect(function() { compose(true, identity, identity); }).to.throw();
+    expect(function() { compose(identity, 1, identity); }).to.throw();
+    expect(function() { compose(identity, identity, 'fdsa'); }).to.throw();
   });
 });

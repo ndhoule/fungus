@@ -1,4 +1,4 @@
-import { isPlainObject } from '../../../dist/object/isPlainObject';
+var isPlainObject = fnjs.isPlainObject;
 
 describe('isPlainObject', function() {
   var Spam;

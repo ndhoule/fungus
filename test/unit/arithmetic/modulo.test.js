@@ -1,4 +1,4 @@
-import { modulo } from '../../../dist/arithmetic/modulo';
+var modulo = fnjs.modulo;
 
 describe('modulo', function() {
   it('should be a function', function() {

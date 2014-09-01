@@ -1,4 +1,4 @@
-import { negate } from '../../../dist/arithmetic/negate';
+var negate = fnjs.negate;
 
 describe('negate', function() {
   it('should be a function', function() {

@@ -16,6 +16,7 @@
     "test": "make test"
   },
   "devDependencies": {
+    "almond": "^0.3.0",
     "bluebird": "^2.3.0",
     "chai": "^1.9.1",
     "chai-factories": "^0.1.0",
@@ -31,6 +32,7 @@
     "mocha-traceur": "git+https://github.com/domenic/mocha-traceur.git#patch-1",
     "node-sass": "^0.9.3",
     "require-directory": "^2.0.0",
+    "requirejs": "^2.1.14",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0",
     "traceur": "0.0.58"

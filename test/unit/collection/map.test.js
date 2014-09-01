@@ -1,13 +1,12 @@
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { map } from '../../../dist/collection/map';
-import { identity } from '../../../dist/utility/identity';
+var map = fnjs.map;
+var identity = fnjs.identity;
 
 describe('map', function() {
   var observe, square;
 
   beforeEach(function() {
     observe = sinon.spy(identity);
-    square = (a) => a * a;
+    square = function(a) { return a * a };
   });
 
   it('should be a function', function() {
@@ -121,7 +120,7 @@ describe('map', function() {
   });
 
   it('should throw an error when passed a non-function as its `fn` argument', function() {
-    expect(() => map('omg', [])).to.throw(NOT_FUNC_EXCEPTION);
-    expect(() => map('omg', [1, 2, 3])).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { map('omg', []); }).to.throw();
+    expect(function() { map('omg', [1, 2, 3]); }).to.throw();
   });
 });

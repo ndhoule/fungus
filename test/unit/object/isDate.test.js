@@ -1,4 +1,4 @@
-import { isDate } from '../../../dist/object/isDate';
+var isDate = fnjs.isDate;
 
 describe('isDate', function() {
   it('should be a function', function() {

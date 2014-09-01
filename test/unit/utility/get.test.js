@@ -1,4 +1,4 @@
-import { get } from '../../../dist/utility/get';
+var get = fnjs.get;
 
 describe('get', function() {
   it('should be a function', function() {
@@ -34,9 +34,9 @@ describe('get', function() {
   });
 
   it('should gracefully handle bad values', function() {
-    expect(() => get('lol', null)).to.not.throw();
+    expect(function() { get('lol', null); }).to.not.throw();
     expect(get('lol', null)).to.be.undefined;
-    expect(() => get('lol', undefined)).to.not.throw();
+    expect(function() { get('lol', undefined); }).to.not.throw();
     expect(get('lol', undefined)).to.be.undefined;
   });
 });

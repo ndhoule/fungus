@@ -1,4 +1,4 @@
-import { keys } from '../../../dist/object/keys';
+var keys = fnjs.keys;
 
 describe('keys', function() {
   it('should be a function', function() {

@@ -1,4 +1,4 @@
-import { gte } from '../../../dist/logic/gte';
+var gte = fnjs.gte;
 
 describe('gte', function() {
   it('should be a function', function() {

@@ -1,6 +1,5 @@
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { lPartial } from '../../../dist/function/lPartial';
-import { identity } from '../../../dist/utility/identity';
+var lPartial = fnjs.lPartial;
+var identity = fnjs.identity;
 
 describe('lPartial', function() {
   var add;
@@ -46,7 +45,7 @@ describe('lPartial', function() {
   });
 
   it('should throw an error if its function argument is not a function', function() {
-    expect(() => lPartial('1234')).to.throw(NOT_FUNC_EXCEPTION);
-    expect(() => lPartial('1234', 1, 2, 3)).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { lPartial('1234'); }).to.throw();
+    expect(function() { lPartial('1234', 1, 2, 3); }).to.throw();
   });
 });

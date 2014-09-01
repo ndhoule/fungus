@@ -1,4 +1,4 @@
-import { isArray } from '../../../dist/object/isArray';
+var isArray = fnjs.isArray;
 
 describe('isArray', function() {
   it('should be a function', function() {

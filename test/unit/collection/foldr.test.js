@@ -1,4 +1,4 @@
-import { foldr } from '../../../dist/collection/foldl';
+var foldr = fnjs.foldr;
 
 describe('foldr', function() {
   xit('should be a function', function() {

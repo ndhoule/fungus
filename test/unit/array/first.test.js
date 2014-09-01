@@ -1,4 +1,4 @@
-import { first } from '../../../dist/array/first';
+var first = fnjs.first;
 
 describe('first', function() {
   it('should be a function', function() {

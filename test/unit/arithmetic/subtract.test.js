@@ -1,4 +1,4 @@
-import { subtract } from '../../../dist/arithmetic/subtract';
+var subtract = fnjs.subtract;
 
 describe('subtract', function() {
   it('should be a function', function() {

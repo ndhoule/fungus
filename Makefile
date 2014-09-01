@@ -1,9 +1,9 @@
 NODE = $(shell which node)
 NPM = $(shell which npm)
-TRACEUR = ./node_modules/.bin/traceur
+HTMLMIN = ./node_modules/.bin/html-minifier
 MOCHA = ./node_modules/.bin/mocha
 SASS = ./node_modules/.bin/node-sass
-HTMLMIN = ./node_modules/.bin/html-minifier
+TRACEUR = ./node_modules/.bin/traceur
 
 BOWER_DIR = ./docs/vendor
 INPUT_DIR = ./lib
@@ -20,9 +20,7 @@ TRACEUR_COMMON_FLAGS = \
 	--block-binding=true \
 	--default-parameters=true \
 	--numeric-literals=true \
-	--rest-parameters=true \
-	--filename \
-	--source-maps
+	--rest-parameters=true
 
 TRACEUR_DEV_FLAGS = \
 	--modules=commonjs \

@@ -1,4 +1,4 @@
-import { rest } from '../../../dist/array/rest';
+var rest = fnjs.rest;
 
 describe('rest', function() {
   it('should be a function', function() {

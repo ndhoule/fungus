@@ -1,14 +1,13 @@
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { not } from '../../../dist/utility/not';
+var not = fnjs.not;
 
 describe('not', function() {
   var alwaysTrue, alwaysFalse, alwaysEmptyString, always1;
 
   beforeEach(function() {
-    alwaysTrue = sinon.spy(() => true);
-    alwaysFalse = sinon.spy(() => false);
-    alwaysEmptyString = sinon.spy(() => '');
-    always1 = sinon.spy(() => 1);
+    alwaysTrue = sinon.spy(function() { return true; });
+    alwaysFalse = sinon.spy(function() { return false; });
+    alwaysEmptyString = sinon.spy(function () { return ''; });
+    always1 = sinon.spy(function() { return 1; });
   });
 
   it('should be a function', function() {
@@ -65,11 +64,11 @@ describe('not', function() {
   });
 
   it('should throw an error when passed no arguments', function() {
-    expect(() => not()).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { not() }).to.throw();
   });
 
   it('should throw an error when passed a non-function as its argument', function() {
-    expect(() => not('fdsa')).to.throw(NOT_FUNC_EXCEPTION);
-    expect(() => not(123)).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { not('fdsa') }).to.throw();
+    expect(function() { not(123) }).to.throw();
   });
 });

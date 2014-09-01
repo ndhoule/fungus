@@ -1,4 +1,4 @@
-import { falsy } from '../../../dist/utility/falsy';
+var falsy = fnjs.falsy;
 
 describe('falsy', function() {
   it('should be a function', function() {

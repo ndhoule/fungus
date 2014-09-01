@@ -1,4 +1,4 @@
-import { remainder } from '../../../dist/arithmetic/remainder';
+var remainder = fnjs.remainder;
 
 describe('remainder', function() {
   it('should be a function', function() {

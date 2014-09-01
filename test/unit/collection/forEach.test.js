@@ -1,5 +1,5 @@
-import { forEach } from '../../../dist/collection/forEach';
-import { identity } from '../../../dist/utility/identity';
+var forEach = fnjs.forEach;
+var identity = fnjs.identity;
 
 describe('forEach', function() {
   var observe, identitySpy;
@@ -65,7 +65,7 @@ describe('forEach', function() {
     var elems = [7, 0, 7, 14, 91];
     var result = [];
 
-    forEach(elem => result.push(elem), elems);
+    forEach(function(elem) { result.push(elem); }, elems);
     expect(result).to.eql(elems);
   });
 
@@ -73,7 +73,7 @@ describe('forEach', function() {
     var string = 'timmy';
     var result = [];
 
-    forEach(elem => result.push(elem), elems);
+    forEach(function(elem) { result.push(elem) }, elems);
     expect(result.join('')).to.eql(string);
   });
 
@@ -132,7 +132,7 @@ describe('forEach', function() {
   it('should permit mutation of the input collection', function() {
     var elems = [5, 4, 3, 2, 1];
 
-    forEach((val, i, coll) => { coll[i] = 'omg'; }, elems);
+    forEach(function(val, i, coll) { coll[i] = 'omg'; }, elems);
 
     expect(elems).to.eql(['omg', 'omg', 'omg', 'omg', 'omg']);
   });

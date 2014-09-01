@@ -1,4 +1,4 @@
-import { noop } from '../../../dist/utility/noop';
+var noop = fnjs.noop;
 
 describe('noop', function() {
   it('should be a function', function() {

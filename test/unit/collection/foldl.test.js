@@ -1,6 +1,5 @@
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { foldl } from '../../../dist/collection/foldl';
-import { identity } from '../../../dist/utility/identity';
+var foldl = fnjs.foldl;
+var identity = fnjs.identity;
 
 describe('foldl', function() {
   var observe, add;
@@ -103,7 +102,7 @@ describe('foldl', function() {
   });
 
   it('should throw an error when passed a non-function as its `fn` argument', function() {
-    expect(() => foldl('fdsa', 1, [])).to.throw(NOT_FUNC_EXCEPTION);
-    expect(() => foldl('fdsa', 1, [1])).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { foldl('fdsa', 1, []); }).to.throw();
+    expect(function() { foldl('fdsa', 1, [1]); }).to.throw();
   });
 });

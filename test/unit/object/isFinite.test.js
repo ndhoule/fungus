@@ -1,4 +1,4 @@
-import { isFinite } from '../../../dist/object/isFinite';
+var isFinite = fnjs.isFinite;
 
 describe('isFinite', function() {
   it('should be a function', function() {

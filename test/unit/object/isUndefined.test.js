@@ -1,4 +1,4 @@
-import { isUndefined } from '../../../dist/object/isUndefined';
+var isUndefined = fnjs.isUndefined;
 
 describe('isUndefined', function() {
   it('should be a function', function() {

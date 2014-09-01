@@ -1,4 +1,4 @@
-import { truthy } from '../../../dist/utility/truthy';
+var truthy = fnjs.truthy;
 
 describe('truthy', function() {
   it('should be a function', function() {

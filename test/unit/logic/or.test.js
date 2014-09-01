@@ -1,4 +1,4 @@
-import { or } from '../../../dist/logic/or';
+var or = fnjs.or;
 
 describe('or', function() {
   it('should be a function', function() {

@@ -1,4 +1,4 @@
-import { isArguments } from '../../../dist/object/isArguments';
+var isArguments = fnjs.isArguments;
 
 describe('isArguments', function() {
   it('should be a function', function() {
@@ -10,11 +10,11 @@ describe('isArguments', function() {
   });
 
   it('should return `true` when passed an arguments object', function() {
-    (() => { expect(isArguments(arguments)).to.be.true; })();
-    (() => { expect(isArguments(arguments)).to.be.true; })(2, 3, 4);
+    (function() { expect(isArguments(arguments)).to.be.true; })();
+    (function() { expect(isArguments(arguments)).to.be.true; })(2, 3, 4);
 
     var args;
-    (() => { args = arguments; })(2, 3, 4);
+    (function() { args = arguments; })(2, 3, 4);
     expect(isArguments(args)).to.be.true
   });
 

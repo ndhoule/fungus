@@ -1,4 +1,4 @@
-import { gt } from '../../../dist/logic/gt';
+var gt = fnjs.gt;
 
 describe('gt', function() {
   it('should be a function', function() {

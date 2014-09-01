@@ -1,4 +1,4 @@
-import { multiply } from '../../../dist/arithmetic/multiply';
+var multiply = fnjs.multiply;
 
 describe('multiply', function() {
   it('should be a function', function() {

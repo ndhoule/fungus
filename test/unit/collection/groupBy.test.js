@@ -1,15 +1,14 @@
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { groupBy } from '../../../dist/collection/groupBy';
-import { identity } from '../../../dist/utility/identity';
-import { get } from '../../../dist/utility/get';
+var groupBy = fnjs.groupBy;
+var identity = fnjs.identity;
+var get = fnjs.get;
 
 describe('groupBy', function() {
   var evenOrOdd, length, first, observe;
 
   beforeEach(function() {
     observe = sinon.spy(identity);
-    evenOrOdd = sinon.spy(a => a % 2 === 0 ? 'even' : 'odd');
-    first = sinon.spy(str => str[0]);
+    evenOrOdd = sinon.spy(function(a) { return a % 2 === 0 ? 'even' : 'odd'; });
+    first = sinon.spy(function(str) { return str[0]; });
     length = sinon.spy(get('length'));
   });
 

@@ -1,5 +1,5 @@
 chai.factory('functions', {
-  add: (a, b) => a + b,
+  add: function add(a, b) { return a + b; },
 
-  reduce: (fn, acc, list) => list.reduce(fn, acc)
+  reduce: function(fn, acc, list) { return list.reduce(fn, acc); }
 });

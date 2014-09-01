@@ -1,4 +1,4 @@
-import { isNaN } from '../../../dist/object/isNaN';
+var isNaN = fnjs.isNaN;
 
 describe('isNaN', function() {
   it('should be a function', function() {

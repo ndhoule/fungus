@@ -1,6 +1,5 @@
-import { NO_ARGS_EXCEPTION, NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { memoize } from '../../../dist/function/memoize';
-import { identity } from '../../../dist/utility/identity';
+var memoize = fnjs.memoize;
+var identity = fnjs.identity;
 
 describe('memoize', function() {
   var memoAdd, memoIdentity;
@@ -117,15 +116,15 @@ describe('memoize', function() {
   });
 
   it('should throw an error when passed a non-function as its first argument', function() {
-    expect(() => memoize('test')).to.throw(NOT_FUNC_EXCEPTION);
-    expect(() => memoize('test', identity)).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { memoize('test'); }).to.throw();
+    expect(function() { memoize('test', identity); }).to.throw();
   });
 
   it('should throw an error when passed a non-function as its serializer argument', function() {
-    expect(() => memoize(identity, 'test')).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { memoize(identity, 'test'); }).to.throw();
   });
 
   it('should throw an error when passed no arguments', function() {
-    expect(() => memoize()).to.throw(NO_ARGS_EXCEPTION);
+    expect(function() { memoize(); }).to.throw();
   });
 });

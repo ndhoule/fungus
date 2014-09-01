@@ -1,4 +1,4 @@
-import { lt } from '../../../dist/logic/lt';
+var lt = fnjs.lt;
 
 describe('lt', function() {
   it('should be a function', function() {

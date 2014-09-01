@@ -1,4 +1,4 @@
-import { isNull } from '../../../dist/object/isNull';
+var isNull = fnjs.isNull;
 
 describe('isNull', function() {
   it('should be a function', function() {

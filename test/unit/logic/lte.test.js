@@ -1,4 +1,4 @@
-import { lte } from '../../../dist/logic/lte';
+var lte = fnjs.lte;
 
 describe('lte', function() {
   it('should be a function', function() {

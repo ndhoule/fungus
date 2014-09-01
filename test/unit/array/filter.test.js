@@ -1,7 +1,6 @@
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
-import { filter } from '../../../dist/array/filter';
-import { identity } from '../../../dist/utility/identity';
-import { truthy } from '../../../dist/utility/truthy';
+var filter = fnjs.filter;
+var identity = fnjs.identity;
+var truthy = fnjs.truthy;
 
 describe('filter', function() {
   var observe;
@@ -54,6 +53,6 @@ describe('filter', function() {
   });
 
   it('should throw an error when the provided predicate function is not a function', function() {
-    expect(() => filter('fdsa', [])).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { filter('fdsa', []); }).to.throw();
   });
 });

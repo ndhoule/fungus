@@ -1,4 +1,4 @@
-import { isObject } from '../../../dist/object/isObject';
+var isObject = fnjs.isObject;
 
 describe('isObject', function() {
   it('should be a function', function() {

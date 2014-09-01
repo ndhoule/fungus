@@ -1,4 +1,4 @@
-import { divide } from '../../../dist/arithmetic/divide';
+var divide = fnjs.divide;
 
 describe('divide', function() {
   it('should be a function', function() {

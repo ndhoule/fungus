@@ -1,5 +1,5 @@
-import { compact } from '../../../dist/array/compact';
-import { identity } from '../../../dist/utility/identity';
+var compact = fnjs.compact;
+var identity = fnjs.identity;
 
 describe('compact', function() {
   var fn, obj, arr, falses, truths, mixed;

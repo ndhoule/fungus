@@ -1,4 +1,4 @@
-import { isArrayLike } from '../../../dist/object/isArrayLike';
+var isArrayLike = fnjs.isArrayLike;
 
 describe('isArrayLike', function() {
   it('should be a function', function() {

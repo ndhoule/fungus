@@ -1,4 +1,4 @@
-import { isBoolean } from '../../../dist/object/isBoolean';
+var isBoolean = fnjs.isBoolean;
 
 describe('isBoolean', function() {
   it('should be a function', function() {

@@ -1,5 +1,7 @@
 'use strict';
 
+import fnjs from '../../dist/index';
+
 process.env.NODE_ENV = process.env.NODE_ENV || 'test';
 
 var chai = require('chai');
@@ -12,4 +14,8 @@ global.chai = chai;
 global.expect = chai.expect;
 global.sinon = require('sinon');
 
+// Factories
 require('../factories');
+
+// Export library
+global.fnjs = fnjs;

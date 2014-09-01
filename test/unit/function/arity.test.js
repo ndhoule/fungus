@@ -1,5 +1,4 @@
-import { arity } from '../../../dist/function/arity';
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
+var arity = fnjs.arity;
 
 describe('arity', function() {
   var add;
@@ -37,7 +36,7 @@ describe('arity', function() {
   });
 
   it('should throw an error when passed a non-function', function() {
-    expect(() => arity(2, 'omg')).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { arity(2, 'omg'); }).to.throw();
   });
 
   it('should pass all arguments to the wrapped function, regardless of specified arity', function() {

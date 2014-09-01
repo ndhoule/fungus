@@ -1,5 +1,4 @@
-import { curry } from '../../../dist/function/curry';
-import { NOT_FUNC_EXCEPTION } from '../../../dist/internal/exceptions';
+var curry = fnjs.curry;
 
 describe('curry', function() {
   var add, curriedAdd, reduce, curriedReduce;
@@ -117,6 +116,6 @@ describe('curry', function() {
   });
 
   it('should throw an error when passed a non-function as its function argument', function() {
-    expect(() => curry('omg')).to.throw(NOT_FUNC_EXCEPTION);
+    expect(function() { curry('omg'); }).to.throw();
   });
 });

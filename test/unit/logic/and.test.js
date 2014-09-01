@@ -1,4 +1,4 @@
-import { and } from '../../../dist/logic/and';
+var and = fnjs.and;
 
 describe('and', function() {
   it('should be a function', function() {

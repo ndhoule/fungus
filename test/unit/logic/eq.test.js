@@ -1,4 +1,4 @@
-import { eq } from '../../../dist/logic/eq';
+var eq = fnjs.eq;
 
 describe('eq', function() {
   it('should be a function', function() {

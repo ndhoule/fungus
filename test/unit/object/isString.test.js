@@ -1,4 +1,4 @@
-import { isString } from '../../../dist/object/isString';
+var isString = fnjs.isString;
 
 describe('isString', function() {
   it('should be a function', function() {
