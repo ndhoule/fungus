@@ -40,9 +40,10 @@ MOCHA_FLAGS = \
 	--check-leaks
 
 UGLIFYJS_FLAGS = \
-	--mangle \
 	--reserved fungus \
-	--compress keep-fargs=true
+	--mangle \
+	--compress keep-fargs=true \
+	--screw-ie8
 
 
 node_modules:
@@ -71,7 +72,7 @@ build-browser: | $(COMPILE_DIR)
 
 dist-browser: $(DIST_DIR) build-browser
 	@.bin/build-browser > $(DIST_DIR)/browser.js
-	@$(UGLIFYJS) $(DIST_DIR)/browser.js $(UGLIFYJS_FLAGS) > $(DIST_DIR)/browser.min.js
+	@$(UGLIFYJS) $(DIST_DIR)/browser.js $(UGLIFYJS_FLAGS) > $(DIST_DIR)/browser.min.js 2> /dev/null
 
 test: | build
 	@$(MOCHA) $(MOCHA_FLAGS) $(TEST_DIR)/**/*.test.js
