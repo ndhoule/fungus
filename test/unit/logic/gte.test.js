@@ -1,4 +1,4 @@
-var gte = fnjs.gte;
+var gte = fungus.gte;
 
 describe('gte', function() {
   it('should be a function', function() {

@@ -1,6 +1,6 @@
-var filter = fnjs.filter;
-var identity = fnjs.identity;
-var truthy = fnjs.truthy;
+var filter = fungus.filter;
+var identity = fungus.identity;
+var truthy = fungus.truthy;
 
 describe('filter', function() {
   var observe;

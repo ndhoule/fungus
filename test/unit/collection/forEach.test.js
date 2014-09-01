@@ -1,5 +1,5 @@
-var forEach = fnjs.forEach;
-var identity = fnjs.identity;
+var forEach = fungus.forEach;
+var identity = fungus.identity;
 
 describe('forEach', function() {
   var observe, identitySpy;

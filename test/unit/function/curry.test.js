@@ -1,4 +1,4 @@
-var curry = fnjs.curry;
+var curry = fungus.curry;
 
 describe('curry', function() {
   var add, curriedAdd, reduce, curriedReduce;

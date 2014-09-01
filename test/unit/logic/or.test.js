@@ -1,4 +1,4 @@
-var or = fnjs.or;
+var or = fungus.or;
 
 describe('or', function() {
   it('should be a function', function() {

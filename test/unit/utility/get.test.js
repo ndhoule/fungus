@@ -1,4 +1,4 @@
-var get = fnjs.get;
+var get = fungus.get;
 
 describe('get', function() {
   it('should be a function', function() {

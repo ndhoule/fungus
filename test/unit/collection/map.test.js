@@ -1,5 +1,5 @@
-var map = fnjs.map;
-var identity = fnjs.identity;
+var map = fungus.map;
+var identity = fungus.identity;
 
 describe('map', function() {
   var observe, square;

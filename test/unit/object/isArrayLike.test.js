@@ -1,4 +1,4 @@
-var isArrayLike = fnjs.isArrayLike;
+var isArrayLike = fungus.isArrayLike;
 
 describe('isArrayLike', function() {
   it('should be a function', function() {

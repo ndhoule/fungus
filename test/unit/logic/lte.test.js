@@ -1,4 +1,4 @@
-var lte = fnjs.lte;
+var lte = fungus.lte;
 
 describe('lte', function() {
   it('should be a function', function() {

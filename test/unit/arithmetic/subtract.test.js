@@ -1,4 +1,4 @@
-var subtract = fnjs.subtract;
+var subtract = fungus.subtract;
 
 describe('subtract', function() {
   it('should be a function', function() {

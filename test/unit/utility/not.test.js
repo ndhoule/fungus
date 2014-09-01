@@ -1,4 +1,4 @@
-var not = fnjs.not;
+var not = fungus.not;
 
 describe('not', function() {
   var alwaysTrue, alwaysFalse, alwaysEmptyString, always1;

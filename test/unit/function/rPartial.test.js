@@ -1,5 +1,5 @@
-var rPartial = fnjs.rPartial;
-var identity = fnjs.identity;
+var rPartial = fungus.rPartial;
+var identity = fungus.identity;
 
 describe('rPartial', function() {
   var add;

@@ -1,5 +1,5 @@
-var foldl = fnjs.foldl;
-var identity = fnjs.identity;
+var foldl = fungus.foldl;
+var identity = fungus.identity;
 
 describe('foldl', function() {
   var observe, add;

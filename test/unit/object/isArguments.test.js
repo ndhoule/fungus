@@ -1,4 +1,4 @@
-var isArguments = fnjs.isArguments;
+var isArguments = fungus.isArguments;
 
 describe('isArguments', function() {
   it('should be a function', function() {

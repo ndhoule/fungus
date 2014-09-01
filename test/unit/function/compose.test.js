@@ -1,5 +1,5 @@
-var compose = fnjs.compose;
-var identity = fnjs.identity;
+var compose = fungus.compose;
+var identity = fungus.identity;
 
 describe('compose', function() {
   var add;

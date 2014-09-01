@@ -1,4 +1,4 @@
-var multiply = fnjs.multiply;
+var multiply = fungus.multiply;
 
 describe('multiply', function() {
   it('should be a function', function() {

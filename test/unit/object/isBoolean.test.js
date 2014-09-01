@@ -1,4 +1,4 @@
-var isBoolean = fnjs.isBoolean;
+var isBoolean = fungus.isBoolean;
 
 describe('isBoolean', function() {
   it('should be a function', function() {

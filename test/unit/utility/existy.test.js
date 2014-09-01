@@ -1,4 +1,4 @@
-var existy = fnjs.existy;
+var existy = fungus.existy;
 
 describe('existy', function() {
   it('should be a function', function() {

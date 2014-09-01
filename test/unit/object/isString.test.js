@@ -1,4 +1,4 @@
-var isString = fnjs.isString;
+var isString = fungus.isString;
 
 describe('isString', function() {
   it('should be a function', function() {

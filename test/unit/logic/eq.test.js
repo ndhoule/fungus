@@ -1,4 +1,4 @@
-var eq = fnjs.eq;
+var eq = fungus.eq;
 
 describe('eq', function() {
   it('should be a function', function() {

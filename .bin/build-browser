@@ -35,7 +35,7 @@ requirejs.optimize({
           '  } else if (typeof exports === \'object\') {',
           '    module.exports = factory();',
           '  } else {',
-          '    root.fnjs = factory();',
+          '    root.fungus = factory();',
           '  }',
           '}(this, function () {',
           ''

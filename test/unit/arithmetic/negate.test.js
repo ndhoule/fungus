@@ -1,4 +1,4 @@
-var negate = fnjs.negate;
+var negate = fungus.negate;
 
 describe('negate', function() {
   it('should be a function', function() {

@@ -1,4 +1,4 @@
-var isNull = fnjs.isNull;
+var isNull = fungus.isNull;
 
 describe('isNull', function() {
   it('should be a function', function() {

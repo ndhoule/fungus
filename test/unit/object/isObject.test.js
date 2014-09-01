@@ -1,4 +1,4 @@
-var isObject = fnjs.isObject;
+var isObject = fungus.isObject;
 
 describe('isObject', function() {
   it('should be a function', function() {

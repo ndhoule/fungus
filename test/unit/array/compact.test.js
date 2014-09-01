@@ -1,5 +1,5 @@
-var compact = fnjs.compact;
-var identity = fnjs.identity;
+var compact = fungus.compact;
+var identity = fungus.identity;
 
 describe('compact', function() {
   var fn, obj, arr, falses, truths, mixed;

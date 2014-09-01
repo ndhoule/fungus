@@ -1,5 +1,5 @@
-var memoize = fnjs.memoize;
-var identity = fnjs.identity;
+var memoize = fungus.memoize;
+var identity = fungus.identity;
 
 describe('memoize', function() {
   var memoAdd, memoIdentity;

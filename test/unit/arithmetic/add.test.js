@@ -1,4 +1,4 @@
-var add = fnjs.add;
+var add = fungus.add;
 
 describe('add', function() {
   it('should be a function', function() {

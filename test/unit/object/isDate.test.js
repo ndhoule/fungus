@@ -1,4 +1,4 @@
-var isDate = fnjs.isDate;
+var isDate = fungus.isDate;
 
 describe('isDate', function() {
   it('should be a function', function() {

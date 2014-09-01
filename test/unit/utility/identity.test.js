@@ -1,4 +1,4 @@
-var identity = fnjs.identity;
+var identity = fungus.identity;
 
 describe('identity', function() {
   it('should be a function', function() {

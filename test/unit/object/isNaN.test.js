@@ -1,4 +1,4 @@
-var isNaN = fnjs.isNaN;
+var isNaN = fungus.isNaN;
 
 describe('isNaN', function() {
   it('should be a function', function() {

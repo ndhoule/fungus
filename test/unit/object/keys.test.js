@@ -1,4 +1,4 @@
-var keys = fnjs.keys;
+var keys = fungus.keys;
 
 describe('keys', function() {
   it('should be a function', function() {

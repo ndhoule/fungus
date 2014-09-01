@@ -1,4 +1,4 @@
-var noop = fnjs.noop;
+var noop = fungus.noop;
 
 describe('noop', function() {
   it('should be a function', function() {

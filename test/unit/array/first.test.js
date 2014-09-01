@@ -1,4 +1,4 @@
-var first = fnjs.first;
+var first = fungus.first;
 
 describe('first', function() {
   it('should be a function', function() {

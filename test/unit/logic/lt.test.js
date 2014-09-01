@@ -1,4 +1,4 @@
-var lt = fnjs.lt;
+var lt = fungus.lt;
 
 describe('lt', function() {
   it('should be a function', function() {

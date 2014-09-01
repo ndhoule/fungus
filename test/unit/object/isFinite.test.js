@@ -1,4 +1,4 @@
-var isFinite = fnjs.isFinite;
+var isFinite = fungus.isFinite;
 
 describe('isFinite', function() {
   it('should be a function', function() {

@@ -1,4 +1,4 @@
-var modulo = fnjs.modulo;
+var modulo = fungus.modulo;
 
 describe('modulo', function() {
   it('should be a function', function() {

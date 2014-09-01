@@ -1,4 +1,4 @@
-var isArray = fnjs.isArray;
+var isArray = fungus.isArray;
 
 describe('isArray', function() {
   it('should be a function', function() {

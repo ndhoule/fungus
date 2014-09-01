@@ -1,4 +1,4 @@
-var isUndefined = fnjs.isUndefined;
+var isUndefined = fungus.isUndefined;
 
 describe('isUndefined', function() {
   it('should be a function', function() {

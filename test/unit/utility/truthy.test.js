@@ -1,4 +1,4 @@
-var truthy = fnjs.truthy;
+var truthy = fungus.truthy;
 
 describe('truthy', function() {
   it('should be a function', function() {

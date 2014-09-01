@@ -1,4 +1,4 @@
-var isPlainObject = fnjs.isPlainObject;
+var isPlainObject = fungus.isPlainObject;
 
 describe('isPlainObject', function() {
   var Spam;

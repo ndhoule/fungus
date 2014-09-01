@@ -1,4 +1,4 @@
-var remainder = fnjs.remainder;
+var remainder = fungus.remainder;
 
 describe('remainder', function() {
   it('should be a function', function() {

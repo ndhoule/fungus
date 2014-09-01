@@ -41,7 +41,7 @@ MOCHA_FLAGS = \
 
 UGLIFYJS_FLAGS = \
 	--mangle \
-	--reserved fnjs \
+	--reserved fungus \
 	--compress keep-fargs=true
 
 

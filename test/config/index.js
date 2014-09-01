@@ -1,6 +1,6 @@
 'use strict';
 
-import fnjs from '../../.tmp/compiled/commonjs/index';
+import fungus from '../../.tmp/compiled/commonjs/index';
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'test';
 
@@ -18,4 +18,4 @@ global.sinon = require('sinon');
 require('../factories');
 
 // Export library
-global.fnjs = fnjs;
+global.fungus = fungus;

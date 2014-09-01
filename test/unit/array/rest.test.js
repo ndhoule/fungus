@@ -1,4 +1,4 @@
-var rest = fnjs.rest;
+var rest = fungus.rest;
 
 describe('rest', function() {
   it('should be a function', function() {

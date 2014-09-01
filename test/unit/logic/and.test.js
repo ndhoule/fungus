@@ -1,4 +1,4 @@
-var and = fnjs.and;
+var and = fungus.and;
 
 describe('and', function() {
   it('should be a function', function() {

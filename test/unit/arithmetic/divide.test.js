@@ -1,4 +1,4 @@
-var divide = fnjs.divide;
+var divide = fungus.divide;
 
 describe('divide', function() {
   it('should be a function', function() {

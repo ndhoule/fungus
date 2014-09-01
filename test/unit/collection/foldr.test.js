@@ -1,4 +1,4 @@
-var foldr = fnjs.foldr;
+var foldr = fungus.foldr;
 
 describe('foldr', function() {
   xit('should be a function', function() {

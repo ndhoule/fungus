@@ -1,4 +1,4 @@
-var isRegExp = fnjs.isRegExp;
+var isRegExp = fungus.isRegExp;
 
 describe('isRegExp', function() {
   it('should be a function', function() {

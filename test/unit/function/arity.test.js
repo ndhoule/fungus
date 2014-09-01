@@ -1,4 +1,4 @@
-var arity = fnjs.arity;
+var arity = fungus.arity;
 
 describe('arity', function() {
   var add;

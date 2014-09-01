@@ -1,4 +1,4 @@
-var gt = fnjs.gt;
+var gt = fungus.gt;
 
 describe('gt', function() {
   it('should be a function', function() {

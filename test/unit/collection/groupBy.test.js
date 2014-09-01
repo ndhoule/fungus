@@ -1,6 +1,6 @@
-var groupBy = fnjs.groupBy;
-var identity = fnjs.identity;
-var get = fnjs.get;
+var groupBy = fungus.groupBy;
+var identity = fungus.identity;
+var get = fungus.get;
 
 describe('groupBy', function() {
   var evenOrOdd, length, first, observe;
