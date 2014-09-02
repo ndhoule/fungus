@@ -9,15 +9,24 @@ TRACEUR = ./node_modules/.bin/traceur
 UGLIFYJS = ./node_modules/.bin/uglifyjs
 
 BOWER_DIR = ./docs/vendor
+COMPILE_DIR = ./.tmp/compiled
 DIST_DIR = ./dist
 INPUT_DIR = ./lib
-COMPILE_DIR = ./.tmp/compiled
 TEST_DIR = ./test
 TMP_DIR = ./.tmp
 
 HTMLMIN_FLAGS = --collapse-whitespace \
 	--minify-js \
 	--remove-comments
+
+MOCHA_COMMON_FLAGS = \
+	--ui bdd \
+	--check-leaks \
+	--require $(TEST_DIR)/config/node
+
+MOCHA_COVERAGE_FLAGS = \
+	--require blanket \
+	$(MOCHA_COMMON_FLAGS)
 
 TRACEUR_COMMON_FLAGS = \
 	--arrow-functions=true \
@@ -26,17 +35,17 @@ TRACEUR_COMMON_FLAGS = \
 	--numeric-literals=true \
 	--rest-parameters=true
 
-TRACEUR_DEV_FLAGS = \
+TRACEUR_COMMONJS_FLAGS = \
+	$(TRACEUR_COMMON_FLAGS) \
 	--modules=commonjs \
 	--filename \
 	--source-maps
 
-TRACEUR_BROWSER_FLAGS = --modules=amd
-
-MOCHA_FLAGS = \
-	--ui bdd \
-	--check-leaks \
-	--require $(TEST_DIR)/config/node
+TRACEUR_BROWSER_FLAGS = \
+	$(TRACEUR_COMMON_FLAGS) \
+	--modules=amd \
+	--filename \
+	--source-maps
 
 UGLIFYJS_FLAGS = \
 	--reserved fungus \
@@ -44,6 +53,9 @@ UGLIFYJS_FLAGS = \
 	--compress keep-fargs=true \
 	--screw-ie8
 
+#
+# Support Tasks
+#
 
 node_modules:
 	$(NPM) install
@@ -61,37 +73,55 @@ $(COMPILE_DIR): $(TMP_DIR)
 	@mkdir -p $(COMPILE_DIR)
 
 clean: | $(COMPILE_DIR)
-	rm -rf $(TMP_DIR) $(DIST_DIR)
+	@rm -rf $(TMP_DIR) $(DIST_DIR)
 
-build: | clean $(COMPILE_DIR)
-	@$(TRACEUR) $(TRACEUR_COMMON_FLAGS) $(TRACEUR_DEV_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/commonjs
+#
+# Build Tasks
+#
 
-build-browser: | clean $(COMPILE_DIR)
-	@$(TRACEUR) $(TRACEUR_COMMON_FLAGS) $(TRACEUR_BROWSER_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/amd
+build.commonjs: | clean $(COMPILE_DIR)
+	@$(TRACEUR) $(TRACEUR_COMMONJS_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/commonjs
 
-dist-browser: build-browser $(DIST_DIR)
+build.browser: | clean $(COMPILE_DIR)
+	@$(TRACEUR) $(TRACEUR_BROWSER_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/amd
+
+build.browser.dist: build.browser $(DIST_DIR)
 	@.bin/build-browser > $(DIST_DIR)/browser.js
 	@$(UGLIFYJS) $(DIST_DIR)/browser.js $(UGLIFYJS_FLAGS) > $(DIST_DIR)/browser.min.js 2> /dev/null
 
-test: | build
-	@$(MOCHA) $(MOCHA_FLAGS) --reporter spec $(TEST_DIR)/**/*.test.js
+#
+# Testing Tasks
+#
 
-test.coverage.coveralls: | build
-	@$(MOCHA) --require blanket --reporter mocha-lcov-reporter $(MOCHA_FLAGS) \
-		$(TEST_DIR)/**/*.test.js | $(COVERALLS)
+test: | test.commonjs test.browser
 
-test.coverage.html: | build
-	@$(MOCHA) --require blanket --reporter html-cov $(MOCHA_FLAGS) \
-		$(TEST_DIR)/**/*.test.js > $(TMP_DIR)/coverage.html
-	@echo Coverage report written to $(TMP_DIR)/coverage.html.
+test.commonjs: | build.commonjs
+	@$(MOCHA) $(MOCHA_COMMON_FLAGS) --reporter spec $(TEST_DIR)/**/*.test.js
 
-test-browser: | dist-browser
+test.browser: | build.browser.dist
 	@$(KARMA) start test/config/karma.conf.js
 
+test.coverage.coveralls: | build.commonjs
+	@$(MOCHA) $(MOCHA_COVERAGE_FLAGS) --reporter mocha-lcov-reporter $(TEST_DIR)/**/*.test.js | $(COVERALLS)
+	@echo Coverage report sent to Coveralls.
+
+test.coverage.html: | build.commonjs
+	@$(MOCHA) $(MOCHA_COVERAGE_FLAGS) --reporter html-cov $(TEST_DIR)/**/*.test.js > $(TMP_DIR)/coverage.html
+	@echo Coverage report written to \`$(TMP_DIR)/coverage.html\`.
+
+#
+# Documentation Tasks
+#
+
 docs: | clean $(TMP_DIR)/docs
-	$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets \
+	@$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets \
 		docs/scss/main.scss $(TMP_DIR)/docs/main.css > /dev/null 2>&1
-	$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_FLAGS) > $(TMP_DIR)/docs/index.html
+	@$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_FLAGS) > $(TMP_DIR)/docs/index.html
+	@echo Documentation written to \`$(TMP_DIR)/docs/\`.
+
+#
+# Watch Tasks
+#
 
 watch:
 	@.bin/watch
@@ -100,5 +130,6 @@ unwatch:
 	@.bin/unwatch
 
 
-.DEFAULT_GOAL = build
-.PHONY: build build-browser dist-browser test test.coverage test.coverage.html docs watch unwatch
+.DEFAULT_GOAL = build.commonjs
+.PHONY: build.commonjs build.browser build.browser.dist test.commonjs test.coverage.coveralls \
+	test.coverage.html docs watch unwatch
