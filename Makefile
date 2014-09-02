@@ -1,5 +1,6 @@
 NODE = $(shell which node)
 NPM = $(shell which npm)
+COVERALLS = ./node_modules/.bin/coveralls
 HTMLMIN = ./node_modules/.bin/html-minifier
 KARMA = ./node_modules/.bin/karma
 MOCHA = ./node_modules/.bin/mocha
@@ -33,10 +34,9 @@ TRACEUR_DEV_FLAGS = \
 TRACEUR_BROWSER_FLAGS = --modules=amd
 
 MOCHA_FLAGS = \
-	--require test/config/node \
-	--reporter spec \
 	--ui bdd \
-	--check-leaks
+	--check-leaks \
+	--require $(TEST_DIR)/config/node
 
 UGLIFYJS_FLAGS = \
 	--reserved fungus \
@@ -63,26 +63,34 @@ $(COMPILE_DIR): $(TMP_DIR)
 clean: | $(COMPILE_DIR)
 	rm -rf $(TMP_DIR) $(DIST_DIR)
 
-build: | $(COMPILE_DIR)
+build: | clean $(COMPILE_DIR)
 	@$(TRACEUR) $(TRACEUR_COMMON_FLAGS) $(TRACEUR_DEV_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/commonjs
 
-build-browser: | $(COMPILE_DIR)
+build-browser: | clean $(COMPILE_DIR)
 	@$(TRACEUR) $(TRACEUR_COMMON_FLAGS) $(TRACEUR_BROWSER_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/amd
 
-dist-browser: $(DIST_DIR) build-browser
+dist-browser: build-browser $(DIST_DIR)
 	@.bin/build-browser > $(DIST_DIR)/browser.js
 	@$(UGLIFYJS) $(DIST_DIR)/browser.js $(UGLIFYJS_FLAGS) > $(DIST_DIR)/browser.min.js 2> /dev/null
 
 test: | build
-	@$(MOCHA) $(MOCHA_FLAGS) $(TEST_DIR)/**/*.test.js
+	@$(MOCHA) $(MOCHA_FLAGS) --reporter spec $(TEST_DIR)/**/*.test.js
+
+test.coverage.coveralls: | build
+	@$(MOCHA) --require blanket --reporter mocha-lcov-reporter $(MOCHA_FLAGS) \
+		$(TEST_DIR)/**/*.test.js | $(COVERALLS)
+
+test.coverage.html: | build
+	@$(MOCHA) --require blanket --reporter html-cov $(MOCHA_FLAGS) \
+		$(TEST_DIR)/**/*.test.js > $(TMP_DIR)/coverage.html
+	@echo Coverage report written to $(TMP_DIR)/coverage.html.
 
 test-browser: | dist-browser
 	@$(KARMA) start test/config/karma.conf.js
 
-docs: | $(TMP_DIR)/docs
+docs: | clean $(TMP_DIR)/docs
 	$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets \
-		docs/scss/main.scss $(TMP_DIR)/docs/main.css \
-		> /dev/null 2>&1
+		docs/scss/main.scss $(TMP_DIR)/docs/main.css > /dev/null 2>&1
 	$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_FLAGS) > $(TMP_DIR)/docs/index.html
 
 watch:
@@ -93,4 +101,4 @@ unwatch:
 
 
 .DEFAULT_GOAL = build
-.PHONY: build docs test watch unwatch
+.PHONY: build build-browser dist-browser test test.coverage test.coverage.html docs watch unwatch

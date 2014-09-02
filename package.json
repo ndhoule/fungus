@@ -11,11 +11,18 @@
     "traceur"
   ],
   "main": "lib/index.js",
+  "config": {
+    "blanket": {
+      "pattern": ".tmp/compiled"
+    }
+  },
   "devDependencies": {
     "amdclean": "^2.2.4",
+    "blanket": "^1.1.6",
     "bluebird": "^2.3.0",
     "chai": "^1.9.1",
     "chai-factories": "^0.1.0",
+    "coveralls": "^2.11.1",
     "dox": "^0.4.6",
     "exec-sync": "^0.1.6",
     "glob": "^4.0.5",
@@ -34,6 +41,7 @@
     "lodash": "^2.4.1",
     "marked": "^0.3.2",
     "mocha": "^1.21.4",
+    "mocha-lcov-reporter": "0.0.1",
     "node-sass": "^0.9.3",
     "require-directory": "^2.0.0",
     "requirejs": "^2.1.14",

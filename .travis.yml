@@ -7,7 +7,9 @@ script:
 before_script:
 - npm install -g bower
 - bower install
-after_success: npm run docs
+after_success:
+- make test.coverage.coveralls
+- make docs
 addons:
   sauce_connect: true
 deploy:
@@ -35,3 +37,5 @@ env:
   global:
   - secure: XLZljG8a1ztChbuxmkZnHkMtCDV6mHxPx/Lg5GdcENsDZFAdaXdV0zY2eFWnOrrU62aJ8TsV08/J02FcsOVsrAVzh5EA9hr1wWhjCPi93v9s93rVBMQ1osMHGOnlEAtuCy6K9ei/PFAdTD4/yc+mc5XryQbR4pse2JHjEXXSDgc=
   - secure: Y0/johxONUseBHMhDduwxIls9WxjVqcnU9NLj5qxGoDrf7aZjpBa4yob7sRvYkL+Z1oSPz6FAuLfuNHr6+iWMHEbj1G4WorVH5HdWFklgiWQvrsuNdMM3YUc8qMldw1wZ/LXSGsoUwPZul0+mz0AkQvEVLJp4QoSMOKPniJWEjM=
+dd:
+  secure: NL/wEwo5VBCUQ5QHAPei/xH+Zv/736AK5z9t3WRzYowSMQfTridzCEsWplVGcr4VNEOmg1cOTOBHFPyJWy/BcjtH9LTrGIJ5scox1Ami4F+vaGCaw+LMWoPZ6v3V3WuTvoqcORyTuX98IGYOLDkBep6yRN3MVi1+jQ/tdJHGYa8=
