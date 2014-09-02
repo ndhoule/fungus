@@ -5,10 +5,10 @@ A functional programming library implemented in ES6.
 
 ###### Build Status
 
-Branch | Status
----    | ---
-master | ![Master](https://travis-ci.org/ndhoule/fungus.svg?branch=master)
-dev    | ![Dev](https://travis-ci.org/ndhoule/fungus.svg?branch=dev)
+Branch | Status                                                            | Coverage
+---    | ---                                                               | ---
+master | ![Master](https://travis-ci.org/ndhoule/fungus.svg?branch=master) | [![Coverage Status](https://img.shields.io/coveralls/ndhoule/fungus.svg)](https://coveralls.io/r/ndhoule/fungus?branch=master)
+dev    | ![Dev](https://travis-ci.org/ndhoule/fungus.svg?branch=dev)       | [![Coverage Status](https://img.shields.io/coveralls/ndhoule/fungus.svg)](https://coveralls.io/r/ndhoule/fungus?branch=dev)
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/ndhoule.svg)](https://saucelabs.com/u/ndhoule)
 
