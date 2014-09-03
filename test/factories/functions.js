@@ -1,5 +1,23 @@
-chai.factory('functions', {
-  add: function add(a, b) { return a + b; },
+var add = function add(a, b) { return a + b; };
 
-  reduce: function(fn, acc, list) { return list.reduce(fn, acc); }
+var always = function always(val) {
+  return function() {
+    return val;
+  };
+};
+
+var eq = function eq(originalVal) {
+  return function(val) { return val === originalVal; };
+};
+
+var identity = function identity(val) { return val; };
+
+var reduce = function reduce(fn, acc, list) { return list.reduce(fn, acc); };
+
+chai.factory('functions', {
+  add: add,
+  always: always,
+  eq: eq,
+  identity: identity,
+  reduce: reduce,
 });
