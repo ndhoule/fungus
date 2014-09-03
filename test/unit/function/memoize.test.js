@@ -3,7 +3,7 @@ var identity = fungus.identity;
 
 describe('memoize', function() {
   var memoAdd, memoIdentity;
-  var add = chai.create('functions').add;
+  var add = chai.factory.create('functions').add;
 
   beforeEach(function() {
     add = sinon.spy(add);

@@ -10,7 +10,7 @@ module.exports = function(config) {
 
   config.set({
     basePath: '../..',
-    frameworks: ['mocha', 'sinon-chai', 'chai-factories', 'chai'],
+    frameworks: ['mocha', 'sinon-chai', 'chai-js-factories', 'chai'],
     reporters: ['dots', 'saucelabs'],
     colors: true,
     port: 9876,

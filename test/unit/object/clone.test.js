@@ -206,5 +206,5 @@ describe('clone', function() {
   //   xit('should handle the ' + name + ' host object', function() {
   //     new Function('clone', 'obj', 'expect(clone(obj)).to.equal(obj);')(clone, HostObject);
   //   });
-  // }, chai.create('hostObjects'));
+  // }, chai.factory.create('hostObjects'));
 });

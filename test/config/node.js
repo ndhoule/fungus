@@ -16,7 +16,7 @@ global.sinon = require('sinon');
 
 // Chai plugins
 chai.use(require('sinon-chai'));
-chai.use(require('chai-factories'));
+chai.use(require('chai-js-factories'));
 
 // Load factories
 fs.readdirSync(FACTORIES_PATH)

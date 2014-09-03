@@ -2,7 +2,7 @@ describe('findKey', function() {
   var findKey = fungus.findKey;
 
   var alwaysFalse, alwaysTrue, animals, eq, observe;
-  var fns = chai.create('functions');
+  var fns = chai.factory.create('functions');
 
   beforeEach(function() {
     alwaysFalse = sinon.spy(fns.always(false));

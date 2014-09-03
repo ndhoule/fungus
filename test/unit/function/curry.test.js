@@ -2,7 +2,7 @@ var curry = fungus.curry;
 
 describe('curry', function() {
   var add, curriedAdd, reduce, curriedReduce;
-  var functions = chai.create('functions');
+  var functions = chai.factory.create('functions');
 
   beforeEach(function() {
     add = sinon.spy(functions.add);

@@ -5,7 +5,7 @@ describe('compose', function() {
   var add;
 
   beforeEach(function() {
-    add = sinon.spy(chai.create('functions').add);
+    add = sinon.spy(chai.factory.create('functions').add);
   });
 
   it('should be a function', function() {
