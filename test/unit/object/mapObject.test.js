@@ -87,13 +87,9 @@ describe('mapObject', function() {
 
   it('should work on string objects', function() {
     var str = new String('test');
-    var expected = new String();
-    expected[0] = 'ta';
-    expected[1] = 'ea';
-    expected[2] = 'sa';
-    expected[3] = 'ta';
+    var expected = new String('TEST');
 
-    expect(mapObject(function(val) { return val + 'a'; }, str)).to.eql(expected);
+    expect(mapObject(function(val) { return val.toUpperCase(); }, str)).to.eql(expected);
   });
 
   it('should handle other complex object types gracefully', function() {

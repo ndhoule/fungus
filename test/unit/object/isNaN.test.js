@@ -11,10 +11,10 @@ describe('isNaN', function() {
 
   it('should return `true` when passed NaN', function() {
     expect(isNaN(NaN)).to.be.true;
-    expect(isNaN(new Number(NaN))).to.be.true;
   });
 
   it('should return `false` when passed anything other than NaN', function() {
+    expect(isNaN(new Number(NaN))).to.be.false;
     expect(isNaN(0)).to.be.false;
     expect(isNaN(1)).to.be.false;
     expect(isNaN(-1)).to.be.false;
