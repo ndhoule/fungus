@@ -12,26 +12,26 @@ addons:
   sauce_connect: true
 deploy:
 - provider: npm
-  skip_cleanup: true
   email: nathan@nathanhoule.com
-  api_key:
-    secure: f26oOEd9mQkzqOil0/hMU6cbiPomGP1y4v7dhRgcgSttpMpDgXLXOB9DSqw9cOZn6FHKXCuOIt2glRkwq59wkpF6Xsm/9vuZ7wx1uDmytvwFVqTy84oUUS8j0wMqh6MniIxfa7FVQD0u9IuSm7RovZddp40TwCr5HDXi8NOoB40=
   on:
     all_branches: true
     tags: true
-- provider: s3
-  access_key_id:
-    secure: BXZOvUbwjn5hCkAY0avjIj7m4WeNywBPmfjJgWHXYuwSxaMv9ztXf8QCziF3NuJsBv6eRtd/JwU+lSkAndMyK0VHAk7dWuAXRdnc9hf2HdRud3FqVHLaKDs8bkX62W5qPUOr2nYC/q46BNoXLU6Ux/5RxHoHrA3IGqUozcO4ptQ=
-  secret_access_key:
-    secure: cgsOBFlO91DiSCGCFwU6R9TzSpyW/vfpVSw9Org2zEUVcraV35UWKnsVlqmdvXQ8qUDE1QKFboiXzYmRXF953eDkd1zIN0YbaE10bLoc+wfw6kjrAy/BkpLiKPMcZsQdJizgQAIDFJgTt/0NP73SFzD3Ma7wpXMFZvjen8MhtSc=
-  local-dir: ".tmp/docs"
   skip_cleanup: true
+  api_key:
+    secure: f26oOEd9mQkzqOil0/hMU6cbiPomGP1y4v7dhRgcgSttpMpDgXLXOB9DSqw9cOZn6FHKXCuOIt2glRkwq59wkpF6Xsm/9vuZ7wx1uDmytvwFVqTy84oUUS8j0wMqh6MniIxfa7FVQD0u9IuSm7RovZddp40TwCr5HDXi8NOoB40=
+- provider: s3
+  local-dir: ".tmp/docs"
   bucket: fungusjs.com
   endpoint: fungusjs.com.s3-website-us-west-2.amazonaws.com
   region: us-west-2
   on:
     all_branches: true
     tags: true
+  skip_cleanup: true
+  access_key_id:
+    secure: BXZOvUbwjn5hCkAY0avjIj7m4WeNywBPmfjJgWHXYuwSxaMv9ztXf8QCziF3NuJsBv6eRtd/JwU+lSkAndMyK0VHAk7dWuAXRdnc9hf2HdRud3FqVHLaKDs8bkX62W5qPUOr2nYC/q46BNoXLU6Ux/5RxHoHrA3IGqUozcO4ptQ=
+  secret_access_key:
+    secure: cgsOBFlO91DiSCGCFwU6R9TzSpyW/vfpVSw9Org2zEUVcraV35UWKnsVlqmdvXQ8qUDE1QKFboiXzYmRXF953eDkd1zIN0YbaE10bLoc+wfw6kjrAy/BkpLiKPMcZsQdJizgQAIDFJgTt/0NP73SFzD3Ma7wpXMFZvjen8MhtSc=
 env:
   global:
   - secure: XLZljG8a1ztChbuxmkZnHkMtCDV6mHxPx/Lg5GdcENsDZFAdaXdV0zY2eFWnOrrU62aJ8TsV08/J02FcsOVsrAVzh5EA9hr1wWhjCPi93v9s93rVBMQ1osMHGOnlEAtuCy6K9ei/PFAdTD4/yc+mc5XryQbR4pse2JHjEXXSDgc=
