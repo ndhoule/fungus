@@ -78,13 +78,16 @@ clean:
 # Build Tasks
 #
 
-build.commonjs: | clean $(DIST_DIR)
+build.commonjs: | $(DIST_DIR)
+	@rm -rf $(DIST_DIR)/commonjs
 	@$(TRACEUR) $(TRACEUR_COMMONJS_FLAGS) --dir $(SRC_DIR) $(DIST_DIR)/commonjs
 
-build.amd: | clean $(DIST_DIR)
+build.amd: | $(DIST_DIR)
+	@rm -rf $(DIST_DIR)/amd
 	@$(TRACEUR) $(TRACEUR_BROWSER_FLAGS) --dir $(SRC_DIR) $(DIST_DIR)/amd
 
 build.script: build.amd $(DIST_DIR)/browser
+	@rm -rf $(DIST_DIR)/browser
 	@.bin/build-browser > $(DIST_DIR)/browser/fungus.js
 	@$(UGLIFYJS) $(DIST_DIR)/browser/fungus.js $(UGLIFYJS_FLAGS) > $(DIST_DIR)/browser/fungus.min.js 2> /dev/null
 
@@ -112,7 +115,7 @@ test.coverage.html: | build.commonjs
 # Documentation Tasks
 #
 
-docs: | clean $(TMP_DIR)/docs
+docs: | $(TMP_DIR)/docs
 	@$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets \
 		docs/scss/main.scss $(TMP_DIR)/docs/main.css > /dev/null 2>&1
 	@$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_FLAGS) > $(TMP_DIR)/docs/index.html
@@ -130,5 +133,4 @@ unwatch:
 
 
 .DEFAULT_GOAL = build.commonjs
-.PHONY: build.commonjs build.amd build.script test.node test.coverage.coveralls \
-	test.coverage.html docs watch unwatch node_modules
+.PHONY: build.commonjs build.amd build.script test.node test.coverage.coveralls test.coverage.html docs watch unwatch node_modules
