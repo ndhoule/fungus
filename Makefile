@@ -115,9 +115,10 @@ test.coverage.html: | build.commonjs
 # Documentation Tasks
 #
 
-docs: | $(TMP_DIR)/docs
+docs: | $(TMP_DIR)/docs build.script
 	@$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets \
 		docs/scss/main.scss $(TMP_DIR)/docs/main.css > /dev/null 2>&1
+	@cp $(DIST_DIR)/browser/fungus.min.js $(TMP_DIR)/docs/fungus.min.js
 	@$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_FLAGS) > $(TMP_DIR)/docs/index.html
 	@echo Documentation written to \`$(TMP_DIR)/docs/\`.
 
