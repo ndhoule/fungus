@@ -8,10 +8,10 @@ import forOwnRight from './forOwnRight';
  *
  * Note that enumeration order is not guaranteed to be consistent across platforms.
  *
- * @name findKey
+ * @name findKeyLast
  * @api public
  * @category Object
- * @see {@link findKeyLast}
+ * @see {@link findKey}
  * @param {Function} predicate A predicate function called per iteration.
  * @param {Object} object The object to iterate over.
  * @return {string|undefined} The key of the found element, else `undefined`.
