@@ -79,15 +79,15 @@ clean:
 #
 
 build.commonjs: | $(DIST_DIR)
-	@rm -rf $(DIST_DIR)/commonjs
+	@rm -rf $(DIST_DIR)/commonjs/*
 	@$(TRACEUR) $(TRACEUR_COMMONJS_FLAGS) --dir $(SRC_DIR) $(DIST_DIR)/commonjs
 
 build.amd: | $(DIST_DIR)
-	@rm -rf $(DIST_DIR)/amd
+	@rm -rf $(DIST_DIR)/amd/*
 	@$(TRACEUR) $(TRACEUR_BROWSER_FLAGS) --dir $(SRC_DIR) $(DIST_DIR)/amd
 
 build.script: build.amd $(DIST_DIR)/browser
-	@rm -rf $(DIST_DIR)/browser
+	@rm -rf $(DIST_DIR)/browser/*
 	@.bin/build-browser > $(DIST_DIR)/browser/fungus.js
 	@$(UGLIFYJS) $(DIST_DIR)/browser/fungus.js $(UGLIFYJS_FLAGS) > $(DIST_DIR)/browser/fungus.min.js 2> /dev/null
 
