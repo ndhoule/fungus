@@ -12,6 +12,7 @@ addons:
   sauce_connect: true
 deploy:
 - provider: npm
+  skip_cleanup: true
   email: nathan@nathanhoule.com
   api_key:
     secure: f26oOEd9mQkzqOil0/hMU6cbiPomGP1y4v7dhRgcgSttpMpDgXLXOB9DSqw9cOZn6FHKXCuOIt2glRkwq59wkpF6Xsm/9vuZ7wx1uDmytvwFVqTy84oUUS8j0wMqh6MniIxfa7FVQD0u9IuSm7RovZddp40TwCr5HDXi8NOoB40=
