@@ -2,8 +2,15 @@
   "name": "fungus",
   "version": "0.0.4-alpha+deployfix",
   "description": "Functional programming utilities written in ES6",
-  "author": "Nathan Houle <nathan@nathanhoule.com>",
+  "author": "Nathan Houle <nathan@nathanhoule.com> (http://nathanhoule.com)",
   "license": "MIT",
+  "homepage": "http://fungusjs.com",
+  "repository" : {
+    "type": "git",
+    "url": "https://github.com/ndhoule/fungus"
+  },
+  "bugs": "https://github.com/ndhoule/fungus/issues",
+  "engines" : { "node" : ">=0.10.0 < 0.11" },
   "keywords": [
     "es6",
     "fp",
