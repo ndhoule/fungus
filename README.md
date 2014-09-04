@@ -13,19 +13,21 @@ dev    | ![Dev](https://travis-ci.org/ndhoule/fungus.svg?branch=dev)       | [![
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/ndhoule.svg)](https://saucelabs.com/u/ndhoule)
 
 
-## Installation
+## Installation and Use
 
-```bash
-npm install {--save} fungus
-```
+### Node
 
-## Use
+Install using `npm install {--save} fungus` and include in your project:
 
-Fungus currently can't easily be used in a project. Check back soon!
-
-<!--
 ```javascript
 var fungus = require('fungus');
+```
+
+<!--
+### Browser
+
+```html
+<script src="dist/browser.min.js" encoding="utf-8"></script>
 ```
 -->
 

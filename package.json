@@ -10,7 +10,10 @@
     "functional",
     "traceur"
   ],
-  "main": "lib/index.js",
+  "main": "index",
+  "scripts": {
+    "prepublish": "make build.commonjs"
+  },
   "config": {
     "blanket": {
       "pattern": ".tmp/compiled"
