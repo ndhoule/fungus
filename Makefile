@@ -11,7 +11,7 @@ UGLIFYJS = ./node_modules/.bin/uglifyjs
 BOWER_DIR = ./docs/vendor
 COMPILE_DIR = ./.tmp/compiled
 DIST_DIR = ./dist
-INPUT_DIR = ./lib
+INPUT_DIR = ./src
 TEST_DIR = ./test
 TMP_DIR = ./.tmp
 
