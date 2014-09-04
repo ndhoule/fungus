@@ -36,18 +36,27 @@ var fungus = require('fungus');
 
 Requirements:
 - Node.js v0.10.x
-- [Watchman](https://facebook.github.io/watchman/docs/install.html) *(Optional)*
+- [Watchman][watchman] *(Optional)*
 
 ### Build Tasks
 
-Task           | Description
----            | ---
-`make`         | Runs the default task (`make build`).
-`make test`    | Runs the test suite.
-`make build`   | Builds the library into ES5-compatible modules.
-`make docs`    | Builds the documentation.
-`make watch`   | Watch and rebuild the source and documentation on file changes.
-`make unwatch` | Stop file watching.
+Task                           | Description
+---                            | ---
+`make`                         | Runs the default task (`make build.commonjs`).
+`make test`                    | Runs the test suite. Runs both the `test.node` and `test.browser` tasks.
+`make test.node`               | Runs the test suite in a Node environment.
+`make test.browser`            | Runs the test suite in a browser environment.
+`make test.coverage.coveralls` | Runs the test suite in a Node environment, outputting a coverage report and sending it to the [Coveralls][coveralls] code coverage tracking service.
+`make test.coverage.html`      | Runs the test suite in a Node environment, outputting a HTML coverage report.
+`make build.commonjs`          | Builds the library into ES5-compatible CommonJS modules.
+`make build.amd`               | Builds the library into ES5-compatible AMD modules.
+`make build.script`            | Builds the library into a single, ES5-compatible script file.
+`make docs`                    | Builds the documentation.
+`make watch`                   | Watch and rebuild the source and documentation on file changes. Runs as a background task via [Watchman][watchman].
+`make unwatch`                 | Stop file watching.
+
+[coveralls]: http://coveralls.io
+[watchman]: https://facebook.github.io/watchman/docs/install.html
 
 ### Building
 
@@ -72,9 +81,6 @@ open http://localhost:8000
 
 <!--
 ## Goals
-
-- Browser support
-  - IE9+? Whatever jQuery supports?
 
 - Puts the developer first:
   - Usable in browser and Node

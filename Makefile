@@ -82,10 +82,10 @@ clean: | $(COMPILE_DIR)
 build.commonjs: | clean $(COMPILE_DIR)
 	@$(TRACEUR) $(TRACEUR_COMMONJS_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/commonjs
 
-build.browser: | clean $(COMPILE_DIR)
+build.amd: | clean $(COMPILE_DIR)
 	@$(TRACEUR) $(TRACEUR_BROWSER_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/amd
 
-build.browser.dist: build.browser $(DIST_DIR)
+build.script: build.amd $(DIST_DIR)
 	@.bin/build-browser > $(DIST_DIR)/browser.js
 	@$(UGLIFYJS) $(DIST_DIR)/browser.js $(UGLIFYJS_FLAGS) > $(DIST_DIR)/browser.min.js 2> /dev/null
 
@@ -93,12 +93,12 @@ build.browser.dist: build.browser $(DIST_DIR)
 # Testing Tasks
 #
 
-test: | test.commonjs test.browser
+test: | test.node test.browser
 
-test.commonjs: | build.commonjs
+test.node: | build.commonjs
 	@$(MOCHA) $(MOCHA_COMMON_FLAGS) --reporter spec $(TEST_DIR)/**/*.test.js
 
-test.browser: | build.browser.dist
+test.browser: | build.script
 	@$(KARMA) start test/config/karma.conf.js
 
 test.coverage.coveralls: | build.commonjs
@@ -131,5 +131,5 @@ unwatch:
 
 
 .DEFAULT_GOAL = build.commonjs
-.PHONY: build.commonjs build.browser build.browser.dist test.commonjs test.coverage.coveralls \
+.PHONY: build.commonjs build.amd build.script test.node test.coverage.coveralls \
 	test.coverage.html docs watch unwatch
