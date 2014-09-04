@@ -9,9 +9,8 @@ TRACEUR = ./node_modules/.bin/traceur
 UGLIFYJS = ./node_modules/.bin/uglifyjs
 
 BOWER_DIR = ./docs/vendor
-COMPILE_DIR = ./.tmp/compiled
 DIST_DIR = ./dist
-INPUT_DIR = ./src
+SRC_DIR = ./src
 TEST_DIR = ./test
 TMP_DIR = ./.tmp
 
@@ -63,31 +62,31 @@ node_modules:
 $(DIST_DIR):
 	@mkdir -p $(DIST_DIR)
 
+$(DIST_DIR)/browser:
+	@mkdir -p $(DIST_DIR)/browser
+
 $(TMP_DIR):
 	@mkdir -p $(TMP_DIR)
 
 $(TMP_DIR)/docs:
 	@mkdir -p $(TMP_DIR)/docs
 
-$(COMPILE_DIR): $(TMP_DIR)
-	@mkdir -p $(COMPILE_DIR)
-
-clean: | $(COMPILE_DIR)
+clean:
 	@rm -rf $(TMP_DIR) $(DIST_DIR)
 
 #
 # Build Tasks
 #
 
-build.commonjs: | clean $(COMPILE_DIR)
-	@$(TRACEUR) $(TRACEUR_COMMONJS_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/commonjs
+build.commonjs: | clean $(DIST_DIR)
+	@$(TRACEUR) $(TRACEUR_COMMONJS_FLAGS) --dir $(SRC_DIR) $(DIST_DIR)/commonjs
 
-build.amd: | clean $(COMPILE_DIR)
-	@$(TRACEUR) $(TRACEUR_BROWSER_FLAGS) --dir $(INPUT_DIR) $(COMPILE_DIR)/amd
+build.amd: | clean $(DIST_DIR)
+	@$(TRACEUR) $(TRACEUR_BROWSER_FLAGS) --dir $(SRC_DIR) $(DIST_DIR)/amd
 
-build.script: build.amd $(DIST_DIR)
-	@.bin/build-browser > $(DIST_DIR)/browser.js
-	@$(UGLIFYJS) $(DIST_DIR)/browser.js $(UGLIFYJS_FLAGS) > $(DIST_DIR)/browser.min.js 2> /dev/null
+build.script: build.amd $(DIST_DIR)/browser
+	@.bin/build-browser > $(DIST_DIR)/browser/fungus.js
+	@$(UGLIFYJS) $(DIST_DIR)/browser/fungus.js $(UGLIFYJS_FLAGS) > $(DIST_DIR)/browser/fungus.min.js 2> /dev/null
 
 #
 # Testing Tasks
@@ -132,4 +131,4 @@ unwatch:
 
 .DEFAULT_GOAL = build.commonjs
 .PHONY: build.commonjs build.amd build.script test.node test.coverage.coveralls \
-	test.coverage.html docs watch unwatch
+	test.coverage.html docs watch unwatch node_modules

@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 
 var FACTORIES_PATH = path.join(__dirname, '../factories');
-var SRC_PATH = path.join(__dirname, '../../.tmp/compiled/commonjs');
+var DIST_PATH = path.join(__dirname, '../../dist');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'test';
 
@@ -28,4 +28,4 @@ fs.readdirSync(FACTORIES_PATH)
   });
 
 // Export library
-global.fungus = require(path.join(SRC_PATH, 'index')).default;
+global.fungus = require(path.join(DIST_PATH, 'commonjs/index')).default;

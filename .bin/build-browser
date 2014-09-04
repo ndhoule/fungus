@@ -9,7 +9,7 @@ var requirejs = require('requirejs');
 var BASE_DIR = exec('git rev-parse --show-toplevel');
 
 requirejs.optimize({
-  baseUrl: path.join(BASE_DIR, '.tmp/compiled/amd'),
+  baseUrl: path.join(BASE_DIR, 'dist/amd'),
   optimize: 'none',
   skipModuleInsertion: true,
   name: 'index',

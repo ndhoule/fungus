@@ -93,7 +93,7 @@ module.exports = function(config) {
     singleRun: true,
 
     files: [
-      'dist/browser.min.js',
+      'dist/browser/fungus.min.js',
       'test/factories/**/*.js',
       'test/unit/**/*.test.js'
     ],
