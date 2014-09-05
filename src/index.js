@@ -36,6 +36,7 @@ fungus.curry = fn.curry;
 fungus.lPartial = fn.lPartial;
 fungus.memoize = fn.memoize;
 fungus.rPartial = fn.rPartial;
+fungus.wrap = fn.wrap;
 
 // Logic
 fungus.and = logic.and;

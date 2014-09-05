@@ -4,6 +4,7 @@ import curry from './curry';
 import lPartial from './lPartial';
 import memoize from './memoize';
 import rPartial from './rPartial';
+import wrap from './wrap';
 
 export default {
   arity: arity,
@@ -11,5 +12,6 @@ export default {
   curry: curry,
   lPartial: lPartial,
   memoize: memoize,
-  rPartial: rPartial
+  rPartial: rPartial,
+  wrap: wrap
 };
