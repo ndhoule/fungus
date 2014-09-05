@@ -122,8 +122,8 @@ test.coverage.html: $(TMP_DIR)/coverage.html
 # Documentation Tasks
 #
 
-$(TMP_DIR)/docs/main.css: force | $(TMP_DIR)/docs
-	@$(SASS) --include-path=./node_modules/bootstrap-sass/assets/stylesheets docs/scss/main.scss $@ > /dev/null 2>&1
+$(TMP_DIR)/docs/%.css: docs/scss/%.scss
+	@$(SASS) --include-path=./node_modules/bootstrap-sass/assets/stylesheets $< -o $@ > /dev/null 2>&1
 
 $(TMP_DIR)/docs/fungus.min.js: build.script | $(TMP_DIR)/docs
 	@cp $(DIST_DIR)/browser/fungus.min.js $(TMP_DIR)/docs/fungus.min.js
