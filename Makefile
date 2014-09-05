@@ -1,6 +1,5 @@
 NODE = $(shell which node)
 NPM = $(shell which npm)
-BOWER = ./node_modules/.bin/bower
 COVERALLS = ./node_modules/.bin/coveralls
 HTMLMIN = ./node_modules/.bin/html-minifier
 KARMA = ./node_modules/.bin/karma
@@ -9,7 +8,6 @@ SASS = ./node_modules/.bin/node-sass
 TRACEUR = ./node_modules/.bin/traceur
 UGLIFYJS = ./node_modules/.bin/uglifyjs
 
-BOWER_DIR = ./docs/vendor
 DIST_DIR = ./dist
 SRC_DIR = ./src
 TEST_DIR = ./test
@@ -59,9 +57,6 @@ UGLIFYJS_FLAGS = \
 
 node_modules:
 	$(NPM) install
-
-docs/vendor:
-	$(BOWER) install
 
 clean:
 	@rm -rf $(TMP_DIR) $(DIST_DIR)
@@ -127,8 +122,8 @@ test.coverage.html: $(TMP_DIR)/coverage.html
 # Documentation Tasks
 #
 
-$(TMP_DIR)/docs/main.css: | $(TMP_DIR)/docs
-	@$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets docs/scss/main.scss $@ > /dev/null 2>&1
+$(TMP_DIR)/docs/main.css: force | $(TMP_DIR)/docs
+	@$(SASS) --include-path=./node_modules/bootstrap-sass/assets/stylesheets docs/scss/main.scss $@ > /dev/null 2>&1
 
 $(TMP_DIR)/docs/fungus.min.js: build.script | $(TMP_DIR)/docs
 	@cp $(DIST_DIR)/browser/fungus.min.js $(TMP_DIR)/docs/fungus.min.js
@@ -151,4 +146,4 @@ unwatch:
 
 
 .DEFAULT_GOAL = build.commonjs
-.PHONY: docs docs/vendor force node_modules test.node unwatch watch
+.PHONY: docs force node_modules test.node unwatch watch
