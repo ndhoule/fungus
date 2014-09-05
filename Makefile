@@ -1,5 +1,6 @@
 NODE = $(shell which node)
 NPM = $(shell which npm)
+BOWER = ./node_modules/.bin/bower
 COVERALLS = ./node_modules/.bin/coveralls
 HTMLMIN = ./node_modules/.bin/html-minifier
 KARMA = ./node_modules/.bin/karma
@@ -59,6 +60,12 @@ UGLIFYJS_FLAGS = \
 node_modules:
 	$(NPM) install
 
+docs/vendor:
+	$(BOWER) install
+
+clean:
+	@rm -rf $(TMP_DIR) $(DIST_DIR)
+
 $(DIST_DIR):
 	@mkdir -p $(DIST_DIR)
 
@@ -71,56 +78,66 @@ $(TMP_DIR):
 $(TMP_DIR)/docs:
 	@mkdir -p $(TMP_DIR)/docs
 
-clean:
-	@rm -rf $(TMP_DIR) $(DIST_DIR)
-
 #
 # Build Tasks
 #
 
-build.commonjs: | $(DIST_DIR)
+build.commonjs: force | $(DIST_DIR)
 	@rm -rf $(DIST_DIR)/commonjs/*
 	@$(TRACEUR) $(TRACEUR_COMMONJS_FLAGS) --dir $(SRC_DIR) $(DIST_DIR)/commonjs
 
-build.amd: | $(DIST_DIR)
+build.amd: force | $(DIST_DIR)
 	@rm -rf $(DIST_DIR)/amd/*
 	@$(TRACEUR) $(TRACEUR_BROWSER_FLAGS) --dir $(SRC_DIR) $(DIST_DIR)/amd
 
-build.script: build.amd $(DIST_DIR)/browser
-	@rm -rf $(DIST_DIR)/browser/*
-	@.bin/build-browser > $(DIST_DIR)/browser/fungus.js
-	@$(UGLIFYJS) $(DIST_DIR)/browser/fungus.js $(UGLIFYJS_FLAGS) > $(DIST_DIR)/browser/fungus.min.js 2> /dev/null
+$(DIST_DIR)/browser/fungus.js: build.amd | $(DIST_DIR)/browser
+	@.bin/build-browser > $@
+
+$(DIST_DIR)/browser/fungus.min.js: $(DIST_DIR)/browser/fungus.js | $(DIST_DIR)/browser
+	@$(UGLIFYJS) $< $(UGLIFYJS_FLAGS) > $@ 2> /dev/null
+
+build.script: $(DIST_DIR)/browser/fungus.min.js
 
 #
 # Testing Tasks
 #
 
-test: | test.node test.browser
+test: test.node test.browser
 
-test.node: | build.commonjs
+test.node: build.commonjs
 	@$(MOCHA) $(MOCHA_COMMON_FLAGS) --reporter spec $(TEST_DIR)/**/*.test.js
 
-test.browser: | build.script
+test.browser: $(DIST_DIR)/browser/fungus.min.js
 	@$(KARMA) start test/config/karma.conf.js
 
-test.coverage.coveralls: | build.commonjs
-	@$(MOCHA) $(MOCHA_COVERAGE_FLAGS) --reporter mocha-lcov-reporter $(TEST_DIR)/**/*.test.js | $(COVERALLS)
+$(TMP_DIR)/coverage.lcov: build.commonjs | $(TMP_DIR)
+	@$(MOCHA) $(MOCHA_COVERAGE_FLAGS) --reporter mocha-lcov-reporter $(TEST_DIR)/**/*.test.js > $@
+
+test.coverage.coveralls: $(TMP_DIR)/coverage.lcov
+	@$< | $(COVERALLS)
 	@echo Coverage report sent to Coveralls.
 
-test.coverage.html: | build.commonjs
-	@$(MOCHA) $(MOCHA_COVERAGE_FLAGS) --reporter html-cov $(TEST_DIR)/**/*.test.js > $(TMP_DIR)/coverage.html
-	@echo Coverage report written to \`$(TMP_DIR)/coverage.html\`.
+$(TMP_DIR)/coverage.html: build.commonjs | $(TMP_DIR)
+	@$(MOCHA) $(MOCHA_COVERAGE_FLAGS) --reporter html-cov $(TEST_DIR)/**/*.test.js > $@
+	@echo Coverage report written to \`$@\`.
+
+test.coverage.html: $(TMP_DIR)/coverage.html
 
 #
 # Documentation Tasks
 #
 
-docs: | $(TMP_DIR)/docs build.script
-	@$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets \
-		docs/scss/main.scss $(TMP_DIR)/docs/main.css > /dev/null 2>&1
+$(TMP_DIR)/docs/main.css: | $(TMP_DIR)/docs
+	@$(SASS) --include-path=$(BOWER_DIR)/bootstrap-sass-official/assets/stylesheets docs/scss/main.scss $@ > /dev/null 2>&1
+
+$(TMP_DIR)/docs/fungus.min.js: build.script | $(TMP_DIR)/docs
 	@cp $(DIST_DIR)/browser/fungus.min.js $(TMP_DIR)/docs/fungus.min.js
-	@$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_FLAGS) > $(TMP_DIR)/docs/index.html
+
+$(TMP_DIR)/docs/index.html: build.script $(TMP_DIR)/docs/fungus.min.js $(TMP_DIR)/docs/main.css | $(TMP_DIR)/docs
+	@$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_FLAGS) > $@
 	@echo Documentation written to \`$(TMP_DIR)/docs/\`.
+
+docs: $(TMP_DIR)/docs/index.html
 
 #
 # Watch Tasks
@@ -134,4 +151,4 @@ unwatch:
 
 
 .DEFAULT_GOAL = build.commonjs
-.PHONY: build.commonjs build.amd build.script test.node test.coverage.coveralls test.coverage.html docs watch unwatch node_modules
+.PHONY: docs docs/vendor force node_modules test.node unwatch watch
