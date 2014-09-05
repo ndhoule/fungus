@@ -49,6 +49,7 @@ fungus.lte = logic.lte;
 fungus.or = logic.or;
 
 // Math
+fungus.max = math.max;
 fungus.sum = math.sum;
 
 // Object
