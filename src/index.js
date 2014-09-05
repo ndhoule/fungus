@@ -3,6 +3,7 @@ import array from './array/index';
 import collection from './collection/index';
 import fn from './function/index';
 import logic from './logic/index';
+import math from './math/index';
 import object from './object/index';
 import utility from './utility/index';
 
@@ -46,6 +47,9 @@ fungus.gte = logic.gte;
 fungus.lt = logic.lt;
 fungus.lte = logic.lte;
 fungus.or = logic.or;
+
+// Math
+fungus.sum = math.sum;
 
 // Object
 fungus.clone = object.clone;
