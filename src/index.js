@@ -49,6 +49,7 @@ fungus.lte = logic.lte;
 fungus.or = logic.or;
 
 // Math
+fungus.average = math.average;
 fungus.max = math.max;
 fungus.min = math.min;
 fungus.sum = math.sum;
