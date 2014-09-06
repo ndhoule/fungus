@@ -50,6 +50,7 @@ fungus.or = logic.or;
 
 // Math
 fungus.max = math.max;
+fungus.min = math.min;
 fungus.sum = math.sum;
 
 // Object
