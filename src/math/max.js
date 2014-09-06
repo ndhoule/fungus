@@ -7,7 +7,8 @@ var createComparator = wrap(function(callback, a, b) {
 });
 
 /**
- * Returns the largest element in a collection. Takes an optional `callback` argument, which
+ * Returns the largest element in a collection. Takes an optional `callback` argument, which `max`
+ * will use to retrieve the value to be compared from each element in the `collection`.
  *
  * @name max
  * @api public
