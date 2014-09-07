@@ -1,0 +1,31 @@
+{
+  "name": "fungus",
+  "main": "dist/browser/fungus.js",
+  "version": "0.0.6-alpha",
+  "homepage": "https://github.com/ndhoule/fungus",
+  "authors": [
+    "Nathan Houle <nathan@nathanhoule.com>"
+  ],
+  "description": "Functional programming utilities written in ES6",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "es6",
+    "functional",
+    "fp",
+    "traceur"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    ".bin",
+    ".tmp",
+    "docs",
+    "node_modules",
+    "test"
+  ]
+}
