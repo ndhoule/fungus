@@ -1,7 +1,7 @@
 {
   "name": "fungus",
   "main": "dist/browser/fungus.js",
-  "version": "0.0.7-alpha",
+  "version": "0.0.8-alpha",
   "homepage": "https://github.com/ndhoule/fungus",
   "authors": [
     "Nathan Houle <nathan@nathanhoule.com>"

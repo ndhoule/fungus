@@ -1,6 +1,6 @@
 {
   "name": "fungus",
-  "version": "0.0.7-alpha",
+  "version": "0.0.8-alpha",
   "description": "Functional programming utilities written in ES6",
   "author": "Nathan Houle <nathan@nathanhoule.com> (http://nathanhoule.com)",
   "license": "MIT",
