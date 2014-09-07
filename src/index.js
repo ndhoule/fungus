@@ -29,6 +29,7 @@ fungus.rest = array.rest;
 // Collection
 fungus.foldl = collection.foldl;
 fungus.forEach = collection.forEach;
+fungus.forEachRight = collection.forEachRight;
 fungus.groupBy = collection.groupBy;
 fungus.map = collection.map;
 
