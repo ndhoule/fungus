@@ -22,6 +22,7 @@ fungus.subtract = arithmetic.subtract;
 fungus.compact = array.compact;
 fungus.filter = array.filter;
 fungus.first = array.first;
+fungus.indexOf = array.indexOf;
 fungus.rest = array.rest;
 
 // Collection
@@ -65,6 +66,7 @@ fungus.forOwn = object.forOwn;
 fungus.forOwnRight = object.forOwnRight;
 fungus.has = object.has;
 fungus.invert = object.invert;
+fungus.is = object.is;
 fungus.isArguments = object.isArguments;
 fungus.isArray = object.isArray;
 fungus.isArrayLike = object.isArrayLike;

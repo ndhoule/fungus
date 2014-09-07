@@ -8,6 +8,7 @@ import forOwn from './forOwn';
 import forOwnRight from './forOwnRight';
 import has from './has';
 import invert from './invert';
+import is from './is';
 import isArguments from './isArguments';
 import isArray from './isArray';
 import isArrayLike from './isArrayLike';
@@ -41,6 +42,7 @@ export default {
   forOwnRight: forOwnRight,
   has: has,
   invert: invert,
+  is: is,
   isArguments: isArguments,
   isArray: isArray,
   isArrayLike: isArrayLike,
