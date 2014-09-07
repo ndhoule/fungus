@@ -9,6 +9,7 @@ import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
  *
  * @name mapObject
  * @api public
+ * @category Object
  * @see {@link map}
  * @param {Function} iterator The function to call per iteration.
  * @param {Object} object The object to iterate over.

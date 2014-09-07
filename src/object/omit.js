@@ -9,7 +9,7 @@ import keys from './keys';
  * Creates a hashmap of all input strings, where the strings are the keys.
  *
  * @name parseOmissions
- * @api internal
+ * @api private
  * @param {Array|String} props TODO
  * @return {Object} TODO
  */
