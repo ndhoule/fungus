@@ -25,6 +25,7 @@
     ".bin",
     ".tmp",
     "docs",
+    "index.js",
     "node_modules",
     "test"
   ]
