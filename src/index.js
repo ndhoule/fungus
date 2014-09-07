@@ -23,6 +23,7 @@ fungus.compact = array.compact;
 fungus.filter = array.filter;
 fungus.first = array.first;
 fungus.indexOf = array.indexOf;
+fungus.lastIndexOf = array.lastIndexOf;
 fungus.rest = array.rest;
 
 // Collection
