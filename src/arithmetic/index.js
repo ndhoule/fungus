@@ -1,3 +1,5 @@
+import defineAliases from '../internal/defineAliases';
+import setupAliases from '../internal/setupAliases';
 import add from './add';
 import divide from './divide';
 import modulo from './modulo';
@@ -6,7 +8,10 @@ import negate from './negate';
 import remainder from './remainder';
 import subtract from './subtract';
 
-export default {
+defineAliases(['mod'], modulo);
+defineAliases(['rem'], remainder);
+
+export default setupAliases({
   add: add,
   divide: divide,
   modulo: modulo,
@@ -14,4 +19,4 @@ export default {
   negate: negate,
   remainder: remainder,
   subtract: subtract
-};
+});
