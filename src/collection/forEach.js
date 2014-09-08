@@ -1,15 +1,14 @@
 import curry from '../function/curry';
-import isArray from '../object/isArray';
+import isArrayLike from '../object/isArrayLike';
 import keys from '../object/keys';
 
 /**
- * Internal implementation of forEach. Works on arrays and array-like data
- * structures.
+ * Internal implementation of `forEach`. Works on arrays and array-like data structures.
  *
  * @name arrayEach
  * @api private
  * @param {Function} iterator The function to execute per iteration.
- * @param {Array} array The array to iterate over.
+ * @param {Array} array The array(-like) structure to iterate over.
  * @return {undefined}
  */
 var arrayEach = function arrayEach(iterator, array) {
@@ -17,7 +16,7 @@ var arrayEach = function arrayEach(iterator, array) {
   var length = array.length;
 
   while (++i < length) {
-    // Break early if the iterator returns false
+    // Allow users to return `false` to end iteration early
     if (iterator(array[i], i, array) === false) {
       break;
     }
@@ -25,7 +24,7 @@ var arrayEach = function arrayEach(iterator, array) {
 };
 
 /**
- * Internal implementation of forEach. Works on objects.
+ * Internal implementation of `forEach`. Works on objects.
  *
  * @name baseEach
  * @api private
@@ -39,7 +38,7 @@ var baseEach = function baseEach(iterator, object) {
   var i = -1;
 
   while (++i < length) {
-    // Break early if the iterator returns false
+    // Allow users to return `false` to end iteration early
     if (iterator(object[ks[i]], ks[i], object) === false) {
       break;
     }
@@ -54,30 +53,34 @@ var baseEach = function baseEach(iterator, object) {
  * @name forEach
  * @api public
  * @alias each
+ * @see {@link forEachRight}
  * @category Collection
  * @param {Function} iterator The function to invoke per iteration.
- * @param {Array|Object} collection The collection to iterate over.
+ * @param {Array|Object|string} collection The collection to iterate over.
  * @return {undefined} Because `forEach` is run only for side effects, always return `undefined`.
  * @example
- * forEach(function(letter, index, array) {
- *   console.log(letter, index, array);
- * }, ['a', 'b', 'c']);
- * //=> undefined
- * //-> "a" 0 ["a", "b", "c"]
- * //-> "b" 1 ["a", "b", "c"]
- * //-> "c" 2 ["a", "b", "c"]
+ * var log = console.log.bind(console);
  *
- * forEach(function(value, key, object) {
- *   console.log(value, key, object);
- * }, { name: 'Tim the Enchanter', food: 'spam' });
+ * forEach(log, ['a', 'b', 'c']);
+ * //-> 'a', 0, ['a', 'b', 'c']
+ * //-> 'b', 1, ['a', 'b', 'c']
+ * //-> 'c', 2, ['a', 'b', 'c']
  * //=> undefined
- * //-> "Tim the Enchanter" "name" { name: "Tim the Enchanter", food: "spam" }
- * //-> "spam" "food" { name: "Tim the Enchanter", food: "spam" }
+ *
+ * forEach(log, 'tim');
+ * //-> 't', 2, 'tim'
+ * //-> 'i', 1, 'tim'
+ * //-> 'm', 0, 'tim'
+ * //=> undefined
+ *
+ * // Note: Iteration order not guaranteed across environments
+ * forEach(log, { name: 'tim', occupation: 'enchanter' });
+ * //-> 'tim', 'name', { name: 'tim', occupation: 'enchanter' }
+ * //-> 'enchanter', 'occupation', { name: 'tim', occupation: 'enchanter' }
+ * //=> undefined
  */
-// TODO: Check for `collection.length`, rather than testing if it's an array
-// This could be `isArrayLike`
 var forEach = curry(function forEach(iterator, collection) {
-  return isArray(collection) ? arrayEach(iterator, collection) : baseEach(iterator, collection);
+  return (isArrayLike(collection) ? arrayEach : baseEach).call(this, iterator, collection);
 });
 
 export default forEach;

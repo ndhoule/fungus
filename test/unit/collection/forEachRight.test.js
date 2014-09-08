@@ -4,7 +4,6 @@ describe('forEachRight', function() {
   var identity;
 
   beforeEach(function() {
-    identity = sinon.spy();
     identity = chai.factory.create('functions.identity');
   });
 
@@ -69,8 +68,7 @@ describe('forEachRight', function() {
     expect(identity.thirdCall).to.have.been.calledWithExactly(string[0], 0, string);
   });
 
-  // TODO: This test is implementation-specific; rewrite it to be implementation agnostic
-  it('should iterate in left-to-right order', function() {
+  it('should iterate in right-to-left order', function() {
     var elems = [1, 0, 7, 14];
 
     forEachRight(identity, elems);

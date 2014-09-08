@@ -1,12 +1,10 @@
-var forEach = fungus.forEach;
-var identity = fungus.identity;
-
 describe('forEach', function() {
-  var observe, identitySpy;
+  var forEach = fungus.forEach;
+
+  var identity;
 
   beforeEach(function() {
-    observe = sinon.spy();
-    identitySpy = sinon.spy(identity);
+    identity = chai.factory.create('functions.identity');
   });
 
   it('should be a function', function() {
@@ -19,78 +17,78 @@ describe('forEach', function() {
 
   it('should be curried', function() {
     expect(forEach()).to.be.a('function');
-    expect(forEach(observe)).to.be.a('function');
-    expect(observe).to.have.not.been.called;
-    expect(forEach(observe)()()()([1])).to.be.undefined;
-    expect(observe).to.have.been.calledOnce;
+    expect(forEach(identity)).to.be.a('function');
+    expect(identity).to.have.not.been.called;
+    expect(forEach(identity)()()()([1])).to.be.undefined;
+    expect(identity).to.have.been.calledOnce;
   });
 
   it('should work on arrays', function() {
     var elems = ['a', 'b', 'c', 'd'];
 
-    forEach(observe, elems);
+    forEach(identity, elems);
 
-    expect(observe).to.have.callCount(4);
-    expect(observe).to.have.been.calledWith('a', 0, elems);
-    expect(observe).to.have.been.calledWith('b', 1, elems);
-    expect(observe).to.have.been.calledWith('c', 2, elems);
-    expect(observe).to.have.been.calledWith('d', 3, elems);
+    expect(identity.firstCall).to.have.been.calledWithExactly('a', 0, elems);
+    expect(identity.secondCall).to.have.been.calledWithExactly('b', 1, elems);
+    expect(identity.thirdCall).to.have.been.calledWithExactly('c', 2, elems);
+    expect(identity.lastCall).to.have.been.calledWithExactly('d', 3, elems);
   });
 
-  it('should work on objects', function() {
+  it('should work on objects (with no guarantee of iteration order)', function() {
     var elems = { a: 1, b: 2, c: 3 };
+    // Compensate for object iteration being platform independent by getting
+    // this platform's iteration order
+    var iter = fungus.keys(elems);
 
-    forEach(observe, elems);
 
-    expect(observe).to.have.been.calledThrice;
-    expect(observe).to.have.been.calledWith(1, 'a', elems);
-    expect(observe).to.have.been.calledWith(2, 'b', elems);
-    expect(observe).to.have.been.calledWith(3, 'c', elems);
+    forEach(identity, elems);
+
+    expect(identity.firstCall).to.have.been.calledWithExactly(elems[iter[0]], iter[0], elems);
+    expect(identity.secondCall).to.have.been.calledWithExactly(elems[iter[1]], iter[1], elems);
+    expect(identity.thirdCall).to.have.been.calledWithExactly(elems[iter[2]], iter[2], elems);
   });
 
-  xit('should work on strings', function() {
-    var string = 'timmy';
+  it('should work on strings', function() {
+    var string = 'tim';
 
-    forEach(observe, string);
+    forEach(identity, string);
 
-    expect(observe).to.have.callCount(5);
-    expect(observe).to.have.been.calledWith('t', 0, string);
-    expect(observe).to.have.been.calledWith('i', 1, string);
-    expect(observe).to.have.been.calledWith('m', 2, string);
-    expect(observe).to.have.been.calledWith('m', 3, string);
-    expect(observe).to.have.been.calledWith('y', 4, string);
+    expect(identity.firstCall).to.have.been.calledWithExactly(string[0], 0, string);
+    expect(identity.secondCall).to.have.been.calledWithExactly(string[1], 1, string);
+    expect(identity.thirdCall).to.have.been.calledWithExactly(string[2], 2, string);
   });
 
-  it('should iterate in right-to-left order on arrays', function() {
-    var elems = [7, 0, 7, 14, 91];
-    var result = [];
+  it('should work on string objects', function() {
+    var string = new String('tim');
 
-    forEach(function(elem) { result.push(elem); }, elems);
-    expect(result).to.eql(elems);
+    forEach(identity, string);
+
+    expect(identity.firstCall).to.have.been.calledWithExactly(string[0], 0, string);
+    expect(identity.secondCall).to.have.been.calledWithExactly(string[1], 1, string);
+    expect(identity.thirdCall).to.have.been.calledWithExactly(string[2], 2, string);
   });
 
-  xit('should iterate in right-to-left order on strings', function() {
-    var string = 'timmy';
-    var result = [];
+  it('should iterate in left-to-right order', function() {
+    var elems = [1, 0, 7, 14];
 
-    forEach(function(elem) { result.push(elem) }, elems);
-    expect(result.join('')).to.eql(string);
+    forEach(identity, elems);
+
+    expect(identity.firstCall).to.have.been.calledWithExactly(1, 0, elems);
+    expect(identity.secondCall).to.have.been.calledWithExactly(0, 1, elems);
+    expect(identity.thirdCall).to.have.been.calledWithExactly(7, 2, elems);
+    expect(identity.lastCall).to.have.been.calledWithExactly(14, 3, elems);
   });
-
-  // TODO: How to make this test useful? What should this behavior be?
-  // TODO: Modify the documentation's `param` types when this is changed
-  xit('should not make any guarantees on object iteration order other than those made by the host engine');
 
   it('should ignore enumerable items on prototypes', function() {
     var parent = { enchanter: 'Tim' };
     var child = Object.create(parent);
     child.a = 1;
 
-    forEach(observe, child);
+    forEach(identity, child);
 
-    expect(observe).to.have.been.calledOnce;
-    expect(observe).to.have.been.calledWith(1, 'a', child);
-    expect(observe).to.have.not.been.calledWith('Tim', 'enchanter');
+    expect(identity).to.have.been.calledOnce;
+    expect(identity).to.have.been.calledWith(1, 'a', child);
+    expect(identity).to.have.not.been.calledWith('Tim', 'enchanter');
   });
 
   it('should ignore non-enumerable items', function() {
@@ -100,33 +98,33 @@ describe('forEach', function() {
       c: { value: 3, enumerable: true }
     });
 
-    forEach(observe, obj);
+    forEach(identity, obj);
 
-    expect(observe).to.have.been.calledOnce;
-    expect(observe).to.have.been.calledWith(3, 'c', obj);
+    expect(identity).to.have.been.calledOnce;
+    expect(identity).to.have.been.calledWith(3, 'c', obj);
   });
 
   it('should give the input callback access to the value, index, and collection', function() {
     var elems = ['zero', 'one', 'two'];
 
-    forEach(observe, elems);
+    forEach(identity, elems);
 
-    expect(observe).to.have.been.calledWith('zero', 0, elems);
-    expect(observe).to.have.been.calledWith('one', 1, elems);
-    expect(observe).to.have.been.calledWith('two', 2, elems);
+    expect(identity).to.have.been.calledWith('zero', 0, elems);
+    expect(identity).to.have.been.calledWith('one', 1, elems);
+    expect(identity).to.have.been.calledWith('two', 2, elems);
   });
 
   it('should perform an action on each element', function() {
     var elems = [5, 4, 3, 2, 1];
 
-    forEach(observe, elems);
+    forEach(identity, elems);
 
-    expect(observe).to.have.callCount(5);
-    expect(observe).to.have.been.calledWith(5);
-    expect(observe).to.have.been.calledWith(4);
-    expect(observe).to.have.been.calledWith(3);
-    expect(observe).to.have.been.calledWith(2);
-    expect(observe).to.have.been.calledWith(1);
+    expect(identity).to.have.callCount(5);
+    expect(identity).to.have.been.calledWith(5);
+    expect(identity).to.have.been.calledWith(4);
+    expect(identity).to.have.been.calledWith(3);
+    expect(identity).to.have.been.calledWith(2);
+    expect(identity).to.have.been.calledWith(1);
   });
 
   it('should permit mutation of the input collection', function() {
@@ -140,14 +138,14 @@ describe('forEach', function() {
   it('should exit early when the provided callback returns `false`', function() {
     var elems = [1, 2, 3, false, 4];
 
-    forEach(identitySpy, elems);
+    forEach(identity, elems);
 
-    expect(identitySpy).to.have.callCount(4);
-    expect(identitySpy).to.have.been.calledWith(1);
-    expect(identitySpy).to.have.been.calledWith(2);
-    expect(identitySpy).to.have.been.calledWith(3);
-    expect(identitySpy).to.have.been.calledWith(false);
-    expect(identitySpy).to.have.not.been.calledWith(4);
+    expect(identity).to.have.callCount(4);
+    expect(identity).to.have.been.calledWith(1);
+    expect(identity).to.have.been.calledWith(2);
+    expect(identity).to.have.been.calledWith(3);
+    expect(identity).to.have.been.calledWith(false);
+    expect(identity).to.have.not.been.calledWith(4);
   });
 
   it('should always return `undefined`', function() {
