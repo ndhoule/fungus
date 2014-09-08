@@ -1,5 +1,4 @@
 import { numberClass } from '../internal/classes';
-import { toString } from '../internal/utilities';
 
 /**
  * Tests if a value is a number.
@@ -31,7 +30,8 @@ import { toString } from '../internal/utilities';
 var isNumber = function isNumber(val) {
   var type = typeof val;
 
-  return type === 'number' || (type === 'object' && toString(val) === numberClass);
+  return type === 'number' ||
+    (type === 'object' && Object.prototype.toString.call(val) === numberClass);
 };
 
 export default isNumber;
