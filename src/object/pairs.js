@@ -14,7 +14,7 @@ import keys from './keys';
  * @param {Object} object The object to extract values from.
  * @return {Array.<Array>} An array containing all the enumerable own key-value pairs on `object`.
  * @example
- * var person = { name: 'Tim', occupation: 'enchanter' };;
+ * var person = { name: 'Tim', occupation: 'enchanter' };
  *
  * // NOTE: property order not guaranteed across environments
  * pairs(person);
