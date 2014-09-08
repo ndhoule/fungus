@@ -1,6 +1,6 @@
-var isArray = fungus.isArray;
-
 describe('isArray', function() {
+  var isArray = fungus.isArray;
+
   it('should be a function', function() {
     expect(isArray).to.be.a('function');
   });

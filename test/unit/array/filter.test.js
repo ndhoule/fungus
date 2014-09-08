@@ -1,12 +1,11 @@
-var filter = fungus.filter;
-var identity = fungus.identity;
-var truthy = fungus.truthy;
-
 describe('filter', function() {
-  var observe;
+  var filter = fungus.filter;
+
+  var identity, truthy;
 
   beforeEach(function() {
-    observe = sinon.spy(identity);
+    identity = chai.factory.create('functions.identity');
+    truthy = chai.factory.create('functions.truthy');
   });
 
   it('should be a function', function() {
@@ -18,21 +17,21 @@ describe('filter', function() {
   });
 
   it('should be curried', function() {
-    var fn = filter(observe);
+    var fn = filter(identity);
 
-    expect(observe).to.have.not.beenCalled;
+    expect(identity).to.have.not.beenCalled;
 
     fn()()()();
 
-    expect(observe).to.have.not.beenCalled;
+    expect(identity).to.have.not.beenCalled;
 
     fn([1]);
 
-    expect(observe).to.have.been.calledOnce;
+    expect(identity).to.have.been.calledOnce;
   });
 
   it('should return an array', function() {
-    expect(filter(observe, [])).to.eql([]);
+    expect(filter(identity, [])).to.eql([]);
   });
 
   it('should return a list excluding elements for which the predicate function returns `false`', function() {

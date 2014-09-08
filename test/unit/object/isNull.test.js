@@ -1,6 +1,6 @@
-var isNull = fungus.isNull;
-
 describe('isNull', function() {
+  var isNull = fungus.isNull;
+
   it('should be a function', function() {
     expect(isNull).to.be.a('function');
   });

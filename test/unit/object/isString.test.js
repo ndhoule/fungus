@@ -1,6 +1,6 @@
-var isString = fungus.isString;
-
 describe('isString', function() {
+  var isString = fungus.isString;
+
   it('should be a function', function() {
     expect(isString).to.be.a('function');
   });

@@ -1,6 +1,6 @@
-var noop = fungus.noop;
-
 describe('noop', function() {
+  var noop = fungus.noop;
+
   it('should be a function', function() {
     expect(noop).to.be.a('function');
   });

@@ -1,6 +1,6 @@
-var invert = fungus.invert;
-
 describe('invert', function() {
+  var invert = fungus.invert;
+
   it('should be a function', function() {
     expect(invert).to.be.a('function');
   });

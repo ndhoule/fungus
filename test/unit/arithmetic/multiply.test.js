@@ -1,6 +1,6 @@
-var multiply = fungus.multiply;
-
 describe('multiply', function() {
+  var multiply = fungus.multiply;
+
   it('should be a function', function() {
     expect(multiply).to.be.a('function');
   });

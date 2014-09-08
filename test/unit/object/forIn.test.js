@@ -1,6 +1,6 @@
-var forIn = fungus.forIn;
-
 describe('forIn', function() {
+  var forIn = fungus.forIn;
+
   var animals, observe;
 
   beforeEach(function() {

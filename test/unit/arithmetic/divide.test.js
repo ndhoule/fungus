@@ -1,6 +1,6 @@
-var divide = fungus.divide;
-
 describe('divide', function() {
+  var divide = fungus.divide;
+
   it('should be a function', function() {
     expect(divide).to.be.a('function');
   });

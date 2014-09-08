@@ -1,6 +1,6 @@
-var gt = fungus.gt;
-
 describe('gt', function() {
+  var gt = fungus.gt;
+
   it('should be a function', function() {
     expect(gt).to.be.a('function');
   });

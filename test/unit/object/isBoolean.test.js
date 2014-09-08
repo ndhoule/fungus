@@ -1,6 +1,6 @@
-var isBoolean = fungus.isBoolean;
-
 describe('isBoolean', function() {
+  var isBoolean = fungus.isBoolean;
+
   it('should be a function', function() {
     expect(isBoolean).to.be.a('function');
   });

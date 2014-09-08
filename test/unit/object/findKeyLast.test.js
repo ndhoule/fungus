@@ -1,14 +1,13 @@
 describe('findKeyLast', function() {
   var findKeyLast = fungus.findKeyLast;
 
-  var alwaysFalse, alwaysTrue, animals, eq, observe;
-  var fns = chai.factory.create('functions');
+  var alwaysFalse, alwaysTrue, animals, eq, noop;
 
   beforeEach(function() {
-    alwaysFalse = sinon.spy(fns.always(false));
-    alwaysTrue = sinon.spy(fns.always(true));
-    eq = fns.eq;
-    observe = sinon.spy();
+    alwaysFalse = chai.factory.create('functions.always', false);
+    alwaysTrue = chai.factory.create('functions.always', true);
+    eq = chai.factory.create('functions.eq');
+    noop = chai.factory.create('functions.noop');
 
     animals = { a: 'aardvark', b: 'bear', c: 'cat', d: 'dingo' };
   });
@@ -38,13 +37,13 @@ describe('findKeyLast', function() {
   });
 
   it('should invoke the `predicate` function with three values: `value`, `key`, `object`', function() {
-    findKeyLast(observe, animals);
+    findKeyLast(noop, animals);
 
-    expect(observe).to.have.callCount(4);
-    expect(observe).to.have.been.calledWithExactly('aardvark', 'a', animals);
-    expect(observe).to.have.been.calledWithExactly('bear', 'b', animals);
-    expect(observe).to.have.been.calledWithExactly('cat', 'c', animals);
-    expect(observe).to.have.been.calledWithExactly('dingo', 'd', animals);
+    expect(noop).to.have.callCount(4);
+    expect(noop).to.have.been.calledWithExactly('aardvark', 'a', animals);
+    expect(noop).to.have.been.calledWithExactly('bear', 'b', animals);
+    expect(noop).to.have.been.calledWithExactly('cat', 'c', animals);
+    expect(noop).to.have.been.calledWithExactly('dingo', 'd', animals);
   });
 
   it('should return the last key for which the predicate function returns `true`', function() {

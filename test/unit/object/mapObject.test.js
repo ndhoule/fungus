@@ -1,11 +1,10 @@
-var identity = fungus.identity;
-var mapObject = fungus.mapObject;
-
 describe('mapObject', function() {
-  var observe;
+  var mapObject = fungus.mapObject;
+
+  var identity;
 
   beforeEach(function() {
-    observe = sinon.spy(identity);
+    identity = chai.factory.create('functions.identity');
   });
 
   it('should be a function', function() {
@@ -17,10 +16,10 @@ describe('mapObject', function() {
   });
 
   it('should be curried', function() {
-    expect(mapObject(observe)).to.be.a('function');
-    expect(mapObject()(observe)()()()).to.be.a('function');
-    expect(mapObject(observe)({})).to.be.a('object');
-    expect(mapObject()(observe)()()({})).to.be.a('object');
+    expect(mapObject(identity)).to.be.a('function');
+    expect(mapObject()(identity)()()()).to.be.a('function');
+    expect(mapObject(identity)({})).to.be.a('object');
+    expect(mapObject()(identity)()()({})).to.be.a('object');
   });
 
   it('should apply a function to each value on the input `object`', function() {
@@ -33,16 +32,16 @@ describe('mapObject', function() {
   it('should return a new object', function() {
     var obj = { key1: 5, key2: 10 };
 
-    expect(mapObject(observe, obj)).to.not.equal(obj);
+    expect(mapObject(identity, obj)).to.not.equal(obj);
   });
 
   it('should call the `iterator` once for each enumerable own value in the `object`', function() {
     var obj = { key1: 'tim', key2: 'enchanter' };
     var expected = { key1: 'tim', key2: 'enchanter' };
 
-    mapObject(observe, obj);
+    mapObject(identity, obj);
 
-    expect(observe).to.have.been.calledTwice;
+    expect(identity).to.have.been.calledTwice;
   });
 
   it('should handle an object with a `.length` property', function() {
@@ -61,9 +60,9 @@ describe('mapObject', function() {
       hidden: { value: 15, enumerable: false }
     });
 
-    expect(mapObject(observe, obj)).to.have.property('key1');
-    expect(mapObject(observe, obj)).to.have.property('key2');
-    expect(mapObject(observe, obj)).to.not.have.property('hidden');
+    expect(mapObject(identity, obj)).to.have.property('key1');
+    expect(mapObject(identity, obj)).to.have.property('key2');
+    expect(mapObject(identity, obj)).to.not.have.property('hidden');
   });
 
   it('should ignore inherited properties', function() {
@@ -71,7 +70,7 @@ describe('mapObject', function() {
     var child = Object.create(parent);
     child.child = true;
 
-    expect(mapObject(observe, child)).to.not.have.property('parent');
+    expect(mapObject(identity, child)).to.not.have.property('parent');
   });
 
   it('should throw an error when passed a non-function `iterator` argument', function() {
@@ -82,7 +81,7 @@ describe('mapObject', function() {
     var arr = ['a', 'b', 'c'];
     var expected = { '0': 'a', '1': 'b', '2': 'c' };
 
-    expect(mapObject(observe, arr)).to.eql(expected);
+    expect(mapObject(identity, arr)).to.eql(expected);
   });
 
   it('should work on string objects', function() {
@@ -93,20 +92,20 @@ describe('mapObject', function() {
   });
 
   it('should handle other complex object types gracefully', function() {
-    expect(mapObject(observe, new Number(1))).to.eql(new Number(1));
-    expect(mapObject(observe, new Boolean(1))).to.eql(new Boolean(true));
+    expect(mapObject(identity, new Number(1))).to.eql(new Number(1));
+    expect(mapObject(identity, new Boolean(1))).to.eql(new Boolean(true));
   });
 
   it('should handle `null` and `undefined` as its `object` parameter', function() {
-    expect(mapObject(observe, null)).to.eql({});
-    expect(mapObject(observe, undefined)).to.eql({});
+    expect(mapObject(identity, null)).to.eql({});
+    expect(mapObject(identity, undefined)).to.eql({});
   });
 
   it('should gracefully handle non-object values', function() {
-    expect(mapObject(observe, 1)).to.eql({});
-    expect(mapObject(observe, true)).to.eql({});
-    expect(mapObject(observe, false)).to.eql({});
-    expect(mapObject(observe, Infinity)).to.eql({});
-    expect(mapObject(observe, /fasd/)).to.eql({});
+    expect(mapObject(identity, 1)).to.eql({});
+    expect(mapObject(identity, true)).to.eql({});
+    expect(mapObject(identity, false)).to.eql({});
+    expect(mapObject(identity, Infinity)).to.eql({});
+    expect(mapObject(identity, /fasd/)).to.eql({});
   });
 });

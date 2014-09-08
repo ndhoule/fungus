@@ -1,6 +1,6 @@
-var negate = fungus.negate;
-
 describe('negate', function() {
+  var negate = fungus.negate;
+
   it('should be a function', function() {
     expect(negate).to.be.a('function');
   });

@@ -14,24 +14,14 @@ var identity = function identity(val) { return val; };
 
 var reduce = function reduce(fn, acc, list) { return list.reduce(fn, acc); };
 
-// Legacy factory
-// TODO: Replace with individual function wrappers
-chai.factory.define('functions', function() {
-  return {
-    add: add,
-    always: always,
-    eq: eq,
-    identity: identity,
-    reduce: reduce,
-  };
-});
+var truthy = function reduce(val) { return !!val; };
 
 chai.factory.define('functions.add', function() {
   return sinon.spy(add);
 });
 
-chai.factory.define('functions.always', function() {
-  return sinon.spy(always);
+chai.factory.define('functions.always', function(value) {
+  return sinon.spy(always(value));
 });
 
 chai.factory.define('functions.eq', function() {
@@ -44,4 +34,12 @@ chai.factory.define('functions.identity', function() {
 
 chai.factory.define('functions.noop', function() {
   return sinon.spy(function() {});
+});
+
+chai.factory.define('functions.truthy', function() {
+  return sinon.spy(truthy);
+});
+
+chai.factory.define('functions.reduce', function() {
+  return sinon.spy(reduce);
 });

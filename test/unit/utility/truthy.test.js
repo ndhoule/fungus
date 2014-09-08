@@ -1,6 +1,6 @@
-var truthy = fungus.truthy;
-
 describe('truthy', function() {
+  var truthy = fungus.truthy;
+
   it('should be a function', function() {
     expect(truthy).to.be.a('function');
   });

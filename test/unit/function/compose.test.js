@@ -1,11 +1,11 @@
-var compose = fungus.compose;
-var identity = fungus.identity;
-
 describe('compose', function() {
-  var add;
+  var compose = fungus.compose;
+
+  var add, identity;
 
   beforeEach(function() {
-    add = sinon.spy(chai.factory.create('functions').add);
+    add = chai.factory.create('functions.add');
+    identity = chai.factory.create('functions.identity');
   });
 
   it('should be a function', function() {

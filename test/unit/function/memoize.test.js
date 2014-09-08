@@ -1,12 +1,11 @@
-var memoize = fungus.memoize;
-var identity = fungus.identity;
-
 describe('memoize', function() {
-  var memoAdd, memoIdentity;
-  var add = chai.factory.create('functions').add;
+  var memoize = fungus.memoize;
+
+  var add, identity, memoAdd, memoIdentity;
 
   beforeEach(function() {
-    add = sinon.spy(add);
+    add = chai.factory.create('functions.add');
+    identity = chai.factory.create('functions.identity');
     memoAdd = memoize(add);
     memoIdentity = memoize(identity);
   });

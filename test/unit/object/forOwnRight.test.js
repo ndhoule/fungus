@@ -1,6 +1,6 @@
-var forOwnRight = fungus.forOwnRight;
-
 describe('forOwnRight', function() {
+  var forOwnRight = fungus.forOwnRight;
+
   var animals, observe;
 
   beforeEach(function() {

@@ -1,6 +1,6 @@
-var not = fungus.not;
-
 describe('not', function() {
+  var not = fungus.not;
+
   var alwaysTrue, alwaysFalse, alwaysEmptyString, always1;
 
   beforeEach(function() {

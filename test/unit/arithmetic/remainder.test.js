@@ -1,6 +1,6 @@
-var remainder = fungus.remainder;
-
 describe('remainder', function() {
+  var remainder = fungus.remainder;
+
   it('should be a function', function() {
     expect(remainder).to.be.a('function');
   });

@@ -1,13 +1,12 @@
-var curry = fungus.curry;
-
 describe('curry', function() {
-  var add, curriedAdd, reduce, curriedReduce;
-  var functions = chai.factory.create('functions');
+  var curry = fungus.curry;
+
+  var add, reduce, curriedAdd, curriedReduce;
 
   beforeEach(function() {
-    add = sinon.spy(functions.add);
+    add = chai.factory.create('functions.add');
+    reduce = chai.factory.create('functions.reduce');
     curriedAdd = sinon.spy(curry(add));
-    reduce = sinon.spy(functions.reduce);
     curriedReduce = sinon.spy(curry(reduce));
   });
 

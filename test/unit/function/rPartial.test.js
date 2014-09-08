@@ -1,11 +1,10 @@
-var rPartial = fungus.rPartial;
-var identity = fungus.identity;
-
 describe('rPartial', function() {
+  var rPartial = fungus.rPartial;
+
   var add;
 
   beforeEach(function() {
-    add = sinon.spy(chai.factory.create('functions').add);
+    add = sinon.spy(chai.factory.create('functions.add'));
   });
 
   it('should be a function', function() {

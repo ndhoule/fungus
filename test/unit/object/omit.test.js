@@ -1,6 +1,6 @@
-var omit = fungus.omit;
-
 describe('omit', function() {
+  var omit = fungus.omit;
+
   it('should be a function', function() {
     expect(omit).to.be.a('function');
   });

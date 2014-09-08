@@ -1,6 +1,6 @@
-var keys = fungus.keys;
-
 describe('keys', function() {
+  var keys = fungus.keys;
+
   it('should be a function', function() {
     expect(keys).to.be.a('function');
   });

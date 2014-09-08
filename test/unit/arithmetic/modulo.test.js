@@ -1,6 +1,6 @@
-var modulo = fungus.modulo;
-
 describe('modulo', function() {
+  var modulo = fungus.modulo;
+
   it('should be a function', function() {
     expect(modulo).to.be.a('function');
   });

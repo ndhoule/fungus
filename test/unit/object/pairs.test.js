@@ -1,6 +1,6 @@
-var pairs = fungus.pairs;
-
 describe('pairs', function() {
+  var pairs = fungus.pairs;
+
   it('should be a function', function() {
     expect(pairs).to.be.a('function');
   });

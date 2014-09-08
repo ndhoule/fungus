@@ -1,6 +1,6 @@
-var forInRight = fungus.forInRight;
-
 describe('forInRight', function() {
+  var forInRight = fungus.forInRight;
+
   var animals, observe;
 
   beforeEach(function() {

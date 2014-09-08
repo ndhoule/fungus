@@ -1,6 +1,6 @@
-var isPlainObject = fungus.isPlainObject;
-
 describe('isPlainObject', function() {
+  var isPlainObject = fungus.isPlainObject;
+
   var Spam;
 
   beforeEach(function() {

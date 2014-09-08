@@ -1,10 +1,10 @@
-var arity = fungus.arity;
-
 describe('arity', function() {
+  var arity = fungus.arity;
+
   var add;
 
   beforeEach(function() {
-    add = sinon.spy(chai.factory.create('functions').add);
+    add = chai.factory.create('functions.add');
   });
 
   it('should be a function', function() {

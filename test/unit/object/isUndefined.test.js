@@ -1,6 +1,6 @@
-var isUndefined = fungus.isUndefined;
-
 describe('isUndefined', function() {
+  var isUndefined = fungus.isUndefined;
+
   it('should be a function', function() {
     expect(isUndefined).to.be.a('function');
   });

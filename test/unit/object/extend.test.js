@@ -1,6 +1,6 @@
-var extend = fungus.extend;
-
 describe('extend', function() {
+  var extend = fungus.extend;
+
   it('should be a function', function() {
     expect(extend).to.be.a('function');
   });

@@ -1,6 +1,6 @@
-var clone = fungus.clone;
-
 describe('clone', function() {
+  var clone = fungus.clone;
+
   it('should be a function', function() {
     expect(clone).to.be.a('function');
   });

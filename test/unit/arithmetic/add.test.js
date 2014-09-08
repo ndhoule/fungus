@@ -1,6 +1,6 @@
-var add = fungus.add;
-
 describe('add', function() {
+  var add = fungus.add;
+
   it('should be a function', function() {
     expect(add).to.be.a('function');
   });

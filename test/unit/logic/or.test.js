@@ -1,6 +1,6 @@
-var or = fungus.or;
-
 describe('or', function() {
+  var or = fungus.or;
+
   it('should be a function', function() {
     expect(or).to.be.a('function');
   });

@@ -1,6 +1,6 @@
-var first = fungus.first;
-
 describe('first', function() {
+  var first = fungus.first;
+
   it('should be a function', function() {
     expect(first).to.be.a('function');
   });

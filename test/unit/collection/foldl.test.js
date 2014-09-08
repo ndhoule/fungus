@@ -1,12 +1,11 @@
-var foldl = fungus.foldl;
-var identity = fungus.identity;
-
 describe('foldl', function() {
-  var observe, add;
+  var foldl = fungus.foldl;
+
+  var identity, add;
 
   beforeEach(function() {
-    observe = sinon.spy(identity);
-    add = sinon.spy(chai.factory.create('functions').add);
+    add = chai.factory.create('functions.add');
+    identity = chai.factory.create('functions.identity');
   });
 
   it('should be a function', function() {
@@ -18,7 +17,7 @@ describe('foldl', function() {
   });
 
   it('should be curried', function() {
-    var fn = foldl(observe);
+    var fn = foldl(identity);
 
     expect(fn).to.be.a('function');
     expect(fn()()()()).to.be.a('function');

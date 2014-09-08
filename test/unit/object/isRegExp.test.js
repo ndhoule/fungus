@@ -1,6 +1,6 @@
-var isRegExp = fungus.isRegExp;
-
 describe('isRegExp', function() {
+  var isRegExp = fungus.isRegExp;
+
   it('should be a function', function() {
     expect(isRegExp).to.be.a('function');
   });

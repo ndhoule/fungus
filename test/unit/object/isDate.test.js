@@ -1,6 +1,6 @@
-var isDate = fungus.isDate;
-
 describe('isDate', function() {
+  var isDate = fungus.isDate;
+
   it('should be a function', function() {
     expect(isDate).to.be.a('function');
   });

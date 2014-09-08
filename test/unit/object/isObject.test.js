@@ -1,6 +1,6 @@
-var isObject = fungus.isObject;
-
 describe('isObject', function() {
+  var isObject = fungus.isObject;
+
   it('should be a function', function() {
     expect(isObject).to.be.a('function');
   });

@@ -1,6 +1,6 @@
-var identity = fungus.identity;
-
 describe('identity', function() {
+  var identity = fungus.identity;
+
   it('should be a function', function() {
     expect(identity).to.be.a('function');
   });
