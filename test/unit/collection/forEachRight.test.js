@@ -59,6 +59,16 @@ describe('forEachRight', function() {
     expect(identity.thirdCall).to.have.been.calledWithExactly(string[0], 0, string);
   });
 
+  it('should work on string objects', function() {
+    var string = new String('tim');
+
+    forEachRight(identity, string);
+
+    expect(identity.firstCall).to.have.been.calledWithExactly(string[2], 2, string);
+    expect(identity.secondCall).to.have.been.calledWithExactly(string[1], 1, string);
+    expect(identity.thirdCall).to.have.been.calledWithExactly(string[0], 0, string);
+  });
+
   // TODO: This test is implementation-specific; rewrite it to be implementation agnostic
   it('should iterate in left-to-right order', function() {
     var elems = [1, 0, 7, 14];
