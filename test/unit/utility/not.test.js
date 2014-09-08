@@ -64,11 +64,11 @@ describe('not', function() {
   });
 
   it('should throw an error when passed no arguments', function() {
-    expect(function() { not() }).to.throw();
+    expect(function() { not(); }).to.throw();
   });
 
   it('should throw an error when passed a non-function as its argument', function() {
-    expect(function() { not('fdsa') }).to.throw();
-    expect(function() { not(123) }).to.throw();
+    expect(function() { not('fdsa'); }).to.throw();
+    expect(function() { not(123); }).to.throw();
   });
 });

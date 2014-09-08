@@ -1,6 +1,6 @@
-var isNaN = fungus.isNaN;
-
 describe('isNaN', function() {
+  var isNaN = fungus.isNaN;
+
   it('should be a function', function() {
     expect(isNaN).to.be.a('function');
   });

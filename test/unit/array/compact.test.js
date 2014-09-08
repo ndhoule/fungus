@@ -1,7 +1,6 @@
-var compact = fungus.compact;
-var identity = fungus.identity;
-
 describe('compact', function() {
+  var compact = fungus.compact;
+
   var fn, obj, arr, falses, truths, mixed;
 
   beforeEach(function() {

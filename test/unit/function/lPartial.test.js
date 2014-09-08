@@ -1,7 +1,6 @@
-var lPartial = fungus.lPartial;
-var identity = fungus.identity;
-
 describe('lPartial', function() {
+  var lPartial = fungus.lPartial;
+
   var add;
 
   beforeEach(function() {

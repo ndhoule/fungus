@@ -1,6 +1,12 @@
-var isArguments = fungus.isArguments;
-
 describe('isArguments', function() {
+  var isArguments = fungus.isArguments;
+
+  var args;
+
+  beforeEach(function() {
+    args = chai.factory.create('objects.arguments');
+  });
+
   it('should be a function', function() {
     expect(isArguments).to.be.a('function');
   });
@@ -12,10 +18,8 @@ describe('isArguments', function() {
   it('should return `true` when passed an arguments object', function() {
     (function() { expect(isArguments(arguments)).to.be.true; })();
     (function() { expect(isArguments(arguments)).to.be.true; })(2, 3, 4);
-
-    var args;
-    (function() { args = arguments; })(2, 3, 4);
-    expect(isArguments(args)).to.be.true
+    // Test exported `arguments` object
+    expect(isArguments(args)).to.be.true;
   });
 
   it('should return `false` when passed a non-arguments object', function() {

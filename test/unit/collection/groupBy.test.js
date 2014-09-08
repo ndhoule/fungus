@@ -1,8 +1,9 @@
-var groupBy = fungus.groupBy;
-var identity = fungus.identity;
-var get = fungus.get;
 
 describe('groupBy', function() {
+  var groupBy = fungus.groupBy;
+  var identity = fungus.identity;
+  var get = fungus.get;
+
   var evenOrOdd, length, first, observe;
 
   beforeEach(function() {
@@ -49,10 +50,10 @@ describe('groupBy', function() {
       enumerable: true
     });
     var foods = ['turkey', 'beef', 'tomato'];
-    var categorized = groupBy(first, foods);
+
+    groupBy(first, foods);
 
     expect(foods.ignore).to.equal('bulgogi');
-
     expect(first).to.have.been.calledThrice;
     expect(first).to.have.been.calledWith('turkey');
     expect(first).to.have.been.calledWith('tomato');
@@ -70,7 +71,7 @@ describe('groupBy', function() {
       tim: { value: 'beef', enumerable: true }
     });
 
-    var categorized = groupBy(first, preferences);
+    groupBy(first, preferences);
 
     expect(first).to.have.been.calledThrice;
     expect(first).to.have.been.calledWith('turkey');

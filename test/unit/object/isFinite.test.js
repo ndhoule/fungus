@@ -1,6 +1,6 @@
-var isFinite = fungus.isFinite;
-
 describe('isFinite', function() {
+  var isFinite = fungus.isFinite;
+
   it('should be a function', function() {
     expect(isFinite).to.be.a('function');
   });

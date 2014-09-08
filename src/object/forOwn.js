@@ -1,6 +1,6 @@
 import curry from '../function/curry';
 import isFunction from './isFunction';
-import keys from './keys'
+import keys from './keys';
 import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
 
 /**

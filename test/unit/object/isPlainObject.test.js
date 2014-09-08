@@ -4,7 +4,7 @@ describe('isPlainObject', function() {
   var Spam;
 
   beforeEach(function() {
-    Spam = function Foo(a) {
+    Spam = function Foo() {
       this.flavor = 'Meh';
     };
   });
