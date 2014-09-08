@@ -6,7 +6,7 @@
   "authors": [
     "Nathan Houle <nathan@nathanhoule.com>"
   ],
-  "description": "Functional programming utilities written in ES6",
+  "description": "A practical functional utility library written in ES6",
   "moduleType": [
     "amd",
     "es6",
