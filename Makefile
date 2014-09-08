@@ -2,6 +2,7 @@ NODE = $(shell which node)
 NPM = $(shell which npm)
 COVERALLS = ./node_modules/.bin/coveralls
 HTMLMIN = ./node_modules/.bin/html-minifier
+JSHINT = ./node_modules/.bin/jshint
 KARMA = ./node_modules/.bin/karma
 MOCHA = ./node_modules/.bin/mocha
 SASS = ./node_modules/.bin/node-sass
@@ -118,6 +119,9 @@ $(TMP_DIR)/coverage.html: build.commonjs | $(TMP_DIR)
 
 test.coverage.html: $(TMP_DIR)/coverage.html
 
+lint:
+	@$(JSHINT) --reporter=./node_modules/jshint-stylish/stylish $(SRC_DIR) $(TEST_DIR)
+
 #
 # Documentation Tasks
 #
@@ -146,4 +150,4 @@ unwatch:
 
 
 .DEFAULT_GOAL = build.commonjs
-.PHONY: docs force node_modules test.node unwatch watch
+.PHONY: docs force node_modules test.node unwatch watch lint
