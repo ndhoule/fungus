@@ -5,6 +5,7 @@ import forEach from './forEach';
 import forEachRight from './forEachRight';
 import groupBy from './groupBy';
 import map from './map';
+import size from './size';
 
 defineAliases(['reduce', 'reduceLeft'], foldl);
 defineAliases(['each'], forEach);
@@ -16,5 +17,6 @@ export default setupAliases({
   forEach: forEach,
   forEachRight: forEachRight,
   groupBy: groupBy,
-  map: map
+  map: map,
+  size: size
 });
