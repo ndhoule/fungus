@@ -62,7 +62,7 @@
     "requirejs": "^2.1.14",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0",
-    "traceur": "0.0.60",
+    "traceur": "0.0.65",
     "uglify-js": "^2.4.15"
   }
 }

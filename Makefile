@@ -28,23 +28,22 @@ MOCHA_COVERAGE_FLAGS = \
 	$(MOCHA_COMMON_FLAGS)
 
 TRACEUR_COMMON_FLAGS = \
-	--arrow-functions=true \
-	--block-binding=true \
-	--default-parameters=true \
-	--numeric-literals=true \
-	--rest-parameters=true
+	--generator-comprehension=true \
+	--array-comprehension=true
 
+# TODO: Re-enable source maps once output directory is fixed
+# (currently dumps them in cwd)
 TRACEUR_COMMONJS_FLAGS = \
 	$(TRACEUR_COMMON_FLAGS) \
-	--modules=commonjs \
-	--filename \
-	--source-maps
+	--modules=commonjs #\
+#	--filename \
+#	--source-maps
 
 TRACEUR_BROWSER_FLAGS = \
 	$(TRACEUR_COMMON_FLAGS) \
-	--modules=amd \
-	--filename \
-	--source-maps
+	--modules=amd #\
+#	--filename \
+#	--source-maps
 
 UGLIFYJS_FLAGS = \
 	--reserved fungus \
