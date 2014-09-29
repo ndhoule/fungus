@@ -1,5 +1,6 @@
 import defineAliases from '../internal/defineAliases';
 import setupAliases from '../internal/setupAliases';
+import contains from './contains';
 import foldl from './foldl';
 import forEach from './forEach';
 import forEachRight from './forEachRight';
@@ -13,10 +14,11 @@ defineAliases(['eachRight'], forEachRight);
 defineAliases(['map'], map);
 
 export default setupAliases({
-  foldl: foldl,
-  forEach: forEach,
-  forEachRight: forEachRight,
-  groupBy: groupBy,
-  map: map,
-  size: size
+  contains,
+  foldl,
+  forEach,
+  forEachRight,
+  groupBy,
+  map,
+  size
 });
