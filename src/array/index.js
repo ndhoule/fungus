@@ -4,6 +4,7 @@ import compact from './compact';
 import filter from './filter';
 import first from './first';
 import indexOf from './indexOf';
+import last from './last';
 import lastIndexOf from './lastIndexOf';
 import range from './range';
 import rest from './rest';
@@ -11,11 +12,12 @@ import rest from './rest';
 defineAliases(['select'], filter);
 
 export default setupAliases({
-  range,
   compact,
   filter,
   first,
   indexOf,
+  last,
   lastIndexOf,
+  range,
   rest
 });
