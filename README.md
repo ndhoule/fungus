@@ -10,7 +10,7 @@ Branch | Status | Coverage | Dependencies
 master | ![Master](https://travis-ci.org/ndhoule/fungus.svg?branch=master) | [![Coverage Status](https://coveralls.io/repos/ndhoule/fungus/badge.png?branch=master)](https://coveralls.io/r/ndhoule/fungus?branch=master) | ![Master Dependencies](https://david-dm.org/ndhoule/fungus.svg)
 dev | ![Dev](https://travis-ci.org/ndhoule/fungus.svg?branch=dev) | [![Coverage Status](https://coveralls.io/repos/ndhoule/fungus/badge.png?branch=dev)](https://coveralls.io/r/ndhoule/fungus?branch=dev) | N/A
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/ndhoule.svg)](https://saucelabs.com/u/ndhoule)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/fungusjs.svg)](https://saucelabs.com/u/fungusjs)
 
 
 ## Installation and Use
