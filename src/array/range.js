@@ -21,7 +21,7 @@ import isNumber from '../object/isNumber';
  * range(10, -10);
  * //=> []
  */
-let range = curry(function(start, end) {
+let range = curry(function range(start, end) {
   if (!isNumber(start)) { start = 0; }
   if (!isNumber(end)) { end = 0; }
 
