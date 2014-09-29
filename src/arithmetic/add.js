@@ -16,7 +16,7 @@ import curry from '../function/curry';
  * add(-2, 1);
  * //=> -1
  */
-var add = curry(function add(x, y) {
+let add = curry(function add(x, y) {
   return x + y;
 });
 

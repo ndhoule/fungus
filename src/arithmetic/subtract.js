@@ -16,7 +16,7 @@ import curry from '../function/curry';
  * subtract(10, 20);
  * //=> -10
  */
-var subtract = curry(function subtract(x, y) {
+let subtract = curry(function subtract(x, y) {
   return x - y;
 });
 

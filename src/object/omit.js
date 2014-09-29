@@ -13,8 +13,8 @@ import keys from './keys';
  * @param {Array|String} props TODO
  * @return {Object} TODO
  */
-var parseOmissions = function(props) {
-  var results = {};
+let parseOmissions = function(props) {
+  let results = {};
 
   if (isString(props)) {
     props = [props];
@@ -24,7 +24,7 @@ var parseOmissions = function(props) {
     props = [];
   }
 
-  var i = props.length;
+  let i = props.length;
 
   while (--i >= 0) {
     // Ignore non-strings
@@ -57,15 +57,15 @@ var parseOmissions = function(props) {
  * omit(['name', 'scaredOf'], person);
  * //=> { occupation: 'enchanter' }
  */
-var omit = curry(function omit(props, object) {
+let omit = curry(function omit(props, object) {
   if (!existy(object) || !isObject(object)) {
     return {};
   }
 
   props = parseOmissions(props);
-  var result = {};
-  var ks = keys(object);
-  var i = ks.length;
+  let result = {};
+  let ks = keys(object);
+  let i = ks.length;
 
   while (--i >= 0) {
     if (!props[ks[i]]) {

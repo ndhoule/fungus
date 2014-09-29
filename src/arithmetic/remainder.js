@@ -26,7 +26,7 @@ import curry from '../function/curry';
  * remainder(-10, 3);
  * //=> -1
  */
-var remainder = curry(function remainder(x, y) {
+let remainder = curry(function remainder(x, y) {
   return x % y;
 });
 

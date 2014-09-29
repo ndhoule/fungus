@@ -11,9 +11,9 @@ import keys from '../object/keys';
  * @param {Array} array The array(-like) structure to iterate over.
  * @return {undefined}
  */
-var arrayEach = function arrayEach(iterator, array) {
-  var i = -1;
-  var length = array.length;
+let arrayEach = function arrayEach(iterator, array) {
+  let i = -1;
+  let length = array.length;
 
   while (++i < length) {
     // Allow users to return `false` to end iteration early
@@ -32,10 +32,10 @@ var arrayEach = function arrayEach(iterator, array) {
  * @param {Object} object The object to iterate over.
  * @return {undefined}
  */
-var baseEach = function baseEach(iterator, object) {
-  var ks = keys(object);
-  var length = ks.length;
-  var i = -1;
+let baseEach = function baseEach(iterator, object) {
+  let ks = keys(object);
+  let length = ks.length;
+  let i = -1;
 
   while (++i < length) {
     // Allow users to return `false` to end iteration early
@@ -79,7 +79,7 @@ var baseEach = function baseEach(iterator, object) {
  * //-> 'enchanter', 'occupation', { name: 'tim', occupation: 'enchanter' }
  * //=> undefined
  */
-var forEach = curry(function forEach(iterator, collection) {
+let forEach = curry(function forEach(iterator, collection) {
   return (isArrayLike(collection) ? arrayEach : baseEach).call(this, iterator, collection);
 });
 

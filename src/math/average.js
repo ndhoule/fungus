@@ -16,7 +16,7 @@ import sum from './sum';
  * average({ a: 1, b: 2, c: 3 });
  * //=> 2
  */
-var average = function average(collection) {
+let average = function average(collection) {
   return sum(collection) / keys(collection).length;
 };
 

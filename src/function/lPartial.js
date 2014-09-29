@@ -22,7 +22,7 @@ import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
  * addFive(10);
  * //=> 15
  */
-var lPartial = function lPartial(fn, ...partialArgs) {
+let lPartial = function lPartial(fn, ...partialArgs) {
   if (!isFunction(fn)) {
     throw NOT_FUNC_EXCEPTION;
   }

@@ -1,6 +1,6 @@
 import isObject from './isObject';
 
-var hasOwnProperty = Object.prototype.hasOwnProperty;
+let hasOwnProperty = Object.prototype.hasOwnProperty;
 
 /**
  * Creates an array composed of all keys on the input object. Ignores any non-enumerable properties.
@@ -34,7 +34,7 @@ var hasOwnProperty = Object.prototype.hasOwnProperty;
  * keys(arr);
  * //=> ['0', '4']
  */
-var keys = function keys(target) {
+let keys = function keys(target) {
   if (!isObject(target)) {
     return [];
   }
@@ -43,9 +43,9 @@ var keys = function keys(target) {
     return Object.keys(target);
   }
 
-  var results = [];
+  let results = [];
 
-  for (var key in target) {
+  for (let key in target) {
     if (hasOwnProperty.call(target, key)) {
       results.push(key);
     }

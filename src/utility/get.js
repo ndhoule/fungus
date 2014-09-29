@@ -26,7 +26,7 @@ import existy from './existy';
  * get('nonexistent', null);
  * //=> undefined
  */
-var get = curry(function get(key, target) {
+let get = curry(function get(key, target) {
   return existy(target) ? target[key] : undefined;
 });
 

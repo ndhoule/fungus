@@ -17,7 +17,7 @@ import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
  * alwaysFalse();
  * //=> false
  */
-var not = function not(fn) {
+let not = function not(fn) {
   if (!isFunction(fn)) {
     throw NOT_FUNC_EXCEPTION;
   }

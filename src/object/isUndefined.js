@@ -24,7 +24,7 @@ const UNDEFINED = void(0);
  * isUndefined({});
  * //=> false
  */
-var isUndefined = function isUndefined(val) {
+let isUndefined = function isUndefined(val) {
   return val === UNDEFINED;
 };
 

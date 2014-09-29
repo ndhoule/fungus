@@ -27,7 +27,7 @@
  * truthy('');
  * //=> false
  */
-var truthy = function truthy(val) {
+let truthy = function truthy(val) {
   return !!val;
 };
 

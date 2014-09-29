@@ -31,10 +31,10 @@ import isNaN from '../object/isNaN';
  * indexOf(-0, [0, 1, 2]);
  * //=> -1
  */
-var indexOf = curry(function indexOf(target, array) {
-  var comparator = target === 0 || isNaN(target) ? is : eq;
-  var result = -1;
-  var i = -1;
+let indexOf = curry(function indexOf(target, array) {
+  let comparator = target === 0 || isNaN(target) ? is : eq;
+  let result = -1;
+  let i = -1;
 
   while (++i < array.length) {
     if (comparator(array[i], target)) {

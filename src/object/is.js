@@ -30,7 +30,7 @@ import curry from '../function/curry';
  * is(obj, obj);
  * //=> true
  */
-var is = Object.is ? curry(Object.is) : curry(function is(value1, value2) {
+let is = Object.is ? curry(Object.is) : curry(function is(value1, value2) {
   // Normal values and check for 0 / -0
   if (value1 === value2) {
     return value1 !== 0 || 1 / value1 === 1 / value2;

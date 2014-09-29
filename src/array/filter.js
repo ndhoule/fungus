@@ -25,14 +25,14 @@ import isFunction from '../object/isFunction';
  * filter(isEven, [1, 2, 3, 4, 5]);
  * //=> [2, 4]
  */
-var filter = curry(function filter(iterator, list) {
+let filter = curry(function filter(iterator, list) {
   // TODO: Can we fanagle this to throw an error before all curried arguments
   // are received? Probably too messy.
   if (!isFunction(iterator)) {
     throw NOT_FUNC_EXCEPTION;
   }
 
-  var result = [];
+  let result = [];
 
   forEach(function(elem, i, list) {
     if (iterator(elem, i, list)) {

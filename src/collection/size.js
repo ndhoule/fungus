@@ -28,6 +28,6 @@ import keys from '../object/keys';
  * size(child);
  * //=> 1
  */
-var size = collection => isArrayLike(collection) ? collection.length : keys(collection).length;
+let size = collection => isArrayLike(collection) ? collection.length : keys(collection).length;
 
 export default size;

@@ -10,10 +10,10 @@ import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
   * @param n
   * @return {Function}
   */
-var createArgNames = function createArgNames(n) {
-  var args = [];
+let createArgNames = function createArgNames(n) {
+  let args = [];
 
-  for (var i = 1; i <= n; i += 1) {
+  for (let i = 1; i <= n; i += 1) {
     args.push('arg' + i);
   }
 
@@ -34,9 +34,9 @@ var createArgNames = function createArgNames(n) {
   * @param n
   * @return {Function}
   */
-var makeArityWrapper = function makeWrapper(n) {
-  var argNames = createArgNames(n).join(', ');
-  var fnBody = ''.concat(
+let makeArityWrapper = function makeWrapper(n) {
+  let argNames = createArgNames(n).join(', ');
+  let fnBody = ''.concat(
     '  return function(', argNames , ') {\n',
     '    return fn.apply(this, arguments);\n',
     '  };'
@@ -57,7 +57,7 @@ var makeArityWrapper = function makeWrapper(n) {
   * @param n
   * @return {Function}
   */
-var arityWrapperCache = [
+let arityWrapperCache = [
   /* jshint -W098 */
   function(fn) {
     return function() {
@@ -126,7 +126,7 @@ var arityWrapperCache = [
 // TODO: Should we curry this? curry's implementation depends on arity, so we'd
 // need to resolve that dependency, perhaps by defining an internal currying
 // function
-var arity = function arity(n, fn) {
+let arity = function arity(n, fn) {
   if (!isFunction(fn)) {
     throw NOT_FUNC_EXCEPTION;
   }

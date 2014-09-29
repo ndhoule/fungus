@@ -5,7 +5,7 @@ import get from '../utility/get';
 import identity from '../utility/identity';
 import isFunction from '../object/isFunction';
 
-var hasOwnProperty = Object.prototype.hasOwnProperty;
+let hasOwnProperty = Object.prototype.hasOwnProperty;
 
 /**
  * Returns an object where the keys are the result of running a collection's values through an
@@ -30,13 +30,13 @@ var hasOwnProperty = Object.prototype.hasOwnProperty;
  * groupBy(function(val) { return val[0]; }, names);
  * //=> { e: ['einstein'], h: ['hawking'], n: ['newton'] }
  */
-var groupBy = curry(function(aggregator, collection) {
+let groupBy = curry(function(aggregator, collection) {
   if (!isFunction(aggregator)) {
     aggregator = existy(aggregator) ? get(aggregator) : identity;
   }
 
   return foldl(function(result, value) {
-    var aggregateKey = aggregator(value);
+    let aggregateKey = aggregator(value);
 
     hasOwnProperty.call(result, aggregateKey) ?
       result[aggregateKey].push(value) :

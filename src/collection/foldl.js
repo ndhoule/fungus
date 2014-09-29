@@ -35,7 +35,7 @@ import isFunction from '../object/isFunction';
  * }, [], phonebook);
  * // => ['655-222-6789', '655-333-1298']
  */
-var foldl = curry(function foldl(iterator, acc, collection) {
+let foldl = curry(function foldl(iterator, acc, collection) {
   if (!isFunction(iterator)) {
     throw NOT_FUNC_EXCEPTION;
   }

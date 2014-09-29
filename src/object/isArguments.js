@@ -25,7 +25,7 @@ import { argumentsClass } from '../internal/classes';
  * isArguments({ length: 1 });
  * //=> false
  */
-var isArguments = function isArguments(val) {
+let isArguments = function isArguments(val) {
   return Object.prototype.toString.call(val) === argumentsClass;
 };
 

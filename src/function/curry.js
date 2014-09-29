@@ -13,10 +13,10 @@ import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
  * @param previousArgs
  * @return {undefined}
  */
-var wrapCurry = function wrapCurry(fn, remainingArity, previousArgs) {
+let wrapCurry = function wrapCurry(fn, remainingArity, previousArgs) {
   return arity(remainingArity, function(...newArgs) {
-    var newArity = remainingArity - newArgs.length;
-    var args = previousArgs.concat(newArgs);
+    let newArity = remainingArity - newArgs.length;
+    let args = previousArgs.concat(newArgs);
 
     if (newArity > 0) {
       return wrapCurry(fn, newArity, args);
@@ -49,7 +49,7 @@ var wrapCurry = function wrapCurry(fn, remainingArity, previousArgs) {
  * sumArray([1, 2, 3]);
  * //=> 6
  */
-var curry = function curry(fn, fnArity) {
+let curry = function curry(fn, fnArity) {
   if (!isFunction(fn)) {
     throw NOT_FUNC_EXCEPTION;
   }

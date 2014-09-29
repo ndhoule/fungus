@@ -16,7 +16,7 @@ import forOwnRight from './forOwnRight';
  * @param {Object} object The object to iterate over.
  * @return {string|undefined} The key of the found element, else `undefined`.
  * @example
- * var animals = { a: 'aardvark', b: 'bear', c: 'cat', d: 'dingo' };
+ * var animals = { a: 'aardletk', b: 'bear', c: 'cat', d: 'dingo' };
  *
  * var isRabbit = function(animal) {
  *   return animal === 'rabbit';
@@ -30,8 +30,8 @@ import forOwnRight from './forOwnRight';
  * findKey(isCatOrDingo, animals);
  * //=> 'd' (enumeration order not guaranteed to be consistent across platforms)
  */
-var findKeyLast = curry(function findKeyLast(predicate, object) {
-  var result;
+let findKeyLast = curry(function findKeyLast(predicate, object) {
+  let result;
 
   forOwnRight(function(element, key, object) {
     if (predicate(element, key, object)) {

@@ -27,7 +27,7 @@
  * falsy(true);
  * //=> false
  */
-var falsy = function falsy(val) {
+let falsy = function falsy(val) {
   return !val;
 };
 

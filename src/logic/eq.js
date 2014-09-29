@@ -25,7 +25,7 @@ import curry from '../function/curry';
  * eq(obj, obj);
  * //=> true
  */
-var eq = curry(function eq(x, y) {
+let eq = curry(function eq(x, y) {
   return x === y;
 });
 

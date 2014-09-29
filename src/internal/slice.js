@@ -17,13 +17,13 @@ import isNumber from '../object/isNumber';
  * @param {number} to
  * @return {Array}
  */
-var _slice = function _slice(list, from, to) {
+let _slice = function _slice(list, from, to) {
   from = isNumber(from) ? from : 0;
   to = isNumber(to) ? to : list.length;
 
-  var len = Math.max(to - from, 0);
-  var i = len;
-  var results = new Array(len);
+  let len = Math.max(to - from, 0);
+  let i = len;
+  let results = new Array(len);
 
   while (--i >= 0) {
     results[i] = list[from + i];

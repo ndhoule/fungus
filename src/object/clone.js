@@ -36,7 +36,7 @@ import extend from './extend';
  * console.log(obj.child.val);
  * //-> 100
  */
-var clone = function clone(value) {
+let clone = function clone(value) {
   if (isArray(value)) {
     return _slice(value);
   }

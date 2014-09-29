@@ -2,7 +2,7 @@ import arity from './arity';
 import isFunction from '../object/isFunction';
 import { NO_ARGS_EXCEPTION, NOT_FUNC_EXCEPTION } from '../internal/exceptions';
 
-var hasOwnProperty = Object.prototype.hasOwnProperty;
+let hasOwnProperty = Object.prototype.hasOwnProperty;
 
 /**
  * Serializes an array of values. Used a a serializer in `memoize` and works on
@@ -15,7 +15,7 @@ var hasOwnProperty = Object.prototype.hasOwnProperty;
  * @example
  * TODO
  */
-var defaultSerialize = (function defaultSerialize() {
+let defaultSerialize = (function defaultSerialize() {
   const PREFIX = '_cache_';
 
   return function(args) {
@@ -63,7 +63,7 @@ var defaultSerialize = (function defaultSerialize() {
  * memoAdd(1, 4);
  * //=> 3
  */
-var memoize = function memoize(fn, serialize = defaultSerialize) {
+let memoize = function memoize(fn, serialize = defaultSerialize) {
   if (!arguments.length) {
     throw NO_ARGS_EXCEPTION;
   }
@@ -73,12 +73,12 @@ var memoize = function memoize(fn, serialize = defaultSerialize) {
   }
 
   // XXX: Potentially replace this with a `Map` so we can test identity of arguments
-  var cache = Object.create(null);
+  let cache = Object.create(null);
 
   // TODO: If `fn` was curried, we should curry this returned function, too.
   // We don't currenty have a good way of checking for curried-ness.
   return arity(fn.length, function(...args) {
-    var serialized = serialize(args);
+    let serialized = serialize(args);
 
     return serialized in cache ? cache[serialized] : cache[serialized] = fn.apply(this, args);
   });

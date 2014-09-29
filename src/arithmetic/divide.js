@@ -16,7 +16,7 @@ import curry from '../function/curry';
  * divide(1, 2);
  * //=> 0.5
  */
-var divide = curry(function divide(x, y) {
+let divide = curry(function divide(x, y) {
   return x / y;
 });
 

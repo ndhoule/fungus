@@ -13,7 +13,7 @@
  * negate(-11);
  * //=> 1
  */
-var negate = function(num) {
+let negate = function(num) {
   return -num;
 };
 

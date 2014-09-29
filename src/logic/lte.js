@@ -20,7 +20,7 @@ import curry from '../function/curry';
  * lte(2, 1);
  * //=> false
  */
-var lte = curry(function lte(x, y) {
+let lte = curry(function lte(x, y) {
   return x <= y;
 });
 

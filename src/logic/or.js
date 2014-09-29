@@ -24,7 +24,7 @@ import curry from '../function/curry';
  * or('omg', true);
  * //=> 'omg'
  */
-var or = curry(function or(x, y) {
+let or = curry(function or(x, y) {
   return x || y;
 });
 

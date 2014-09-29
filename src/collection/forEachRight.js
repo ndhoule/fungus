@@ -11,8 +11,8 @@ import keys from '../object/keys';
  * @param {Array} array The array(-like) structure to iterate over.
  * @return {undefined}
  */
-var arrayEachRight = function arrayEachRight(iterator, array) {
-  var i = array.length;
+let arrayEachRight = function arrayEachRight(iterator, array) {
+  let i = array.length;
 
   while (--i >= 0) {
     // Allow users to return `false` to end iteration early
@@ -31,9 +31,9 @@ var arrayEachRight = function arrayEachRight(iterator, array) {
  * @param {Object} object The object to iterate over.
  * @return {undefined}
  */
-var baseEachRight = function baseEachRight(iterator, object) {
-  var ks = keys(object);
-  var i = ks.length;
+let baseEachRight = function baseEachRight(iterator, object) {
+  let ks = keys(object);
+  let i = ks.length;
 
   while (--i >= 0) {
     // Allow users to return `false` to end iteration early
@@ -82,7 +82,7 @@ var baseEachRight = function baseEachRight(iterator, object) {
  * //-> 'tim', 'name', { name: 'tim', occupation: 'enchanter' }
  * //=> undefined
  */
-var forEachRight = curry(function forEachRight(iterator, collection) {
+let forEachRight = curry(function forEachRight(iterator, collection) {
   return (isArrayLike(collection) ? arrayEachRight : baseEachRight).call(this, iterator, collection);
 });
 

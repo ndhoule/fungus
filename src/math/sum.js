@@ -13,6 +13,6 @@ import foldl from '../collection/foldl';
  * sum([1, 2, 3]);
  * //=> 6
  */
-var sum = foldl(add, 0);
+let sum = foldl(add, 0);
 
 export default sum;

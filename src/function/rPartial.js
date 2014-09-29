@@ -26,7 +26,7 @@ import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
  * isEven(5);
  * //=> false
  */
-var rPartial = function rPartial(fn, ...partialArgs) {
+let rPartial = function rPartial(fn, ...partialArgs) {
   if (!isFunction(fn)) {
     throw NOT_FUNC_EXCEPTION;
   }

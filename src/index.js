@@ -7,9 +7,9 @@ import math from './math/index';
 import object from './object/index';
 import utility from './utility/index';
 
-var modules = [arithmetic, array, collection, fn, logic, math, object, utility];
+let modules = [arithmetic, array, collection, fn, logic, math, object, utility];
 
-var fungus = collection.foldl(function(fungus, ns) {
+let fungus = collection.foldl(function(fungus, ns) {
   // TODO: Replace with array.flatten
   collection.forEach(function(func, name) {
     if (object.isFunction(func)) {

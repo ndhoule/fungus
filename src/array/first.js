@@ -14,7 +14,7 @@
  * first([]);
  * //=> undefined
  */
-var first = function first(list) {
+let first = function first(list) {
   return list ? list[0] : undefined;
 };
 

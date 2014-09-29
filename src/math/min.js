@@ -2,7 +2,7 @@ import foldl from '../collection/foldl';
 import wrap from '../function/wrap';
 import identity from '../utility/identity';
 
-var createComparator = wrap(function(callback, a, b) {
+let createComparator = wrap(function(callback, a, b) {
   return callback(a) <= callback(b) ? a : b;
 });
 
@@ -33,7 +33,7 @@ var createComparator = wrap(function(callback, a, b) {
  * max(people, function(person) { return person.age; });
  * //=> { name: 'Tim', age: 600 }
  */
-var min = function min(collection, callback = identity) {
+let min = function min(collection, callback = identity) {
   return foldl(createComparator(callback), Infinity, collection);
 };
 

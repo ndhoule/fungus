@@ -12,11 +12,11 @@ import keys from './keys';
  * values({ a: 1, b: 2, c: 3 });
  * //=> [1, 2, 3]
  */
-var values = function values(target) {
-  var ks = keys(target);
-  var length = ks.length;
-  var results = new Array(length);
-  var i = length;
+let values = function values(target) {
+  let ks = keys(target);
+  let length = ks.length;
+  let results = new Array(length);
+  let i = length;
 
   while (--i >= 0) {
     results[i] = target[ks[i]];

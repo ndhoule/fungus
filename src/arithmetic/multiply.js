@@ -16,7 +16,7 @@ import curry from '../function/curry';
  * multiply(8, 9);
  * //=> 72
  */
-var multiply = curry(function multiply(x, y) {
+let multiply = curry(function multiply(x, y) {
   return x * y;
 });
 

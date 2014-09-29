@@ -1,7 +1,7 @@
 import existy from '../utility/existy';
 import { dateClass } from '../internal/classes';
 
-var toString = Object.prototype.toString;
+let toString = Object.prototype.toString;
 
 /**
  * Tests if a value is a date object.
@@ -24,7 +24,7 @@ var toString = Object.prototype.toString;
  * isDate(new Date().toString());
  * //=> false
  */
-var isDate = function isDate(val) {
+let isDate = function isDate(val) {
   return existy(val) && toString.call(val) === dateClass;
 };
 

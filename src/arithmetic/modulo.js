@@ -29,8 +29,8 @@ import curry from '../function/curry';
  * modulo(-10, 7)
  * //=> 4
  */
-var modulo = curry(function modulo(x, y) {
-  var rem = x % y;
+let modulo = curry(function modulo(x, y) {
+  let rem = x % y;
 
   return rem === 0 || x * y > 0 ? rem : rem + y;
 });

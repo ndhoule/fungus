@@ -24,7 +24,7 @@ import curry from '../function/curry';
  * and('omg', true);
  * //=> true
  */
-var and = curry(function and(x, y) {
+let and = curry(function and(x, y) {
   return x && y;
 });
 

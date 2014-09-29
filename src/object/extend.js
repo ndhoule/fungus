@@ -1,4 +1,4 @@
-var hasOwnProperty = Object.prototype.hasOwnProperty;
+let hasOwnProperty = Object.prototype.hasOwnProperty;
 
 /**
  * Copy the properties of one or more `objects` onto a new object. Input objects are iterated over
@@ -25,11 +25,11 @@ var hasOwnProperty = Object.prototype.hasOwnProperty;
  * console.log(obj);
  * //-> { a: 'a' }
  */
-var extend = function extend(...objects) {
-  var target = {};
+let extend = function extend(...objects) {
+  let target = {};
 
-  for (var i = 0; i < objects.length; i += 1) {
-    for (var key in objects[i]) {
+  for (let i = 0; i < objects.length; i += 1) {
+    for (let key in objects[i]) {
       if (hasOwnProperty.call(objects[i], key)) {
         target[key] = objects[i][key];
       }

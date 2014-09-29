@@ -1,6 +1,6 @@
 import { arrayClass } from '../internal/classes';
 
-var toString = Object.prototype.toString;
+let toString = Object.prototype.toString;
 
 /**
  * Tests if a value is an array.
@@ -26,7 +26,7 @@ var toString = Object.prototype.toString;
  * isArray([]);
  * //=> true
  */
-var isArray = Array.isArray || function(val) {
+let isArray = Array.isArray || function(val) {
   return toString.call(val) === arrayClass;
 };
 

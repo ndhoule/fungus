@@ -25,13 +25,13 @@ import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
  * forOwnRight(function(value) { console.log(value); }, { a: 1, b: 2 });
  * //-> 2, 1 (order not guaranteed across environments)
  */
-var forOwnRight = curry(function forOwnRight(iterator, object) {
+let forOwnRight = curry(function forOwnRight(iterator, object) {
   if (!isFunction(iterator)) {
     throw NOT_FUNC_EXCEPTION;
   }
 
-  var ks = keys(object);
-  var i = ks.length;
+  let ks = keys(object);
+  let i = ks.length;
 
   while (--i >= 0) {
     if (iterator(object[ks[i]], ks[i], object) === false) {

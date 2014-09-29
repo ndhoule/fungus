@@ -31,7 +31,7 @@ import { nativeIsFinite } from '../internal/natives';
  * isFinite('also not a number');
  * //=> false
  */
-var isFinite = Number.isFinite || function isFinite(val) {
+let isFinite = Number.isFinite || function isFinite(val) {
   return isNumber(val) && nativeIsFinite(val);
 };
 

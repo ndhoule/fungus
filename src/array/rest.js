@@ -19,15 +19,15 @@ import _slice from '../internal/slice';
  *
  * // `rest` is especially useful on `arguments`
  * var partial = function(fn) {
- *   var args = rest(arguments);
+ *   let args = rest(arguments);
  *
  *   return function() {
- *     var newArgs = Array.prototype.slice.call(arguments);
+ *     let newArgs = Array.prototype.slice.call(arguments);
  *     return fn.apply(this, newArgs.concat(args);
  *   };
  * };
  */
-var rest = function rest(list) {
+let rest = function rest(list) {
   // TODO: Check for array-like and throw(?) if passed something that is not
   return _slice(list, 1);
 };

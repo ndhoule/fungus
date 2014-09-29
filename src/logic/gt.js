@@ -17,7 +17,7 @@ import curry from '../function/curry';
  * gt(-100, 4);
  * //=> false
  */
-var gt = curry(function gt(x, y) {
+let gt = curry(function gt(x, y) {
   return x > y;
 });
 

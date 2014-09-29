@@ -24,18 +24,18 @@ import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
  * forInRight(function(value) { console.log(value); }, { a: 1, b: 2 });
  * //-> 3, 2, 1 (order not guaranteed across environments)
  */
-var forInRight = curry(function forInRight(iterator, object) {
+let forInRight = curry(function forInRight(iterator, object) {
   if (!isFunction(iterator)) {
     throw NOT_FUNC_EXCEPTION;
   }
 
-  var ks = [];
+  let ks = [];
 
-  for (var key in object) {
+  for (let key in object) {
     ks.push(key);
   }
 
-  var i = ks.length;
+  let i = ks.length;
 
   while (--i >= 0) {
     if (iterator(object[ks[i]], ks[i], object) === false) {

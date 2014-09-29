@@ -20,14 +20,14 @@ import keys from './keys';
  * pairs(person);
  * //=> [ ['name', 'Tim'], ['occupation', 'enchanter'] ]
  */
-var pairs = function pairs(object) {
+let pairs = function pairs(object) {
   if (!existy(object)) {
     return [];
   }
 
-  var results = [];
-  var ks = keys(object);
-  var i = -1;
+  let results = [];
+  let ks = keys(object);
+  let i = -1;
 
   while (++i < ks.length) {
     results[i] = [ks[i], object[ks[i]]];

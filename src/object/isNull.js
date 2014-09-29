@@ -19,7 +19,7 @@
  * isNull('test');
  * //=> false
  */
-var isNull = function isNull(val) {
+let isNull = function isNull(val) {
   return val === null;
 };
 

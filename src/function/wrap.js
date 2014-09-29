@@ -28,7 +28,7 @@ import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
  * greetPolitely('Nathan');
  * //=> 'Hello, Mr. or Ms. Nathan!'
  */
-var wrap = curry(function wrap(wrapper, func) {
+let wrap = curry(function wrap(wrapper, func) {
   if (!isFunction(wrapper) || !isFunction(func)) {
     throw NOT_FUNC_EXCEPTION;
   }

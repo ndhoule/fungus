@@ -14,7 +14,7 @@
  * identity(obj) === obj;
  * //=> true
  */
-var identity = function identity(val) {
+let identity = function identity(val) {
   return val;
 };
 

@@ -17,7 +17,7 @@ import curry from '../function/curry';
  * lt(2, 1);
  * //=> false
  */
-var lt = curry(function lt(x, y) {
+let lt = curry(function lt(x, y) {
   return x <= y;
 });
 

@@ -12,6 +12,6 @@
  * noop(1);
  * //=> undefined
  */
-var noop = function noop() {};
+let noop = function noop() {};
 
 export default noop;

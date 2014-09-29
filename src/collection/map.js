@@ -20,12 +20,12 @@ import isFunction from '../object/isFunction';
  * map(square, [1, 2, 3]);
  * //=> [1, 4, 9]
  */
-var map = curry(function map(iterator, list) {
+let map = curry(function map(iterator, list) {
   if (!isFunction(iterator)) {
     throw NOT_FUNC_EXCEPTION;
   }
 
-  var result = [];
+  let result = [];
 
   forEach(function(val, i, list) {
     result.push(iterator(val, i, list));

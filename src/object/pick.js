@@ -4,7 +4,7 @@ import isArray from './isArray';
 import isObject from './isObject';
 import isString from './isString';
 
-var hasOwnProperty = Object.prototype.hasOwnProperty;
+let hasOwnProperty = Object.prototype.hasOwnProperty;
 
 /**
  * Returns a copy of the new `object` containing only the specified properties.
@@ -25,7 +25,7 @@ var hasOwnProperty = Object.prototype.hasOwnProperty;
  * pick(['name', 'fears'], person);
  * //=> { name: 'Tim', fears: 'rabbits' }
  */
-var pick = curry(function pick(props, object) {
+let pick = curry(function pick(props, object) {
   if (!existy(object) || !isObject(object)) {
     return {};
   }
@@ -38,8 +38,8 @@ var pick = curry(function pick(props, object) {
     props = [];
   }
 
-  var result = {};
-  var i = -1;
+  let result = {};
+  let i = -1;
 
   while (++i < props.length) {
     if (isString(props[i]) && props[i] in object) {

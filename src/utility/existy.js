@@ -21,7 +21,7 @@
  * existy(0);
  * //=> true
  */
-var existy = function existy(val) {
+let existy = function existy(val) {
   return val !== undefined && val !== null;
 };
 

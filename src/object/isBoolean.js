@@ -1,6 +1,6 @@
 import { booleanClass } from '../internal/classes';
 
-var toString = Object.prototype.toString;
+let toString = Object.prototype.toString;
 
 /**
  * Tests if a value is a boolean.
@@ -32,7 +32,7 @@ var toString = Object.prototype.toString;
  * isBoolean([true]);
  * //=> false
  */
-var isBoolean = function isBoolean(val) {
+let isBoolean = function isBoolean(val) {
  return val === true || val === false || toString.call(val) === booleanClass;
 };
 

@@ -1,7 +1,7 @@
 /* jshint unused: false */
 
-export var nativeKeys = Object.keys;
+export let nativeKeys = Object.keys;
 
-export var nativeParseInt = parseInt;
+export let nativeParseInt = parseInt;
 
-export var nativeIsFinite = isFinite;
+export let nativeIsFinite = isFinite;

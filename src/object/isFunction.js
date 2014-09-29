@@ -19,7 +19,7 @@
  * isFunction(Object);
  * //=> true
  */
-var isFunction = function isFunction(val) {
+let isFunction = function isFunction(val) {
   return typeof val === 'function';
 };
 

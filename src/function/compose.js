@@ -26,16 +26,16 @@ import { NO_ARGS_EXCEPTION, NOT_FUNC_EXCEPTION } from '../internal/exceptions';
  * addThenSquare(1, 2);
  * //=> 9
  */
-var compose = function compose(...fns) {
+let compose = function compose(...fns) {
   // Ensure all arguments are functions
-  for (var i = 0; i < fns.length; i += 1) {
+  for (let i = 0; i < fns.length; i += 1) {
     if (!isFunction(fns[i])) {
       throw NOT_FUNC_EXCEPTION;
     }
   }
 
-  var first = fns.pop();
-  var rest = fns.reverse();
+  let first = fns.pop();
+  let rest = fns.reverse();
 
   // Ensure arguments were passed to `compose`
   if (!first) {

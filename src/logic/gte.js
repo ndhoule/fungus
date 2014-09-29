@@ -20,7 +20,7 @@ import curry from '../function/curry';
  * gte(-100, 4);
  * //=> false
  */
-var gte = curry(function gte(x, y) {
+let gte = curry(function gte(x, y) {
   return x >= y;
 });
 

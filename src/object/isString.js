@@ -1,6 +1,6 @@
 import { stringClass } from '../internal/classes';
 
-var toString = Object.prototype.toString;
+let toString = Object.prototype.toString;
 
 /**
  * Tests if a value is a string.
@@ -32,7 +32,7 @@ var toString = Object.prototype.toString;
  * isString({ length: 1 });
  * //=> false
  */
-var isString = function isString(val) {
+let isString = function isString(val) {
    return typeof val === 'string' || toString.call(val) === stringClass;
 };
 

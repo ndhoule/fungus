@@ -1,7 +1,7 @@
 import existy from '../utility/existy';
 import { regexpClass } from '../internal/classes';
 
-var toString = Object.prototype.toString;
+let toString = Object.prototype.toString;
 
 /**
  * Tests if a value is a regular expression.
@@ -27,7 +27,7 @@ var toString = Object.prototype.toString;
  * isRegExp('test');
  * //=> false
  */
-var isRegExp = function isRegExp(val) {
+let isRegExp = function isRegExp(val) {
   return existy(val) && toString.call(val) === regexpClass;
 };
 

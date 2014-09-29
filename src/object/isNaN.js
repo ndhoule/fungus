@@ -24,7 +24,7 @@ import isNumber from './isNumber';
  * isNaN({});
  * //=> false
  */
-var isNaN = Number.isNaN || function isNaN(val) {
+let isNaN = Number.isNaN || function isNaN(val) {
   return isNumber(val) && val !== val;
 };
 

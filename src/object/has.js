@@ -1,7 +1,7 @@
 import curry from '../function/curry';
 import existy from '../utility/existy';
 
-var hasOwnProperty = Object.prototype.hasOwnProperty;
+let hasOwnProperty = Object.prototype.hasOwnProperty;
 
 /**
  * Checks an `object` for a specified property, ignoring inherited properties.
@@ -24,7 +24,7 @@ var hasOwnProperty = Object.prototype.hasOwnProperty;
  * has('a', child);
  * //=> false
  */
-var has = curry(function has(key, object) {
+let has = curry(function has(key, object) {
   return existy(object) && hasOwnProperty.call(object, key);
 });
 

@@ -27,7 +27,7 @@ import existy from '../utility/existy';
  * isObject(0);
  * //=> false
  */
-var isObject = function isObject(val) {
+let isObject = function isObject(val) {
   return existy(val) && typeof val === 'object';
 };
 

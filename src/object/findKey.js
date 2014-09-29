@@ -16,7 +16,7 @@ import forOwn from './forOwn';
  * @param {Object} object The object to iterate over.
  * @return {string|undefined} The key of the found element, else `undefined`.
  * @example
- * var animals = { a: 'aardvark', b: 'bear', c: 'cat', d: 'dingo' };
+ * var animals = { a: 'aardletk', b: 'bear', c: 'cat', d: 'dingo' };
  *
  * var isRabbit = function(animal) {
  *   return animal === 'rabbit';
@@ -30,8 +30,8 @@ import forOwn from './forOwn';
  * findKey(isCatOrDingo, animals);
  * //=> 'c' (enumeration order not guaranteed to be consistent across platforms)
  */
-var findKey = curry(function findKey(predicate, object) {
-  var result;
+let findKey = curry(function findKey(predicate, object) {
+  let result;
 
   forOwn(function(element, key, object) {
     if (predicate(element, key, object)) {

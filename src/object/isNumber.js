@@ -27,8 +27,8 @@ import { numberClass } from '../internal/classes';
  * isNumber(Infinity);
  * //=> true
  */
-var isNumber = function isNumber(val) {
-  var type = typeof val;
+let isNumber = function isNumber(val) {
+  let type = typeof val;
 
   return type === 'number' ||
     (type === 'object' && Object.prototype.toString.call(val) === numberClass);

@@ -1,7 +1,7 @@
 import isArguments from './isArguments';
 import isObject from './isObject';
 
-var objProto = Object.prototype;
+let objProto = Object.prototype;
 
 /**
  * Tests if a value is a plain object.
@@ -28,12 +28,12 @@ var objProto = Object.prototype;
  * isPlainObject(/test/);
  * //=> false
  */
-var isPlainObject = function isPlainObject(val) {
+let isPlainObject = function isPlainObject(val) {
   if (!isObject(val) || isArguments(val)) {
     return false;
   }
 
-  var proto = Object.getPrototypeOf(val);
+  let proto = Object.getPrototypeOf(val);
 
   return proto === null || proto  === objProto || val === objProto;
 };

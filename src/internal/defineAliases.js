@@ -2,7 +2,7 @@ import forEach from '../collection/forEach';
 import isArray from '../object/isArray';
 import isString from '../object/isString';
 
-var defineAliases = function(aliases, target) {
+let defineAliases = function(aliases, target) {
   if (!isArray(aliases)) {
     throw new Error('Expected an array');
   }
