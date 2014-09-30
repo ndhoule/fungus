@@ -20,11 +20,8 @@ describe('foldl', function() {
     expect(foldl).to.be.curried(identity, 4, [1, 2, 3], 'number');
   });
 
-  it('should pass the input function three arguments: value, index, and array', function() {
-    foldl(add, 5, [100, 200, 300]);
-
-    expect(add).to.been.calledWith(105, 200, 1, [100, 200, 300]);
-    expect(add).to.been.calledWith(305, 300, 2, [100, 200, 300]);
+  it('should accumulate a single return value', function() {
+    expect(foldl(add, 5, [100, 200, 300])).to.equal(605);
   });
 
   it('should pass the accumulator to the first function call', function() {
@@ -33,11 +30,14 @@ describe('foldl', function() {
     expect(add).to.been.calledWith(5, 100, 0, [100, 200, 300]);
   });
 
-  it('should accumulate a single return value', function() {
-    expect(foldl(add, 5, [100, 200, 300])).to.equal(605);
+  it('should pass the input function three arguments: value, index, and array', function() {
+    foldl(add, 5, [100, 200, 300]);
+
+    expect(add).to.been.calledWith(105, 200, 1, [100, 200, 300]);
+    expect(add).to.been.calledWith(305, 300, 2, [100, 200, 300]);
   });
 
-  it('should call the function with each array element, from right to left', function() {
+  it('should call the function with each array element, from left to right', function() {
     expect(foldl(add, 'z', ['a', 'b', 'c'])).to.equal('zabc');
   });
 
@@ -50,6 +50,8 @@ describe('foldl', function() {
     expect(add).to.have.been.calledOnce;
     expect(add).to.have.been.calledWith('z', 'a', 0, arr);
   });
+
+  // TODO: Test object iteration order
 
   it('should work on objects', function() {
     var obj = { enchanter: 'Tim', meal: 'spam' };
@@ -75,11 +77,6 @@ describe('foldl', function() {
     expect(result).to.eql(['Tim', 'spam']);
   });
 
-  // TODO: How to make this test useful? What should this behavior be?
-  // TODO: Modify the documentation's `param` types when this is changed
-  xit('should not make any guarantees on object iteration order other than those made by the host engine', function() {
-  });
-
   it('should ignore inherited properties on objects', function() {
     var parent = { enchanter: 'Tim' };
     var child = Object.create(parent);
@@ -92,7 +89,12 @@ describe('foldl', function() {
     expect(result).to.eql(['spam']);
   });
 
-  xit('should work on strings', function() {
+  it('should work on string primitives', function() {
+    expect(foldl(add, 'z', 'abc')).to.equal('zabc');
+  });
+
+  it('should work on string objects', function() {
+    expect(foldl(add, new String('z'), new String('abc'))).to.equal('zabc');
   });
 
   it('should throw an error when passed a non-function as its `fn` argument', function() {

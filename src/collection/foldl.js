@@ -5,7 +5,7 @@ import isFunction from '../object/isFunction';
 
 /**
  * Reduces all the values in a collection down into a single value. Does so by iterating through the
- * collection from right to left, repeatedly calling an `iterator` function and passing to it four
+ * collection from left to right, repeatedly calling an `iterator` function and passing to it four
  * arguments: `(accumulator, value, index, collection)`.
  *
  * Returns the final return value of the `iterator` function.
