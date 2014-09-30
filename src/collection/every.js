@@ -35,7 +35,6 @@ let every = curry(function every(iterator, collection) {
   var result = true;
 
   forEach(function(value, index, collection) {
-    console.log(value);
     if (!iterator(value, index, collection)) {
       result = false;
 
