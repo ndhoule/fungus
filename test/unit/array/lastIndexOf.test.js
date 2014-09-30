@@ -16,10 +16,7 @@ describe('lastIndexOf', function() {
   });
 
   it('should be curried', function() {
-    expect(lastIndexOf('tim')).to.be.a('function');
-    expect(lastIndexOf('tim')()()()).to.be.a('function');
-    expect(lastIndexOf('tim')([])).to.be.a('number');
-    expect(lastIndexOf('tim')()()([])).to.be.a('number');
+    expect(lastIndexOf).to.be.curried('tim', [0, 1], 'number');
   });
 
   it('should return the index of the last matching element', function() {

@@ -25,10 +25,7 @@ describe('is', function() {
   });
 
   it('should be curried', function() {
-    expect(is('tim')).to.be.a('function');
-    expect(is('tim')()()()).to.be.a('function');
-    expect(is('tim')({})).to.be.a('boolean');
-    expect(is('tim')()()({})).to.be.a('boolean');
+    expect(is).to.be.curried('tim', { a: 1 }, 'boolean');
   });
 
   it('should return `true` when comparing two `NaN` values', function() {

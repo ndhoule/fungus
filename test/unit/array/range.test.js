@@ -10,9 +10,7 @@ describe('range', function() {
   });
 
   it('should be curried', function() {
-    expect(range()()()()()).to.be.a('function');
-    expect(range(1)()()()()).to.be.a('function');
-    expect(range(1)()()()(2)).to.be.an('array');
+    expect(range).to.be.curried(1, 2, 'array');
   });
 
   it('should return an array', function() {

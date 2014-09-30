@@ -1,4 +1,3 @@
-
 describe('groupBy', function() {
   var groupBy = fungus.groupBy;
   var identity = fungus.identity;
@@ -22,11 +21,7 @@ describe('groupBy', function() {
   });
 
   it('should be curried', function() {
-    expect(groupBy()).to.be.a('function');
-    expect(groupBy(observe)).to.be.a('function');
-    expect(observe).to.have.not.been.called;
-    expect(groupBy(observe)()()()([1])).to.be.an('object');
-    expect(observe).to.have.been.calledOnce;
+    expect(groupBy).to.be.curried(observe, [1, 2, 3], 'object');
   });
 
   it('should work when `collection` is an array', function() {

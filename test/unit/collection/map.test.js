@@ -17,11 +17,7 @@ describe('map', function() {
   });
 
   it('should be curried', function() {
-    expect(map()).to.be.a('function');
-    expect(map(identity)).to.be.a('function');
-    expect(identity).to.have.not.been.called;
-    expect(map(identity)()()()([1])).to.be.an('array');
-    expect(identity).to.have.been.calledOnce;
+    expect(map).to.be.curried(identity, [1, 2, 3], 'array');
   });
 
   it('should return a new array', function() {

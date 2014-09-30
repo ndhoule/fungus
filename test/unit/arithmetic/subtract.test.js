@@ -10,10 +10,7 @@ describe('subtract', function() {
   });
 
   it('should be curried', function() {
-    expect(subtract(1)).to.be.a('function');
-    expect(subtract(1)()()()).to.be.a('function');
-    expect(subtract(1)(2)).to.be.a('number');
-    expect(subtract(1)()()(2)).to.be.a('number');
+    expect(subtract).to.be.curried(1, 2, 'number');
   });
 
   it('should do what the native `-` operator does', function() {

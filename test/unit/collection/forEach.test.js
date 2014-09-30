@@ -16,11 +16,7 @@ describe('forEach', function() {
   });
 
   it('should be curried', function() {
-    expect(forEach()).to.be.a('function');
-    expect(forEach(identity)).to.be.a('function');
-    expect(identity).to.have.not.been.called;
-    expect(forEach(identity)()()()([1])).to.be.undefined;
-    expect(identity).to.have.been.calledOnce;
+    expect(forEach).to.be.curried(identity, [1], 'undefined');
   });
 
   it('should work on arrays', function() {

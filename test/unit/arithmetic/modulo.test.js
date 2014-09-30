@@ -10,10 +10,7 @@ describe('modulo', function() {
   });
 
   it('should be curried', function() {
-    expect(modulo(1)).to.be.a('function');
-    expect(modulo(1)()()()).to.be.a('function');
-    expect(modulo(1)(2)).to.be.a('number');
-    expect(modulo(1)()()(2)).to.be.a('number');
+    expect(modulo).to.be.curried(1, 2, 'number');
   });
 
   it('should implement a modulo operation', function() {

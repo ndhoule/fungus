@@ -10,10 +10,7 @@ describe('has', function() {
   });
 
   it('should be curried', function() {
-    expect(has('test')).to.be.a('function');
-    expect(has('test')()()()).to.be.a('function');
-    expect(has('test')({})).to.be.a('boolean');
-    expect(has('test')()()({})).to.be.a('boolean');
+    expect(has).to.be.curried('test', { a: 1 }, 'boolean');
   });
 
   it('should return `true` when an object has a specified property', function() {

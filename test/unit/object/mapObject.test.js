@@ -16,10 +16,7 @@ describe('mapObject', function() {
   });
 
   it('should be curried', function() {
-    expect(mapObject(identity)).to.be.a('function');
-    expect(mapObject()(identity)()()()).to.be.a('function');
-    expect(mapObject(identity)({})).to.be.a('object');
-    expect(mapObject()(identity)()()({})).to.be.a('object');
+    expect(mapObject).to.be.curried(identity, { a: 1 }, 'object');
   });
 
   it('should apply a function to each value on the input `object`', function() {

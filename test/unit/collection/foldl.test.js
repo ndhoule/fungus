@@ -17,12 +17,7 @@ describe('foldl', function() {
   });
 
   it('should be curried', function() {
-    var fn = foldl(identity);
-
-    expect(fn).to.be.a('function');
-    expect(fn()()()()).to.be.a('function');
-    expect(fn([1, 2, 3])).to.be.a('function');
-    expect(fn(4, [1, 2, 3])).to.be.a('number');
+    expect(foldl).to.be.curried(identity, 4, [1, 2, 3], 'number');
   });
 
   it('should pass the input function three arguments: value, index, and array', function() {

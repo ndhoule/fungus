@@ -10,15 +10,7 @@ describe('get', function() {
   });
 
   it('should be curried', function() {
-    var fn = get('omg');
-
-    expect(fn).to.be.a('function');
-
-    fn()()()()();
-
-    expect(fn).to.be.a('function');
-
-    expect(fn({ omg: 1 })).to.be.a('number');
+    expect(get).to.be.curried('omg', { omg: 1  }, 'number');
   });
 
   it('should return a value when one is defined at a given key', function() {

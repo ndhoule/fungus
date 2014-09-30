@@ -10,10 +10,7 @@ describe('or', function() {
   });
 
   it('should be curried', function() {
-    expect(or(1)).to.be.a('function');
-    expect(or(1)()()()).to.be.a('function');
-    expect(or(1)(2)).to.be.a('number');
-    expect(or(1)()()(2)).to.be.a('number');
+    expect(or).to.be.curried(1, 2, 'number');
   });
 
   it('should do what the native `||` operator does', function() {

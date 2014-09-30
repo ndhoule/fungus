@@ -10,10 +10,7 @@ describe('multiply', function() {
   });
 
   it('should be curried', function() {
-    expect(multiply(1)).to.be.a('function');
-    expect(multiply(1)()()()).to.be.a('function');
-    expect(multiply(1)(2)).to.be.a('number');
-    expect(multiply(1)()()(2)).to.be.a('number');
+    expect(multiply).to.be.curried(1, 2, 'number');
   });
 
   it('should do what the native `*` operator does', function() {

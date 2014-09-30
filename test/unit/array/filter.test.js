@@ -17,17 +17,7 @@ describe('filter', function() {
   });
 
   it('should be curried', function() {
-    var fn = filter(identity);
-
-    expect(identity).to.have.not.beenCalled;
-
-    fn()()()();
-
-    expect(identity).to.have.not.beenCalled;
-
-    fn([1]);
-
-    expect(identity).to.have.been.calledOnce;
+    expect(filter).to.be.curried(truthy, [0, 1], 'array');
   });
 
   it('should return an array', function() {

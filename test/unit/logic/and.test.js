@@ -10,10 +10,7 @@ describe('and', function() {
   });
 
   it('should be curried', function() {
-    expect(and(1)).to.be.a('function');
-    expect(and(1)()()()).to.be.a('function');
-    expect(and(1)(2)).to.be.a('number');
-    expect(and(1)()()(2)).to.be.a('number');
+    expect(and).to.be.curried(1, 2, 'number');
   });
 
   it('should do what the native `&&` operator does', function() {

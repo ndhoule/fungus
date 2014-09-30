@@ -10,12 +10,7 @@ describe('omit', function() {
   });
 
   it('should be curried', function() {
-    expect(omit('tim')).to.be.a('function');
-    expect(omit('tim')()()()).to.be.a('function');
-    expect(omit(['tim'])()()()).to.be.a('function');
-    expect(omit('tim')({})).to.be.an('object');
-    expect(omit(['tim'])({})).to.be.an('object');
-    expect(omit('tim')()()({})).to.be.an('object');
+    expect(omit).to.be.curried('tim', { a: 1 }, 'object');
   });
 
   it('should return a new object', function() {

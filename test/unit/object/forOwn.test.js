@@ -18,10 +18,7 @@ describe('forOwn', function() {
   });
 
   it('should be curried', function() {
-    expect(forOwn(observe)).to.be.a('function');
-    expect(forOwn(observe)()()()).to.be.a('function');
-    expect(forOwn(observe)({})).to.be.undefined;
-    expect(forOwn(observe)()()({})).to.be.undefined;
+    expect(forOwn).to.be.curried(observe, { a: 1 }, 'undefined');
   });
 
   it('should iterate in left-to-right order', function() {

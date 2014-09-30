@@ -16,10 +16,7 @@ describe('indexOf', function() {
   });
 
   it('should be curried', function() {
-    expect(indexOf('tim')).to.be.a('function');
-    expect(indexOf('tim')()()()).to.be.a('function');
-    expect(indexOf('tim')([])).to.be.a('number');
-    expect(indexOf('tim')()()([])).to.be.a('number');
+    expect(indexOf).to.be.curried('tim', [0, 1], 'number');
   });
 
   it('should return the index of the matching element', function() {

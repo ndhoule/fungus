@@ -10,10 +10,7 @@ describe('lt', function() {
   });
 
   it('should be curried', function() {
-    expect(lt(1)).to.be.a('function');
-    expect(lt(1)()()()).to.be.a('function');
-    expect(lt(1)(2)).to.be.a('boolean');
-    expect(lt(1)()()(2)).to.be.a('boolean');
+    expect(lt).to.be.curried(1, 2, 'boolean');
   });
 
   it('should do what the native `<` operator does', function() {

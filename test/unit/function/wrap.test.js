@@ -17,10 +17,7 @@ describe('wrap', function() {
   });
 
   it('should be curried', function() {
-    expect(wrap).to.be.a('function');
-    expect(wrap()()()()).to.be.a('function');
-    expect(wrap(noop)).to.be.a('function');
-    expect(wrap(noop, noop)).to.be.a('function');
+    expect(wrap).to.be.curried(noop, noop, 'function');
   });
 
   it('should return a new function', function() {

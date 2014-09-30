@@ -10,10 +10,7 @@ describe('contains', function() {
   });
 
   it('should be curried', function() {
-    expect(contains('tim')).to.be.a('function');
-    expect(contains('tim')()()()).to.be.a('function');
-    expect(contains('tim')([])).to.be.a('boolean');
-    expect(contains('tim')()()([])).to.be.a('boolean');
+    expect(contains).to.be.curried(1, [], 'boolean');
   });
 
   it('should return `true` when a match is found', function() {

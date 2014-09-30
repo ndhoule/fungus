@@ -14,7 +14,7 @@ import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
  * @return {undefined}
  */
 let wrapCurry = function wrapCurry(fn, remainingArity, previousArgs) {
-  return arity(remainingArity, function(...newArgs) {
+  let wrapped = arity(remainingArity, function(...newArgs) {
     let newArity = remainingArity - newArgs.length;
     let args = previousArgs.concat(newArgs);
 
@@ -24,6 +24,9 @@ let wrapCurry = function wrapCurry(fn, remainingArity, previousArgs) {
 
     return fn.apply(this, args);
   });
+
+  // Add a flag to the returned function indicating that this function is curried
+  return Object.defineProperty(wrapped, '_curried', { value: true });
 };
 
 /**

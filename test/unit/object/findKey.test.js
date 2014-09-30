@@ -21,10 +21,7 @@ describe('findKey', function() {
   });
 
   it('should be curried', function() {
-    expect(findKey(alwaysTrue)).to.be.a('function');
-    expect(findKey(alwaysTrue)()()()).to.be.a('function');
-    expect(findKey(alwaysTrue)(animals)).to.be.a('string');
-    expect(findKey(alwaysTrue)()()(animals)).to.be.a('string');
+    expect(findKey).to.be.curried(alwaysTrue, animals, 'string');
   });
 
   it('should return `undefined` when the predicate never returns `true`', function() {

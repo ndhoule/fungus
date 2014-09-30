@@ -10,10 +10,7 @@ describe('gte', function() {
   });
 
   it('should be curried', function() {
-    expect(gte(1)).to.be.a('function');
-    expect(gte(1)()()()).to.be.a('function');
-    expect(gte(1)(2)).to.be.a('boolean');
-    expect(gte(1)()()(2)).to.be.a('boolean');
+    expect(gte).to.be.curried(1, 2, 'boolean');
   });
 
   it('should do what the native `>=` operator does', function() {

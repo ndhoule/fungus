@@ -10,12 +10,7 @@ describe('pick', function() {
   });
 
   it('should be curried', function() {
-    expect(pick('tim')).to.be.a('function');
-    expect(pick('tim')()()()).to.be.a('function');
-    expect(pick(['tim'])()()()).to.be.a('function');
-    expect(pick('tim')({})).to.be.an('object');
-    expect(pick(['tim'])({})).to.be.an('object');
-    expect(pick('tim')()()({})).to.be.an('object');
+    expect(pick).to.be.curried('tim', { a: 1 }, 'object');
   });
 
   it('should return a new object', function() {

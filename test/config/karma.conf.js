@@ -95,6 +95,7 @@ module.exports = function(config) {
     files: [
       'dist/browser/fungus.min.js',
       'test/factories/**/*.js',
+      'test/plugins/**/*.js',
       'test/unit/**/*.test.js'
     ],
 

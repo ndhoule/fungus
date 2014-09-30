@@ -10,10 +10,7 @@ describe('remainder', function() {
   });
 
   it('should be curried', function() {
-    expect(remainder(1)).to.be.a('function');
-    expect(remainder(1)()()()).to.be.a('function');
-    expect(remainder(1)(2)).to.be.a('number');
-    expect(remainder(1)()()(2)).to.be.a('number');
+    expect(remainder).to.be.curried(1, 2, 'number');
   });
 
   it('should do what the native `%` operator does', function() {

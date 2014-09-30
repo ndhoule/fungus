@@ -22,7 +22,7 @@ describe('compact', function() {
   });
 
   it('should be curried', function() {
-    expect(compact()()()()()).to.be.a('function');
+    expect(compact).to.be.curried([], 'array');
   });
 
   it('should return an array', function() {
