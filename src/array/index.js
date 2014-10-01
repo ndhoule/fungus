@@ -8,6 +8,7 @@ import last from './last';
 import lastIndexOf from './lastIndexOf';
 import range from './range';
 import rest from './rest';
+import uniq from './uniq';
 
 defineAliases(['select'], filter);
 
@@ -19,5 +20,6 @@ export default setupAliases({
   last,
   lastIndexOf,
   range,
-  rest
+  rest,
+  uniq
 });
