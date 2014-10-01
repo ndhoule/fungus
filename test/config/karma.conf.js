@@ -93,6 +93,7 @@ module.exports = function(config) {
     singleRun: true,
 
     files: [
+      'node_modules/traceur/bin/traceur-runtime.js',
       'dist/browser/fungus.min.js',
       'test/factories/**/*.js',
       'test/plugins/**/*.js',

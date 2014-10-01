@@ -30,6 +30,11 @@ requireDirectory(module, PLUGINS_PATH);
 requireDirectory(module, FACTORIES_PATH);
 
 /**
+ * Load Traceur runtime
+ */
+require('traceur/bin/traceur-runtime');
+
+/**
  * Export Fungus library
  */
 global.fungus = require(path.join(DIST_PATH, 'commonjs/index')).default;
