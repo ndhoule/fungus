@@ -3,6 +3,7 @@ import setupAliases from '../internal/setupAliases';
 import arity from './arity';
 import compose from './compose';
 import curry from './curry';
+import flip from './flip';
 import lPartial from './lPartial';
 import memoize from './memoize';
 import rPartial from './rPartial';
@@ -12,11 +13,12 @@ defineAliases(['partialLeft'], lPartial);
 defineAliases(['partialRight'], rPartial);
 
 export default setupAliases({
-  arity: arity,
-  compose: compose,
-  curry: curry,
-  lPartial: lPartial,
-  memoize: memoize,
-  rPartial: rPartial,
-  wrap: wrap
+  arity,
+  compose,
+  curry,
+  flip,
+  lPartial,
+  memoize,
+  rPartial,
+  wrap
 });
