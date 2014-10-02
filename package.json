@@ -21,7 +21,8 @@
   ],
   "main": "index",
   "scripts": {
-    "prepublish": "make build.commonjs"
+    "prepublish": "make build.commonjs",
+    "test": "make test"
   },
   "config": {
     "blanket": {
@@ -49,6 +50,7 @@
     "karma-chai-js-factories": "git+https://github.com/ndhoule/karma-chai-js-factories.git",
     "karma-chrome-launcher": "^0.1.4",
     "karma-cli": "0.0.4",
+    "karma-firefox-launcher": "^0.1.3",
     "karma-mocha": "^0.1.9",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-sauce-launcher": "^0.2.10",
