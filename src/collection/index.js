@@ -9,8 +9,10 @@ import forEachRight from './forEachRight';
 import groupBy from './groupBy';
 import map from './map';
 import size from './size';
+import some from './some';
 
 defineAliases(['all'], every);
+defineAliases(['any'], some);
 defineAliases(['each'], forEach);
 defineAliases(['eachRight'], forEachRight);
 defineAliases(['map'], map);
@@ -26,5 +28,6 @@ export default setupAliases({
   forEachRight,
   groupBy,
   map,
-  size
+  size,
+  some
 });
