@@ -17,9 +17,11 @@ describe('compose', function() {
   });
 
   it('should return functions with an arity equal to that of the last argument', function() {
-    var fn = compose(add, add);
+    var a = function(a, b) {};
+    var b = function(a, b, c) {};
+    var fn = compose(a, b);
 
-    expect(fn.length).to.equal(add.length);
+    expect(fn.length).to.equal(b.length);
   });
 
   it('should return the original function when passed only one argument', function() {

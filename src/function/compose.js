@@ -1,4 +1,4 @@
-import arity from '../function/arity';
+import arity from './arity';
 import foldl from '../collection/foldl';
 import isFunction from '../object/isFunction';
 import { NO_ARGS_EXCEPTION, NOT_FUNC_EXCEPTION } from '../internal/exceptions';
