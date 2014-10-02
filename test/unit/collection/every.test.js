@@ -25,7 +25,7 @@ describe('every', function() {
     expect(every(identity, ['a', 1, {}])).to.be.true;
   });
 
-  xit('should return `false` when any element in the collection fails the `iterator` test', function() {
+  it('should return `false` when any element in the collection fails the `iterator` test', function() {
     expect(every(identity, [NaN])).to.be.false;
     expect(every(identity, ['', 1, 2])).to.be.false;
     expect(every(identity, [0, 1, 2])).to.be.false;

@@ -4,8 +4,8 @@ import isFunction from '../object/isFunction';
 import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
 
 /**
- * Accepts a test function and a collection, and returns true if all elements in the collection
- * return a truthy value when run through the test function.
+ * Accepts a test function and a `collection`, and returns `true` if the test returns a truthy value
+ * for all elements in the `collection`. Otherwise, returns `false`.
  *
  * @name every
  * @api public
@@ -14,7 +14,7 @@ import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
  * @see {@link some}
  * @param {Function} iterator The function to invoke per iteration.
  * @param {Array|Object} collection The collection to iterate over.
- * @return {boolean} Returns `true` if any element in the collection passes the `iterator` test,
+ * @return {boolean} Returns `true` if all elements in the collection pass the `iterator` test,
  * otherwise `false`.
  * @example
  * var isPositive = function(x) { return x > 0; };
@@ -32,7 +32,7 @@ let every = curry(function every(iterator, collection) {
     throw NOT_FUNC_EXCEPTION;
   }
 
-  var result = true;
+  let result = true;
 
   forEach(function(value, index, collection) {
     if (!iterator(value, index, collection)) {
