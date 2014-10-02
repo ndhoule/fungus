@@ -6,6 +6,7 @@ import curry from './curry';
 import flip from './flip';
 import lPartial from './lPartial';
 import memoize from './memoize';
+import pipe from './pipe';
 import rPartial from './rPartial';
 import wrap from './wrap';
 
@@ -19,6 +20,7 @@ export default setupAliases({
   flip,
   lPartial,
   memoize,
+  pipe,
   rPartial,
   wrap
 });
