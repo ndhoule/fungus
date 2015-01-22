@@ -2,39 +2,45 @@
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'test';
 
+/**
+ * Module dependencies.
+ */
+
 var path = require('path');
 var requireDirectory = require('require-directory');
 
-var DIST_PATH = path.join(__dirname, '../../dist');
+/**
+ * Constants.
+ */
+
+var ROOT_PATH = path.join(__dirname, '../..');
 var FACTORIES_PATH = path.join(__dirname, '../factories');
 var PLUGINS_PATH = path.join(__dirname, '../plugins');
 
 /**
- * Globalize Chai test framework
+ * Testing globals.
  */
-var chai = require('chai');
-global.chai = chai;
+
+var chai = global.chai = require('chai');
 global.expect = chai.expect;
 global.sinon = require('sinon');
 
 /**
- * Chai plugins
+ * Chai plugins.
  */
+
 chai.use(require('sinon-chai'));
 chai.use(require('chai-js-factories'));
 requireDirectory(module, PLUGINS_PATH);
 
 /**
- * Fixtures and factories
+ * Load fixtures and factories.
  */
+
 requireDirectory(module, FACTORIES_PATH);
 
 /**
- * Load Traceur runtime
+ * Globalize Fungus.
  */
-require('traceur/bin/traceur-runtime');
 
-/**
- * Export Fungus library
- */
-global.fungus = require(path.join(DIST_PATH, 'commonjs/index')).default;
+global.fungus = require(path.join(ROOT_PATH, 'src/index'));

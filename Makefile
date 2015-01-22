@@ -6,8 +6,9 @@ JSHINT = ./node_modules/.bin/jshint
 KARMA = ./node_modules/.bin/karma
 MOCHA = ./node_modules/.bin/mocha
 SASS = ./node_modules/.bin/node-sass
-TRACEUR = ./node_modules/.bin/traceur
+BROWSERIFY = ./node_modules/.bin/browserify
 UGLIFYJS = ./node_modules/.bin/uglifyjs
+EXORCIST = ./node_modules/.bin/exorcist
 
 DIST_DIR = ./dist
 SRC_DIR = ./src
@@ -19,6 +20,7 @@ HTMLMIN_FLAGS = --collapse-whitespace \
 	--remove-comments
 
 MOCHA_COMMON_FLAGS = \
+	--compilers js:6to5/register \
 	--ui bdd \
 	--check-leaks \
 	--require $(TEST_DIR)/config/node
@@ -27,32 +29,8 @@ MOCHA_COVERAGE_FLAGS = \
 	--require blanket \
 	$(MOCHA_COMMON_FLAGS)
 
-TRACEUR_COMMON_FLAGS = \
-	--generator-comprehension=true \
-	--array-comprehension=true
-
-# TODO: Re-enable source maps once output directory is fixed
-# (currently dumps them in cwd)
-TRACEUR_COMMONJS_FLAGS = \
-	$(TRACEUR_COMMON_FLAGS) \
-	--modules=commonjs #\
-#	--filename \
-#	--source-maps
-
-TRACEUR_BROWSER_FLAGS = \
-	$(TRACEUR_COMMON_FLAGS) \
-	--modules=amd #\
-#	--filename \
-#	--source-maps
-
-UGLIFYJS_FLAGS = \
-	--reserved fungus \
-	--mangle \
-	--compress keep-fargs=true \
-	--screw-ie8
-
 #
-# Support Tasks
+# Support.
 #
 
 node_modules:
@@ -74,55 +52,37 @@ $(TMP_DIR)/docs:
 	@mkdir -p $(TMP_DIR)/docs
 
 #
-# Build Tasks
+# Build Targets.
 #
 
-build.commonjs: force | $(DIST_DIR)
-	@rm -rf $(DIST_DIR)/commonjs/*
-	@$(TRACEUR) $(TRACEUR_COMMONJS_FLAGS) --dir $(SRC_DIR) $(DIST_DIR)/commonjs
+$(DIST_DIR)/fungus.js: force | $(DIST_DIR)
+	@$(BROWSERIFY) -d -s fungus -t [ 6to5ify --sourceMapRelative src ] src/index.js | $(EXORCIST) $(DIST_DIR)/fungus.js.map > $@
+	@echo "Built library to $@."
 
-build.amd: force | $(DIST_DIR)
-	@rm -rf $(DIST_DIR)/amd/*
-	@$(TRACEUR) $(TRACEUR_BROWSER_FLAGS) --dir $(SRC_DIR) $(DIST_DIR)/amd
-
-$(DIST_DIR)/browser/fungus.js: build.amd | $(DIST_DIR)/browser
-	@.bin/build-browser > $@
-
-$(DIST_DIR)/browser/fungus.min.js: $(DIST_DIR)/browser/fungus.js | $(DIST_DIR)/browser
-	@$(UGLIFYJS) $< $(UGLIFYJS_FLAGS) > $@ 2> /dev/null
-
-build.script: $(DIST_DIR)/browser/fungus.min.js
+$(DIST_DIR)/fungus.min.js: force | $(DIST_DIR)/fungus.js
+	@$(UGLIFYJS) --mangle \
+							 --screw-ie8 \
+							 --compress keep-fargs=true \
+							 --reserved fungus \
+							 --in-source-map $(DIST_DIR)/fungus.js.map \
+							 --source-map $(DIST_DIR)/fungus.min.js.map \
+							 $(DIST_DIR)/fungus.js > $@
+	@echo "Built library to $@."
 
 #
-# Testing Tasks
+# Testing.
 #
 
 test: test.node test.browser
 
-test.node: build.commonjs
+test.node:
 	@$(MOCHA) $(MOCHA_COMMON_FLAGS) --reporter spec $(TEST_DIR)/**/*.test.js
 
-test.browser: $(DIST_DIR)/browser/fungus.min.js
+test.browser: $(DIST_DIR)/fungus.js
 	@$(KARMA) start test/config/karma.conf.js
 
-$(TMP_DIR)/coverage.lcov: build.commonjs | $(TMP_DIR)
-	@$(MOCHA) $(MOCHA_COVERAGE_FLAGS) --reporter mocha-lcov-reporter $(TEST_DIR)/**/*.test.js > $@
-
-test.coverage.coveralls: $(TMP_DIR)/coverage.lcov
-	@$< | $(COVERALLS)
-	@echo Coverage report sent to Coveralls.
-
-$(TMP_DIR)/coverage.html: build.commonjs | $(TMP_DIR)
-	@$(MOCHA) $(MOCHA_COVERAGE_FLAGS) --reporter html-cov $(TEST_DIR)/**/*.test.js > $@
-	@echo Coverage report written to \`$@\`.
-
-test.coverage.html: $(TMP_DIR)/coverage.html
-
-lint:
-	@$(JSHINT) --reporter=./node_modules/jshint-stylish/stylish $(SRC_DIR) $(TEST_DIR)
-
 #
-# Documentation Tasks
+# Documentation.
 #
 
 $(TMP_DIR)/docs/%.css: docs/scss/%.scss
@@ -138,15 +98,11 @@ $(TMP_DIR)/docs/index.html: build.script $(TMP_DIR)/docs/fungus.min.js $(TMP_DIR
 docs: $(TMP_DIR)/docs/index.html
 
 #
-# Watch Tasks
+# Watch
 #
 
-watch:
-	@.bin/watch
-
-unwatch:
-	@.bin/unwatch
+# TODO: watchify
 
 
-.DEFAULT_GOAL = build.commonjs
+.DEFAULT_GOAL = dist/fungus.js
 .PHONY: docs force node_modules test.node unwatch watch lint

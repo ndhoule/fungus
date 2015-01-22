@@ -11,14 +11,13 @@ module.exports = function(config) {
   // Config options shared across all environments
   var baseConfig = {
     basePath: '../..',
-    frameworks: ['mocha', 'sinon-chai', 'chai-js-factories', 'chai'],
+    frameworks: ['mocha', 'chai-js-factories', 'sinon-chai', 'chai'],
     logLevel: config.LOG_ERROR,
     port: 9876,
     files: [
-      'node_modules/traceur/bin/traceur-runtime.js',
-      'dist/browser/fungus.min.js',
-      'test/factories/**/*.js',
-      'test/plugins/**/*.js',
+      'dist/fungus.js',
+      'test/factories/*.js',
+      'test/plugins/*.js',
       'test/unit/**/*.test.js'
     ]
   };
