@@ -1,14 +1,4 @@
-NODE = $(shell which node)
-NPM = $(shell which npm)
-COVERALLS = ./node_modules/.bin/coveralls
-HTMLMIN = ./node_modules/.bin/html-minifier
-JSHINT = ./node_modules/.bin/jshint
-KARMA = ./node_modules/.bin/karma
-MOCHA = ./node_modules/.bin/mocha
-SASS = ./node_modules/.bin/node-sass
-BROWSERIFY = ./node_modules/.bin/browserify
-UGLIFYJS = ./node_modules/.bin/uglifyjs
-EXORCIST = ./node_modules/.bin/exorcist
+export PATH := ./node_modules/.bin:$(PATH)
 
 DIST_DIR = ./dist
 SRC_DIR = ./src
@@ -33,8 +23,8 @@ MOCHA_COVERAGE_FLAGS = \
 # Support.
 #
 
-node_modules:
-	$(NPM) install
+node_modules: package.json
+	@npm install
 
 clean:
 	@rm -rf $(TMP_DIR) $(DIST_DIR)
@@ -55,18 +45,22 @@ $(TMP_DIR)/docs:
 # Build Targets.
 #
 
-$(DIST_DIR)/fungus.js: force | $(DIST_DIR)
-	@$(BROWSERIFY) -d -s fungus -t [ 6to5ify --sourceMapRelative src ] src/index.js | $(EXORCIST) $(DIST_DIR)/fungus.js.map > $@
+$(DIST_DIR)/fungus.js: $(wildcard node_modules/*/*.json src/*.js src/**/*.js) | $(DIST_DIR)
+	@browserify src/index.js \
+							--debug \
+							--standalone fungus \
+							--transform [ 6to5ify --sourceMapRelative src ] | \
+							exorcist $@.map > $@
 	@echo "Built library to $@."
 
-$(DIST_DIR)/fungus.min.js: force | $(DIST_DIR)/fungus.js
-	@$(UGLIFYJS) --mangle \
-							 --screw-ie8 \
-							 --compress keep-fargs=true \
-							 --reserved fungus \
-							 --in-source-map $(DIST_DIR)/fungus.js.map \
-							 --source-map $(DIST_DIR)/fungus.min.js.map \
-							 $(DIST_DIR)/fungus.js > $@
+$(DIST_DIR)/fungus.min.js: $(DIST_DIR)/fungus.js
+	@uglifyjs $(DIST_DIR)/fungus.js \
+						--mangle \
+						--screw-ie8 \
+						--compress keep-fargs=true \
+						--reserved fungus \
+						--in-source-map $(DIST_DIR)/fungus.js.map \
+						--source-map $@.map > $@
 	@echo "Built library to $@."
 
 #
@@ -76,33 +70,33 @@ $(DIST_DIR)/fungus.min.js: force | $(DIST_DIR)/fungus.js
 test: test.node test.browser
 
 test.node:
-	@$(MOCHA) $(MOCHA_COMMON_FLAGS) --reporter spec $(TEST_DIR)/**/*.test.js
+	@mocha $(MOCHA_COMMON_FLAGS) --reporter spec $(TEST_DIR)/**/*.test.js
 
 test.browser: $(DIST_DIR)/fungus.js
-	@$(KARMA) start test/config/karma.conf.js
+	@karma start test/config/karma.conf.js
 
 #
 # Documentation.
 #
 
 $(TMP_DIR)/docs/%.css: docs/scss/%.scss
-	@$(SASS) --include-path=./node_modules/bootstrap-sass/assets/stylesheets $< -o $@ > /dev/null 2>&1
+	@node-sass --include-path=./node_modules/bootstrap-sass/assets/stylesheets $< -o $@ > /dev/null 2>&1
 
-$(TMP_DIR)/docs/fungus.min.js: build.script | $(TMP_DIR)/docs
-	@cp $(DIST_DIR)/browser/fungus.min.js $(TMP_DIR)/docs/fungus.min.js
+$(TMP_DIR)/docs/fungus.min.js: $(DIST_DIR)/fungus.min.js | $(TMP_DIR)/docs
+	@cp $(DIST_DIR)/fungus.min.js $@
 
-$(TMP_DIR)/docs/index.html: build.script $(TMP_DIR)/docs/fungus.min.js $(TMP_DIR)/docs/main.css | $(TMP_DIR)/docs
-	@$(NODE) .bin/generate-docs | $(HTMLMIN) $(HTMLMIN_FLAGS) > $@
-	@echo Documentation written to \`$(TMP_DIR)/docs/\`.
+$(TMP_DIR)/docs/fungus.min.js.map: $(DIST_DIR)/fungus.min.js | $(TMP_DIR)/docs
+	@cp $(DIST_DIR)/fungus.min.js.map $@
+
+$(TMP_DIR)/docs/index.html: $(TMP_DIR)/docs/fungus.min.js $(TMP_DIR)/docs/fungus.min.js.map $(TMP_DIR)/docs/main.css | $(TMP_DIR)/docs
+	@node .bin/generate-docs | html-minifier $(HTMLMIN_FLAGS) > $@
+	@echo "Built documentation to $(TMP_DIR)/docs."
 
 docs: $(TMP_DIR)/docs/index.html
 
 #
-# Watch
+# Phonies and defaults.
 #
 
-# TODO: watchify
-
-
 .DEFAULT_GOAL = dist/fungus.js
-.PHONY: docs force node_modules test.node unwatch watch lint
+.PHONY: docs test.node test.browser
