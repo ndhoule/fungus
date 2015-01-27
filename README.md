@@ -7,8 +7,8 @@ A functional programming library implemented in ES6.
 
 Branch | Node | Browser | Coverage
 ---    | ---  | ---     | ---
-master | [![Master - Node build status][master-travis-image]][master-travis-url] | [![Master - Browser build status][master-sauce-image]][master-sauce-url] | [![Master - Coverage][master-coveralls-image]][master-coveralls-url]
-dev    | [![Dev - Node build status][dev-travis-image]][dev-travis-url] | N/A | [![Dev - Coverage][dev-coveralls-image]][dev-coveralls-url]
+master | [![Master - Node build status][master-travis-image]][master-travis-url] | N/A | [![Master - Coverage][master-coveralls-image]][master-coveralls-url]
+dev    | [![Dev - Node build status][dev-travis-image]][dev-travis-url] | [![Master - Browser build status][master-sauce-image]][master-sauce-url] | [![Dev - Coverage][dev-coveralls-image]][dev-coveralls-url]
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/fungusjs.svg)](https://saucelabs.com/u/fungusjs)
 
