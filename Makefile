@@ -30,14 +30,8 @@ MOCHA_FLAGS = \
 	--require $(TEST_DIR)/config/node
 
 #
-# Support.
+# Directories.
 #
-
-node_modules: package.json
-	@npm install
-
-clean:
-	@rm -rf $(TMP_DIR) $(DIST_DIR)
 
 $(DIST_DIR):
 	@mkdir -p $(DIST_DIR)
@@ -50,6 +44,16 @@ $(TMP_DIR):
 
 $(TMP_DIR)/docs:
 	@mkdir -p $(TMP_DIR)/docs
+
+#
+# Support.
+#
+
+node_modules: package.json
+	@npm install
+
+clean:
+	@rm -rf $(DIST_DIR) $(LIB_DIR) $(TMP_DIR)
 
 #
 # Build Targets.
