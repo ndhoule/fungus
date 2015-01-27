@@ -7,7 +7,7 @@ A functional programming library implemented in ES6.
 
 Branch | Node | Browser | Coverage
 ---    | ---  | ---     | ---
-master | [![Master - Node build status][master-travis-image]][master-travis-url] | [![Master - Browser build status][master-coveralls-image]][master-coveralls-url] | [![Master - Coverage][master-coveralls-image]][master-coveralls-url]
+master | [![Master - Node build status][master-travis-image]][master-travis-url] | [![Master - Browser build status][master-sauce-image]][master-sauce-url] | [![Master - Coverage][master-coveralls-image]][master-coveralls-url]
 master | [![Dev - Node build status][dev-travis-image]][dev-travis-url] | N/A | [![Dev - Coverage][dev-coveralls-image]][dev-coveralls-url]
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/fungusjs.svg)](https://saucelabs.com/u/fungusjs)
@@ -108,7 +108,7 @@ open http://localhost:8000
 [master-sauce-url]:       https://saucelabs.com/u/ndhoule
 [master-coveralls-image]: https://coveralls.io/repos/ndhoule/fungus/badge.png?branch=master
 [master-coveralls-url]:   https://coveralls.io/r/ndhoule/fungus?branch=master
-[dev-travis-image]:    https://travis-ci.org/ndhoule/fungus.svg?branch=dev
-[dev-travis-url]:      https://travis-ci.org/ndhoule/fungus
-[dev-coveralls-image]: https://coveralls.io/repos/ndhoule/fungus/badge.png?branch=dev
-[dev-coveralls-url]:   https://coveralls.io/r/ndhoule/fungus?branch=master
+[dev-travis-image]:       https://travis-ci.org/ndhoule/fungus.svg?branch=dev
+[dev-travis-url]:         https://travis-ci.org/ndhoule/fungus
+[dev-coveralls-image]:    https://coveralls.io/repos/ndhoule/fungus/badge.png?branch=dev
+[dev-coveralls-url]:      https://coveralls.io/r/ndhoule/fungus?branch=master
