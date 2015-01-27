@@ -22,11 +22,6 @@
   "scripts": {
     "test": "make test"
   },
-  "config": {
-    "blanket": {
-      "pattern": "dist/"
-    }
-  },
   "devDependencies": {
     "6to5": "^2.13.5",
     "6to5ify": "^3.1.2",
