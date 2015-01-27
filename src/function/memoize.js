@@ -2,8 +2,6 @@ import arity from './arity';
 import isFunction from '../object/isFunction';
 import { NO_ARGS_EXCEPTION, NOT_FUNC_EXCEPTION } from '../internal/exceptions';
 
-let hasOwnProperty = Object.prototype.hasOwnProperty;
-
 /**
  * Serializes an array of values. Used a a serializer in `memoize` and works on
  * complex data types (objects, arrays, etc.).

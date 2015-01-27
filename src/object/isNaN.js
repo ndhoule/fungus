@@ -1,3 +1,5 @@
+/* global -isNaN */
+
 import isNumber from './isNumber';
 
 /**

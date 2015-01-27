@@ -4,8 +4,6 @@ import isArray from './isArray';
 import isObject from './isObject';
 import isString from './isString';
 
-let hasOwnProperty = Object.prototype.hasOwnProperty;
-
 /**
  * Returns a copy of the new `object` containing only the specified properties.
  *

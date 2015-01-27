@@ -1,7 +1,7 @@
 import curry from '../function/curry';
 import existy from '../utility/existy';
 
-let hasOwnProperty = Object.prototype.hasOwnProperty;
+let nativeHas = Object.prototype.hasOwnProperty;
 
 /**
  * Checks an `object` for a specified property, ignoring inherited properties.
@@ -25,7 +25,7 @@ let hasOwnProperty = Object.prototype.hasOwnProperty;
  * //=> false
  */
 let has = curry(function has(key, object) {
-  return existy(object) && hasOwnProperty.call(object, key);
+  return existy(object) && nativeHas.call(object, key);
 });
 
 export default has;

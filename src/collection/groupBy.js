@@ -5,7 +5,7 @@ import get from '../utility/get';
 import identity from '../utility/identity';
 import isFunction from '../object/isFunction';
 
-let hasOwnProperty = Object.prototype.hasOwnProperty;
+let has = Object.prototype.hasOwnProperty;
 
 /**
  * Returns an object where the keys are the result of running a collection's values through an
@@ -38,7 +38,7 @@ let groupBy = curry(function(aggregator, collection) {
   return foldl(function(result, value) {
     let aggregateKey = aggregator(value);
 
-    hasOwnProperty.call(result, aggregateKey) ?
+    has.call(result, aggregateKey) ?
       result[aggregateKey].push(value) :
       result[aggregateKey] = [value];
 

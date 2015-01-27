@@ -1,3 +1,5 @@
+/* global -isFinite */
+
 import isNumber from './isNumber';
 import { nativeIsFinite } from '../internal/natives';
 

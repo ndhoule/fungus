@@ -1,4 +1,4 @@
-let hasOwnProperty = Object.prototype.hasOwnProperty;
+let has = Object.prototype.hasOwnProperty;
 
 /**
  * Copy the properties of one or more `objects` onto a new object. Input objects are iterated over
@@ -30,7 +30,7 @@ let extend = function extend(...objects) {
 
   for (let i = 0; i < objects.length; i += 1) {
     for (let key in objects[i]) {
-      if (hasOwnProperty.call(objects[i], key)) {
+      if (has.call(objects[i], key)) {
         target[key] = objects[i][key];
       }
     }

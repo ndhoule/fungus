@@ -1,6 +1,6 @@
 import isObject from './isObject';
 
-let hasOwnProperty = Object.prototype.hasOwnProperty;
+let nativeHas = Object.prototype.hasOwnProperty;
 
 /**
  * Creates an array composed of all keys on the input object. Ignores any non-enumerable properties.
@@ -46,7 +46,7 @@ let keys = function keys(target) {
   let results = [];
 
   for (let key in target) {
-    if (hasOwnProperty.call(target, key)) {
+    if (nativeHas.call(target, key)) {
       results.push(key);
     }
   }

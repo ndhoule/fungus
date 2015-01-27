@@ -1,3 +1,5 @@
+/* jshint -W089 */
+
 import curry from '../function/curry';
 import isFunction from './isFunction';
 import { NOT_FUNC_EXCEPTION } from '../internal/exceptions';
