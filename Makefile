@@ -60,7 +60,7 @@ $(LIB_DIR): $(SRCS)
 	@echo "Library compiled to $@."
 
 $(DIST_DIR)/fungus.js: Makefile $(NODE_DEPS) $(SRCS) | $(DIST_DIR)
-	@$(BROWSERIFY) dist/index.js \
+	@$(BROWSERIFY) $(SRC_DIR)/index.js \
 							--debug \
 							--standalone fungus \
 							--transform [ 6to5ify --sourceMapRelative src ] | \
@@ -111,7 +111,7 @@ lint:
 	@$(JSHINT) --reporter=./node_modules/jshint-stylish/stylish $(SRC_DIR)
 
 coverage-report: $(TMP_DIR)/coverage/lcov-report/index.html
-test: test.node test.browser
+test: lint test.node test.browser
 
 #
 # Documentation.
