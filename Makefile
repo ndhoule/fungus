@@ -50,7 +50,9 @@ $(TMP_DIR)/docs:
 # Build Targets.
 #
 
-$(DIST_DIR)/fungus.js: $(wildcard node_modules/*/*.json src/*.js src/**/*.js) | $(DIST_DIR)
+build: $(DIST_DIR)/fungus.min.js
+
+$(DIST_DIR)/fungus.js: $(wildcard Makefile node_modules/*/*.json src/*.js src/**/*.js) | $(DIST_DIR)
 	@$(BROWSERIFY) src/index.js \
 							--debug \
 							--standalone fungus \
