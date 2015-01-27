@@ -44,8 +44,8 @@
   "validthis"        : false,
 
   "browser"          : true,
-  "devel"            : true,
-  "jquery"           : true,
+  "devel"            : false,
+  "jquery"           : false,
   "couch"            : false,
   "dojo"             : false,
   "mootools"         : false,

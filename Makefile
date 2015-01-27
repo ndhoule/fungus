@@ -3,6 +3,7 @@ BROWSERIFY = ./node_modules/.bin/browserify
 COVERALLS = ./node_modules/.bin/coveralls
 EXORCIST = ./node_modules/.bin/exorcist
 ISTANBUL = ./node_modules/.bin/istanbul
+JSHINT = ./node_modules/.bin/jshint
 KARMA = ./node_modules/.bin/karma
 MOCHA = ./node_modules/.bin/mocha
 _MOCHA = ./node_modules/.bin/_mocha
@@ -16,7 +17,7 @@ TEST_DIR = ./test
 TMP_DIR = ./.tmp
 
 NODE_DEPS = $(wildcard node_modules/*/package.json)
-SRC = $(wildcard src/*.js src/**/*.js)
+SRCS = $(wildcard src/*.js src/**/*.js)
 TESTS = $(wildcard test/unit/*.test.js test/unit/**/*.test.js)
 
 HTMLMIN_FLAGS = --collapse-whitespace \
@@ -54,11 +55,11 @@ $(TMP_DIR)/docs:
 # Build Targets.
 #
 
-$(LIB_DIR): $(SRC)
+$(LIB_DIR): $(SRCS)
 	@$(6_TO_5) $(SRC_DIR) --out-dir $@ > /dev/null 2>&1
 	@echo "Library compiled to $@."
 
-$(DIST_DIR)/fungus.js: Makefile $(NODE_DEPS) $(SRC) | $(DIST_DIR)
+$(DIST_DIR)/fungus.js: Makefile $(NODE_DEPS) $(SRCS) | $(DIST_DIR)
 	@$(BROWSERIFY) dist/index.js \
 							--debug \
 							--standalone fungus \
@@ -103,9 +104,11 @@ test.coveralls: $(TMP_DIR)/coverage/lcov.info
 	@cat $< | $(COVERALLS)
 	@echo Coverage report sent to Coveralls.
 
+# TODO: Lint $(TEST_DIR) and fix failures
+# TODO: Switch to Eslint when ES6 syntax is more comprehensive.
+#       See this issue for progress: https://github.com/eslint/espree/issues/10
 lint:
-	@echo "ERROR: Not yet implemented"
-	@exit 1
+	@$(JSHINT) --reporter=./node_modules/jshint-stylish/stylish $(SRC_DIR)
 
 coverage-report: $(TMP_DIR)/coverage/lcov-report/index.html
 test: test.node test.browser

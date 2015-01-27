@@ -44,7 +44,7 @@
     "handlebars": "^2.0.0-alpha.4",
     "highlight.js": "^8.2.0",
     "html-minifier": "^0.6.6",
-    "jshint": "^2.5.5",
+    "jshint": "^2.6.0",
     "jshint-stylish": "^0.4.0",
     "karma": "^0.12.31",
     "karma-chai": "^0.1.0",
