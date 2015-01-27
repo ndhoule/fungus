@@ -103,6 +103,10 @@ test.coveralls: $(TMP_DIR)/coverage/lcov.info
 	@cat $< | $(COVERALLS)
 	@echo Coverage report sent to Coveralls.
 
+lint:
+	@echo "ERROR: Not yet implemented"
+	@exit 1
+
 coverage-report: $(TMP_DIR)/coverage/lcov-report/index.html
 test: test.node test.browser
 
@@ -130,4 +134,4 @@ docs: $(TMP_DIR)/docs/index.html
 #
 
 .DEFAULT_GOAL = dist/fungus.min.js
-.PHONY: test.node test.browser test.coveralls
+.PHONY: lint test.node test.browser test.coveralls
