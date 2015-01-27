@@ -1,28 +1,32 @@
+6_TO_5 = ./node_modules/.bin/6to5
 BROWSERIFY = ./node_modules/.bin/browserify
+COVERALLS = ./node_modules/.bin/coveralls
 EXORCIST = ./node_modules/.bin/exorcist
+ISTANBUL = ./node_modules/.bin/istanbul
 KARMA = ./node_modules/.bin/karma
 MOCHA = ./node_modules/.bin/mocha
+_MOCHA = ./node_modules/.bin/_mocha
 SASS = ./node_modules/.bin/node-sass
 UGLIFYJS = ./node_modules/.bin/uglifyjs
 
 DIST_DIR = ./dist
+LIB_DIR = ./lib
 SRC_DIR = ./src
 TEST_DIR = ./test
 TMP_DIR = ./.tmp
+
+NODE_DEPS = $(wildcard node_modules/*/package.json)
+SRC = $(wildcard src/*.js src/**/*.js)
+TESTS = $(wildcard test/unit/*.test.js test/unit/**/*.test.js)
 
 HTMLMIN_FLAGS = --collapse-whitespace \
 	--minify-js \
 	--remove-comments
 
-MOCHA_COMMON_FLAGS = \
-	--compilers js:6to5/register \
+MOCHA_FLAGS = \
 	--ui bdd \
 	--check-leaks \
 	--require $(TEST_DIR)/config/node
-
-MOCHA_COVERAGE_FLAGS = \
-	--require blanket \
-	$(MOCHA_COMMON_FLAGS)
 
 #
 # Support.
@@ -50,15 +54,17 @@ $(TMP_DIR)/docs:
 # Build Targets.
 #
 
-build: $(DIST_DIR)/fungus.min.js
+$(LIB_DIR): $(SRC)
+	@$(6_TO_5) $(SRC_DIR) --out-dir $@ > /dev/null 2>&1
+	@echo "Library compiled to $@."
 
-$(DIST_DIR)/fungus.js: $(wildcard Makefile node_modules/*/*.json src/*.js src/**/*.js) | $(DIST_DIR)
-	@$(BROWSERIFY) src/index.js \
+$(DIST_DIR)/fungus.js: Makefile $(NODE_DEPS) $(SRC) | $(DIST_DIR)
+	@$(BROWSERIFY) dist/index.js \
 							--debug \
 							--standalone fungus \
 							--transform [ 6to5ify --sourceMapRelative src ] | \
 							$(EXORCIST) $@.map > $@
-	@echo "Built library to $@."
+	@echo "Library built to $@."
 
 $(DIST_DIR)/fungus.min.js: $(DIST_DIR)/fungus.js
 	@$(UGLIFYJS) $(DIST_DIR)/fungus.js \
@@ -68,19 +74,37 @@ $(DIST_DIR)/fungus.min.js: $(DIST_DIR)/fungus.js
 						--reserved fungus \
 						--in-source-map $(DIST_DIR)/fungus.js.map \
 						--source-map $@.map > $@
-	@echo "Built library to $@."
+	@echo "Library built to $@."
+
+build: $(DIST_DIR)/fungus.min.js
 
 #
 # Testing.
 #
 
-test: test.node test.browser
-
-test.node:
-	@$(MOCHA) $(MOCHA_COMMON_FLAGS) --reporter spec $(TEST_DIR)/**/*.test.js
-
 test.browser: $(DIST_DIR)/fungus.js
 	@$(KARMA) start test/config/karma.conf.js
+
+test.node: $(LIB_DIR)
+	@NODE_ENV=test $(MOCHA) $(MOCHA_FLAGS) --reporter spec $(TESTS)
+
+# XXX: Does not build to this loc
+$(TMP_DIR)/coverage/lcov.info: $(LIB_DIR) $(TESTS) | $(TMP_DIR)
+	@NODE_ENV=coverage $(ISTANBUL) cover --report lcovonly --dir $(TMP_DIR)/coverage \
+		$(_MOCHA) -- $(MOCHA_FLAGS) $(TESTS)
+	@echo "Coverage report written to $@."
+
+$(TMP_DIR)/coverage/lcov-report/index.html: $(LIB_DIR) $(TESTS) | $(TMP_DIR)
+	@NODE_ENV=coverage $(ISTANBUL) cover --dir $(TMP_DIR)/coverage \
+		$(_MOCHA) -- $(MOCHA_FLAGS) $(TESTS)
+	@open $@
+
+test.coveralls: $(TMP_DIR)/coverage/lcov.info
+	@cat $< | $(COVERALLS)
+	@echo Coverage report sent to Coveralls.
+
+coverage-report: $(TMP_DIR)/coverage/lcov-report/index.html
+test: test.node test.browser
 
 #
 # Documentation.
@@ -97,7 +121,7 @@ $(TMP_DIR)/docs/fungus.min.js.map: $(DIST_DIR)/fungus.min.js | $(TMP_DIR)/docs
 
 $(TMP_DIR)/docs/index.html: $(TMP_DIR)/docs/fungus.min.js $(TMP_DIR)/docs/fungus.min.js.map $(TMP_DIR)/docs/main.css | $(TMP_DIR)/docs
 	@node .bin/generate-docs | html-minifier $(HTMLMIN_FLAGS) > $@
-	@echo "Built documentation to $(TMP_DIR)/docs."
+	@echo "Documentation built to $(TMP_DIR)/docs."
 
 docs: $(TMP_DIR)/docs/index.html
 
@@ -105,5 +129,5 @@ docs: $(TMP_DIR)/docs/index.html
 # Phonies and defaults.
 #
 
-.DEFAULT_GOAL = dist/fungus.js
-.PHONY: docs test.node test.browser
+.DEFAULT_GOAL = dist/fungus.min.js
+.PHONY: test.node test.browser test.coveralls

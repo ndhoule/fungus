@@ -1,7 +1,5 @@
 'use strict';
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'test';
-
 /**
  * Module dependencies.
  */
@@ -43,4 +41,4 @@ requireDirectory(module, FACTORIES_PATH);
  * Globalize Fungus.
  */
 
-global.fungus = require(path.join(ROOT_PATH, 'src/index'));
+global.fungus = require(path.join(ROOT_PATH, process.env.NODE_ENV === 'coverage' ? 'lib-cov' : 'lib'));

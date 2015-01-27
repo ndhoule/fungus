@@ -2,6 +2,8 @@
 dist
 sauce.json
 docs/vendor
+lib
+lib-cov
 
 #
 # Package management
