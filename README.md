@@ -5,10 +5,10 @@ A functional programming library implemented in ES6.
 
 ###### Build Status
 
-Branch | Node | Browser | Coverage | Dependencies
----    | ---  | ---     | ---      | ---
-master | ![Master](https://travis-ci.org/ndhoule/fungus.svg?branch=master) | [![Sauce Test Status](https://saucelabs.com/buildstatus/ndhoule)](https://saucelabs.com/u/ndhoule) | [![Coverage Status](https://coveralls.io/repos/ndhoule/fungus/badge.png?branch=master)](https://coveralls.io/r/ndhoule/fungus?branch=master) | ![Master Dependencies](https://david-dm.org/ndhoule/fungus.svg)
-dev | ![Dev](https://travis-ci.org/ndhoule/fungus.svg?branch=dev) | N/A | [![Coverage Status](https://coveralls.io/repos/ndhoule/fungus/badge.png?branch=dev)](https://coveralls.io/r/ndhoule/fungus?branch=dev) | N/A
+Branch | Node | Browser | Coverage
+---    | ---  | ---     | ---
+master | [![Master - Node build status][master-travis-image]][master-travis-url] | [![Master - Browser build status][master-coveralls-image]][master-coveralls-url] | [![Master - Coverage][master-coveralls-image]][master-coveralls-url]
+master | [![Dev - Node build status][dev-travis-image]][dev-travis-url] | N/A | [![Dev - Coverage][dev-coveralls-image]][dev-coveralls-url]
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/fungusjs.svg)](https://saucelabs.com/u/fungusjs)
 
@@ -23,14 +23,15 @@ Install using `npm install {--save} fungus` and include in your project:
 var fungus = require('fungus');
 ```
 
-<!--
 ### Browser
 
-```html
-<script src="dist/browser.min.js" encoding="utf-8"></script>
-```
--->
+Include the script in your HTML:
 
+```html
+<script src="dist/fungus.min.js" encoding="utf-8"></script>
+```
+
+Currently Fungus is not distributed via Bower, Component, etc. (This will change soon.) For now you can clone and build the repository.
 
 ## Development
 
@@ -42,21 +43,13 @@ Requirements:
 
 Task                           | Description
 ---                            | ---
-`make`                         | Runs the default task (`make build.commonjs`).
+`make`                         | Runs the default task (`make build`).
 `make test`                    | Runs the test suite. Runs both the `test.node` and `test.browser` tasks.
 `make test.node`               | Runs the test suite in a Node environment.
 `make test.browser`            | Runs the test suite in a browser environment.
-`make test.coverage.coveralls` | Runs the test suite in a Node environment, outputting a coverage report and sending it to the [Coveralls][coveralls] code coverage tracking service.
-`make test.coverage.html`      | Runs the test suite in a Node environment, outputting a HTML coverage report.
-`make build.commonjs`          | Builds the library into ES5-compatible CommonJS modules.
-`make build.amd`               | Builds the library into ES5-compatible AMD modules.
-`make build.script`            | Builds the library into a single, ES5-compatible script file.
+`make coverage-report`         | Generate an HTML coverage report to `.tmp/coverage/lcov-report/index.html`.
+`make build`                   | Builds the library into ES5-compatible script (minified and unminified).
 `make docs`                    | Builds the documentation.
-`make watch`                   | Watch and rebuild the source and documentation on file changes. Runs as a background task via [Watchman][watchman].
-`make unwatch`                 | Stop file watching.
-
-[coveralls]: http://coveralls.io
-[watchman]: https://facebook.github.io/watchman/docs/install.html
 
 ### Building
 
@@ -106,3 +99,16 @@ open http://localhost:8000
       but if you want to or need to, it should be easy to understand
     - Usable as a study guide for FP
 -->
+
+<!-- Links -->
+
+[master-travis-image]:    https://travis-ci.org/ndhoule/fungus.svg?branch=master
+[master-travis-url]:      https://travis-ci.org/ndhoule/fungus
+[master-sauce-image]:     https://saucelabs.com/buildstatus/ndhoule
+[master-sauce-url]:       https://saucelabs.com/u/ndhoule
+[master-coveralls-image]: https://coveralls.io/repos/ndhoule/fungus/badge.png?branch=master
+[master-coveralls-url]:   https://coveralls.io/r/ndhoule/fungus?branch=master
+[dev-travis-image]:    https://travis-ci.org/ndhoule/fungus.svg?branch=dev
+[dev-travis-url]:      https://travis-ci.org/ndhoule/fungus
+[dev-coveralls-image]: https://coveralls.io/repos/ndhoule/fungus/badge.png?branch=dev
+[dev-coveralls-url]:   https://coveralls.io/r/ndhoule/fungus?branch=master
