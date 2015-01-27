@@ -20,7 +20,8 @@
   ],
   "main": "index",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "prepublish": "make lib"
   },
   "devDependencies": {
     "6to5": "^2.13.5",
