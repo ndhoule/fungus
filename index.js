@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('./dist/commonjs/index').default;
+module.exports = require('./dist/fungus').default;
