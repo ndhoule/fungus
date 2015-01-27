@@ -1,4 +1,9 @@
-export PATH := ./node_modules/.bin:$(PATH)
+BROWSERIFY = ./node_modules/.bin/browserify
+EXORCIST = ./node_modules/.bin/exorcist
+KARMA = ./node_modules/.bin/karma
+MOCHA = ./node_modules/.bin/mocha
+SASS = ./node_modules/.bin/node-sass
+UGLIFYJS = ./node_modules/.bin/uglifyjs
 
 DIST_DIR = ./dist
 SRC_DIR = ./src
@@ -46,15 +51,15 @@ $(TMP_DIR)/docs:
 #
 
 $(DIST_DIR)/fungus.js: $(wildcard node_modules/*/*.json src/*.js src/**/*.js) | $(DIST_DIR)
-	@browserify src/index.js \
+	@$(BROWSERIFY) src/index.js \
 							--debug \
 							--standalone fungus \
 							--transform [ 6to5ify --sourceMapRelative src ] | \
-							exorcist $@.map > $@
+							$(EXORCIST) $@.map > $@
 	@echo "Built library to $@."
 
 $(DIST_DIR)/fungus.min.js: $(DIST_DIR)/fungus.js
-	@uglifyjs $(DIST_DIR)/fungus.js \
+	@$(UGLIFYJS) $(DIST_DIR)/fungus.js \
 						--mangle \
 						--screw-ie8 \
 						--compress keep-fargs=true \
@@ -70,17 +75,17 @@ $(DIST_DIR)/fungus.min.js: $(DIST_DIR)/fungus.js
 test: test.node test.browser
 
 test.node:
-	@mocha $(MOCHA_COMMON_FLAGS) --reporter spec $(TEST_DIR)/**/*.test.js
+	@$(MOCHA) $(MOCHA_COMMON_FLAGS) --reporter spec $(TEST_DIR)/**/*.test.js
 
 test.browser: $(DIST_DIR)/fungus.js
-	@karma start test/config/karma.conf.js
+	@$(KARMA) start test/config/karma.conf.js
 
 #
 # Documentation.
 #
 
 $(TMP_DIR)/docs/%.css: docs/scss/%.scss
-	@node-sass --include-path=./node_modules/bootstrap-sass/assets/stylesheets $< -o $@ > /dev/null 2>&1
+	@$(SASS) --include-path=./node_modules/bootstrap-sass/assets/stylesheets $< -o $@ > /dev/null 2>&1
 
 $(TMP_DIR)/docs/fungus.min.js: $(DIST_DIR)/fungus.min.js | $(TMP_DIR)/docs
 	@cp $(DIST_DIR)/fungus.min.js $@
